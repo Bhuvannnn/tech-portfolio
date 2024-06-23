@@ -1,7 +1,7 @@
 import { FaLinkedin } from 'react-icons/fa';
 import { FaGithub, FaInstagram } from 'react-icons/fa';
 
-import logo from '/Users/rahulshah/Desktop/Portfolio/src/assets/kevinRushLogo.png';
+import logo from '/Users/rahulshah/Desktop/tech-portfolio/src/assets/kevinRushLogo.png';
 const Navbar = () => {
     const handleLinkedInClick = () => {
         window.open("https://www.linkedin.com/in/bhuvanshah/", "_blank");
