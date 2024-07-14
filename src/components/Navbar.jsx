@@ -1,4 +1,5 @@
-import { FaLinkedin, FaGithub, FaInstagram, FaFilePdf } from 'react-icons/fa';
+import { FaLinkedin, FaGithub, FaInstagram, FaFileAlt} from 'react-icons/fa';
+import { motion } from 'framer-motion';
 import logo from '/Users/rahulshah/Desktop/tech-portfolio/src/assets/BS LOGO-JULY 2024.png';
 
 const Navbar = () => {
@@ -25,7 +26,15 @@ const Navbar = () => {
                 <img className="mx-2 w-10" src={logo} alt="logo" />
             </div>
             <div className='flex m-8 items-center justify-center gap-4 text-2xl'>
-                <FaFilePdf onClick={handleResumeClick} className='cursor-pointer' />
+                <motion.div
+                    className='flex items-center cursor-pointer'
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                    onClick={handleResumeClick}
+                >
+                    <FaFileAlt />
+                    <span className="ml-2 text-lg">Resume</span>
+                </motion.div>
                 <FaLinkedin onClick={handleLinkedInClick} className='cursor-pointer'/>
                 <FaGithub onClick={handleGithubClick} className='cursor-pointer'/>
                 <FaInstagram onClick={handleInstagramClick} className='cursor-pointer'/>
