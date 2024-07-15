@@ -12,7 +12,7 @@ export const EXPERIENCES = [
     year: "2024 - Present",
     role: "Teaching Associate",
     company: "University of Southern California",
-    description: `As a Teaching Associate for CSCI 526 - Advanced Mobile Devices and Game Consoles a masters level course at the University of Southern California, I support the academic journey of 90 students. My responsibilities include conducting office hours where I provide guidance on C# coding challenges and course concepts. 
+    description: `As a Teaching Associate for "CSCI 526 - Advanced Mobile Devices and Game Consoles" a masters level course at the University of Southern California, I support the academic journey of 90 students. My responsibilities include conducting office hours where I provide guidance on C# coding challenges and course concepts. 
     I also create and deliver engaging lectures that cover key aspects of mobile and game console development. 
     Additionally, I grade assignments and projects, offering detailed feedback to help students refine their work across various project phases. 
     I develop innovative in-class coding activities to reinforce their learning and assist in integrating analytics into their games.`,
@@ -59,7 +59,7 @@ technologies: ["PyTorch", "DebertaV3", "Transformers", "MongoDB"],
     title: "Me, Myself and Time: A Game based on Time Travel",
     image: project2,
     description:
-      "The project is a 6-month Unity 2D game focused on time travel, hosted on WebGL for global access. It features intricate time-travel mechanics and integrates robust analytics to monitor gameplay. Technologies used include C# for scripting, Python for data processing, and Firebase for real-time data storage. Visual analytics are implemented using Tableau, with tools like heatmaps, Sankey diagrams, and bar plots to provide detailed insights into player behavior. Conducted under Professor Scott Easley in the Advanced Games Development course at USC, the project combines advanced game development with comprehensive data analysis to enhance player engagement and experience, To play the game, visit 'https://taylorashley30.github.io/GoldBuild/' .",
+      "The is a 6-month project for my class 'Advanced Mobile Devices and Game Consoles'. Unity 2D game focused on time travel, hosted on WebGL for global access. It features intricate time-travel mechanics and integrates robust analytics to monitor gameplay. Technologies used include C# for scripting, Python for data processing, and Firebase for real-time data storage. Visual analytics are implemented using Tableau, with tools like heatmaps, Sankey diagrams, and bar plots to provide detailed insights into player behavior. Conducted under Professor Scott Easley in the Advanced Games Development course at USC, the project combines advanced game development with comprehensive data analysis to enhance player engagement and experience, To play the game, visit 'https://taylorashley30.github.io/GoldBuild/' .",
     technologies: ["C#", "Python", "Tableau", "Firebase"],
   },
   {

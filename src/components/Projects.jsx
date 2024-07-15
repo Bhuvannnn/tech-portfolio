@@ -14,7 +14,7 @@ const Projects = () => {
       </motion.h2>
       <div>
         {PROJECTS.map((project, index) => (
-          <div key={index} className="mb-8 flex flex-wrap lg:justify-center">
+          <div key={index} className="mb-8 flex flex-wrap lg:justify-center lg:text-justify">
             <motion.div 
               whileInView={{ opacity: 1, x: 0 }}
               initial={{ opacity: 0, x: -100 }}
@@ -24,7 +24,7 @@ const Projects = () => {
               <img 
                 src={project.image} 
                 alt={project.title} 
-                className={`rounded mb-6 ${index === 0 || index === 1 || index === 3 ? 'h-64 w-auto object-contain' : 'w-auto h-auto'}`} // Adjust height for projects 1, 2, and 4
+                className={`rounded mb-6 ${index === 0 || index === 1 || index === 3 ? 'h-64 w-auto object-contain' : 'w-auto h-auto' }`} // Adjust height for projects 1, 2, and 4
               />
             </motion.div>
             <motion.div 
@@ -33,14 +33,14 @@ const Projects = () => {
               transition={{ duration: 1 }}
               className="w-full max-w-xl lg:w-3/4"
             >
-              <h6 className="mb-2 font-semibold">
+              <h6 className="mb-2 font-semibold text-base text-purple-400">
                 {project.title}
               </h6>
               <p className="mb-4 text-neutral-400">{project.description}</p>
               {project.technologies.map((tech, techIndex) => (
                 <span 
                   key={techIndex} 
-                  className="mr-2 rounded bg-neutral-900 px-2 py-1 text-sm font-medium text-purple-900"
+                  className="mr-2 rounded bg-neutral-900 px-2 py-1 text-sm font-medium text-amber-500"
                 > 
                   {tech} 
                 </span>
