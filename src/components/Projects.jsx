@@ -36,11 +36,19 @@ const Projects = () => {
               <h6 className="mb-2 font-semibold text-base text-purple-400">
                 {project.title}
               </h6>
-              <p className="mb-4 text-neutral-400">{project.description}</p>
+              <p className="mb-4 text-neutral-400" style={{ textAlign: 'justify' }}>
+                {project.title === "Me, Myself and Time: A Game based on Time Travel" ? (
+                  <>
+                    The is a 6-month project for my class 'Advanced Mobile Devices and Game Consoles'. Unity 2D game focused on time travel, hosted on WebGL for global access. It features intricate time-travel mechanics and integrates robust analytics to monitor gameplay. Technologies used include C# for scripting, Python for data processing, and Firebase for real-time data storage. Visual analytics are implemented using Tableau, with tools like heatmaps, Sankey diagrams, and bar plots to provide detailed insights into player behavior. Conducted under Professor Scott Easley in the Advanced Games Development course at USC, the project combines advanced game development with comprehensive data analysis to enhance player engagement and experience. To play the game, visit <a href="https://taylorashley30.github.io/GoldBuild/" className="text-blue-500 underline" target="_blank" rel="noopener noreferrer">this link</a>.
+                  </>
+                ) : (
+                  project.description
+                )}
+              </p>
               {project.technologies.map((tech, techIndex) => (
                 <span 
                   key={techIndex} 
-                  className="mr-2 rounded bg-neutral-900 px-2 py-1 text-sm font-medium text-amber-500"
+                  className="mr-2 rounded bg-white px-2 py-1 text-sm font-medium text-black"
                 > 
                   {tech} 
                 </span>
