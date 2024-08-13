@@ -1,5 +1,6 @@
-import { FaLinkedin, FaGithub, FaInstagram, FaFileAlt} from 'react-icons/fa';
+import { FaLinkedin, FaGithub, FaInstagram, FaFileAlt } from 'react-icons/fa';
 import { motion } from 'framer-motion';
+import { Link } from 'react-scroll';
 import logo from '/Users/rahulshah/Desktop/tech-portfolio/src/assets/BS LOGO-JULY 2024.png';
 
 const Navbar = () => {
@@ -22,10 +23,28 @@ const Navbar = () => {
 
     return (
         <nav className="mb-20 flex items-center justify-between py-6">
-            <div className="flex flex-shrink-0 items-center">
+            <div className="flex items-center">
                 <img className="mx-2 w-10" src={logo} alt="logo" />
+                <div className="ml-8 flex items-center gap-8 text-lg">
+                    {['about', 'experience', 'projects', 'contact'].map((section, index) => (
+                        <motion.div
+                            key={index}
+                            whileHover={{ scale: 1.1, color: '#6366F1' }} // Tailwind purple-500 color
+                            whileTap={{ scale: 0.9 }}
+                        >
+                            <Link
+                                to={section}
+                                smooth={true}
+                                duration={500}
+                                className="cursor-pointer hover:text-purple-500"
+                            >
+                                {section.charAt(0).toUpperCase() + section.slice(1).replace('-', ' ')}
+                            </Link>
+                        </motion.div>
+                    ))}
+                </div>
             </div>
-            <div className='flex m-8 items-center justify-center gap-4 text-2xl'>
+            <div className='flex items-center gap-4 text-2xl'>
                 <motion.div
                     className='flex items-center cursor-pointer'
                     whileHover={{ scale: 1.1 }}
@@ -35,9 +54,15 @@ const Navbar = () => {
                     <FaFileAlt />
                     <span className="ml-2 text-lg">Resume</span>
                 </motion.div>
-                <FaLinkedin onClick={handleLinkedInClick} className='cursor-pointer'/>
-                <FaGithub onClick={handleGithubClick} className='cursor-pointer'/>
-                <FaInstagram onClick={handleInstagramClick} className='cursor-pointer'/>
+                <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+                    <FaLinkedin onClick={handleLinkedInClick} className='cursor-pointer'/>
+                </motion.div>
+                <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+                    <FaGithub onClick={handleGithubClick} className='cursor-pointer'/>
+                </motion.div>
+                <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+                    <FaInstagram onClick={handleInstagramClick} className='cursor-pointer'/>
+                </motion.div>
             </div>
         </nav>
     );

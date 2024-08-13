@@ -1,43 +1,42 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { HERO_CONTENT } from "../constants";
 import profilePic from "../assets/BhuvanProfile.jpg";
+import mouse from "../assets/mouse.png";
 import { motion } from "framer-motion";
 
 const container = (delay) => ({
     hidden: { x: -100, opacity: 0 },
     visible: {
-        x: 0,
-        opacity: 1,
+        x: 0, opacity: 1,
         transition: { delay: delay, duration: 0.5 }
     },
 });
 
 const TextMorph = ({ initialText, finalText }) => {
     const [displayedText, setDisplayedText] = useState(initialText);
-    const [currentStep, setCurrentStep] = useState(0);
 
     useEffect(() => {
+        const intervalDuration = 125;
+        let currentStep = 0;
+
         const timer = setInterval(() => {
-            setCurrentStep((prevStep) => {
-                if (prevStep < finalText.length) {
-                    setDisplayedText(
-                        initialText
-                            .split('')
-                            .map((char, index) => {
-                                // Log each character and index for debugging
-                                console.log(`Index: ${index}, Char: ${char}`);
-                                return index < prevStep ? finalText[index] : char;
-                            })
-                            .join('')
-                    );
-                    return prevStep + 1;
-                } else {
-                    setDisplayedText(finalText);
-                    clearInterval(timer);
-                    return prevStep;
-                }
+            setDisplayedText(prevText => {
+                const newText = prevText
+                    .split('')
+                    .map((char, index) => {
+                        return index <= currentStep ? finalText[index] : char;
+                    })
+                    .join('');
+
+                return newText;
             });
-        }, 100);
+
+            if (currentStep >= finalText.length - 1) {
+                clearInterval(timer);
+            }
+
+            currentStep++;
+        }, intervalDuration);
 
         return () => clearInterval(timer);
     }, [initialText, finalText]);
@@ -57,7 +56,7 @@ const TextMorph = ({ initialText, finalText }) => {
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ duration: 0.2, delay: index * 0.05 }}
                 >
-                    {char === ' ' ? '\u00A0' : char} {/* Use non-breaking space for space characters */}
+                    {char === ' ' ? '\u00A0' : char} {/* Non-breaking space for spaces */}
                 </motion.span>
             ))}
         </motion.div>
@@ -65,50 +64,33 @@ const TextMorph = ({ initialText, finalText }) => {
 };
 
 const Hero = () => {
-    const textRef = useRef(null);
-    const [textWidth, setTextWidth] = useState(0);
-
-    useEffect(() => {
-        // Calculate the width of the text element
-        if (textRef.current) {
-            setTextWidth(textRef.current.offsetWidth);
-        }
-    }, []);
-
     return (
         <div className="border-b border-neutral-900 pb-4 lg:mb-35">
             <div className="flex flex-wrap">
                 <div className="w-full lg:w-1/2">
                     <div className="flex flex-col items-center lg:items-start">
-                        {/* Use the TextMorph component for the name */}
                         <TextMorph
                             initialText="こんにちは こんにちは"
                             finalText="Bhuvan Shah"
                         />
                         <div className="relative flex flex-col items-start">
-                            <div
-                                className="relative inline-block overflow-hidden whitespace-nowrap"
-                                style={{ width: textWidth }} // Restricting the width to the width of the text
-                            >
+                            <div className="relative inline-block overflow-hidden">
                                 {/* Animate the cover box */}
                                 <motion.div
                                     className="absolute top-0 left-0 h-full bg-cyan-300 z-30"
-                                    initial={{ width: '100%', left: `calc(-100% - ${textWidth}px)` }} // Assuming textWidth is the width of the text
-                                    animate={{
-                                        left: [`calc(-100% - ${textWidth}px)`, '0%', '100%'], // Moves from left (off-screen), covers the text, then moves to the right
-                                    }}
+                                    initial={{ width: '100%', left: '-100%' }}
+                                    animate={{ left: ['-100%', '0%', '100%'] }}
                                     transition={{
-                                        duration: 2, // Adjust duration as needed
+                                        duration: 2,
                                         ease: 'easeInOut',
-                                        times: [0, 0.5, 1] // Adjust these values as needed for timing
+                                        times: [0, 0.5, 1]
                                     }}
                                 />
                                 <motion.span
-                                    ref={textRef}
                                     className="relative z-10 bg-gradient-to-r from-pink-300 via-slate-500 to-purple-500 bg-clip-text text-3xl tracking-tight text-transparent"
-                                    initial={{ opacity: 0 }} // Start with the text being invisible
-                                    animate={{ opacity: 1 }} // Animate to fully visible
-                                    transition={{ delay: 0.6, duration: 1 }} // Delay of 2.5 seconds, adjust as needed
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    transition={{ delay: 0.6, duration: 1 }}
                                 >
                                     Software Developer
                                 </motion.span>
@@ -136,6 +118,16 @@ const Hero = () => {
                         />
                     </div>
                 </div>
+            </div>
+            <div className="flex justify-center mt-8">
+                <motion.img
+                    src={mouse}
+                    alt="Scroll indicator"
+                    className="h-10 w-10"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1, y: [0, 10, 0] }}
+                    transition={{ duration: 1.5, repeat: Infinity }}
+                />
             </div>
         </div>
     );
