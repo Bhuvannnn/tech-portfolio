@@ -69,10 +69,12 @@ const Hero = () => {
             <div className="flex flex-wrap">
                 <div className="w-full lg:w-1/2">
                     <div className="flex flex-col items-center lg:items-start">
-                        <TextMorph
-                            initialText="こんにちは こんにちは"
-                            finalText="Bhuvan Shah"
-                        />
+                        <div className="whitespace-nowrap"> {/* Added wrapper div with whitespace-nowrap */}
+                            <TextMorph
+                                initialText="こんにちは こんにちは"
+                                finalText="Bhuvan Shah"
+                            />
+                        </div>
                         <div className="relative flex flex-col items-start">
                             <div className="relative inline-block overflow-hidden">
                                 {/* Animate the cover box */}

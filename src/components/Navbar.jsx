@@ -22,10 +22,10 @@ const Navbar = () => {
     }
 
     return (
-        <nav className="mb-20 flex items-center justify-between py-6">
+        <nav className="mb-20 flex flex-col md:flex-row items-center justify-between py-6">
             <div className="flex items-center">
                 <img className="mx-2 w-10" src={logo} alt="logo" />
-                <div className="ml-8 flex items-center gap-8 text-lg">
+                <div className="ml-4 flex items-center gap-2 sm:gap-4 text-xs sm:text-sm md:text-lg">
                     {['about', 'experience', 'projects', 'contact'].map((section, index) => (
                         <motion.div
                             key={index}
@@ -44,7 +44,7 @@ const Navbar = () => {
                     ))}
                 </div>
             </div>
-            <div className='flex items-center gap-4 text-2xl'>
+            <div className='mt-4 md:mt-0 flex items-center gap-2 md:gap-4 text-sm md:text-2xl'>
                 <motion.div
                     className='flex items-center cursor-pointer'
                     whileHover={{ scale: 1.1 }}
@@ -52,7 +52,7 @@ const Navbar = () => {
                     onClick={handleResumeClick}
                 >
                     <FaFileAlt />
-                    <span className="ml-2 text-lg">Resume</span>
+                    <span className="ml-2 text-sm md:text-lg">Resume</span>
                 </motion.div>
                 <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
                     <FaLinkedin onClick={handleLinkedInClick} className='cursor-pointer'/>
