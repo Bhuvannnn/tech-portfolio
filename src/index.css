@@ -4,6 +4,33 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@keyframes flowingGradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.flowing-gradient-text {
+  background: linear-gradient(
+    to right,
+    #ff9a9e 0%,
+    #fad0c4 25%,
+    #ffecd2 50%,
+    #fcb69f 75%,
+    #ff9a9e 100%
+  );
+  background-size: 200% auto;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: flowingGradient 5s ease infinite;
+}
 
 :root{
   font-family: "Inter", sans-serif;

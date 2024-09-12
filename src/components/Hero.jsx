@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { HERO_CONTENT } from "../constants";
+import { TypeAnimation } from 'react-type-animation';
 import profilePic from "../assets/BhuvanProfile.jpg";
 import mouse from "../assets/mouse.png";
 import { motion } from "framer-motion";
@@ -77,6 +78,27 @@ const Hero = () => {
                         </div>
                         <div className="relative flex flex-col items-start">
                             <div className="relative inline-block overflow-hidden">
+                            <TypeAnimation
+                                    sequence={[
+                                        'Software Developer',
+                                        2000,
+                                        'Data Scientist',
+                                        2000,
+                                        'Data Engineer',
+                                        2000,
+                                        'Data Analyst',
+                                        2000,
+                                        'AI Engineer',
+                                        2000,
+                                        'LLM Developer',
+                                        2000,
+                                    ]}
+                                    wrapper="span"
+                                    speed={50}
+                                    style={{ fontSize: '2em', display: 'inline-block' }}
+                                    repeat={Infinity}
+                                    className="flowing-gradient-text text-3xl tracking-tight"
+                                />
                                 {/* Animate the cover box */}
                                 <motion.div
                                     className="absolute top-0 left-0 h-full bg-cyan-300 z-30"
@@ -88,14 +110,14 @@ const Hero = () => {
                                         times: [0, 0.5, 1]
                                     }}
                                 />
-                                <motion.span
+                                {/* <motion.span
                                     className="relative z-10 bg-gradient-to-r from-pink-300 via-slate-500 to-purple-500 bg-clip-text text-3xl tracking-tight text-transparent"
                                     initial={{ opacity: 0 }}
                                     animate={{ opacity: 1 }}
                                     transition={{ delay: 0.6, duration: 1 }}
                                 >
                                     Software Developer
-                                </motion.span>
+                                </motion.span> */}
                             </div>
                         </div>
                         <motion.p

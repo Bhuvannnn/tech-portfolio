@@ -17,12 +17,14 @@ const App = () => {
 
         <div className="container mx-auto px-8"> 
           <Navbar/>
-          <Hero/>
-          <About/>
-          <Technologies/>
-          <Experience/>
-          <Projects/>
-          <Contact/>
+            <main className="pt-24"> {/* Add padding-top here */}
+            <Hero/>
+            <About/>
+            <Technologies/>
+            <Experience/>
+            <Projects/>
+            <Contact/>
+            </main>
         </div>
     </div>
   );
