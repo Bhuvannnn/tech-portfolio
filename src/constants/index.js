@@ -2,6 +2,7 @@ import project1 from "../assets/projects/project-1.jpg";
 import project2 from "../assets/projects/project-2.jpg";
 import project3 from "../assets/projects/project-3.jpg";
 import project4 from "../assets/projects/project-4.jpg";
+import project5 from "../assets/projects/project-5.jpg";
 
 export const HERO_CONTENT = `As a passionate graduate student at the University of Southern California, I specialize in crafting advanced Natural Language Processing (NLP) and Generative AI solutions. With 1.5 years of hands-on experience, I've developed expertise in building Large Language Models (LLMs) like Retrieval-Augmented Generation (RAG), Named Entity Recognition (NER) with DeBERTaV3, and BiLSTM-CNN architectures. Alongside my proficiency in LLMs, I also possess robust skills in full-stack development with technologies such as React, Next.js, Node.js, MySQL, PostgreSQL, and MongoDB. My goal is to blend my deep technical knowledge in AI with my web development skills to create innovative, scalable applications that deliver exceptional user experiences and drive business growth.`;
 
@@ -47,6 +48,18 @@ Integrated dynamic components into company's website, sparking a substantial 15%
 ];
 
 export const PROJECTS = [
+  {title: "Real-Time Collaborative Document Platform",
+    image: project5,
+    description: `Developed a full-stack real-time collaborative document editing platform using microservices architecture, enabling multiple users to simultaneously edit and collaborate on documents with features similar to Google Docs.
+Key Technical Achievements:
+- Engineered a scalable microservices architecture using Node.js and Express.js, implementing JWT authentication, real-time WebSocket communication, and document management services, achieving 99.9% service availability
+- Architected real-time collaboration system using Socket.IO, enabling simultaneous document editing with <100ms latency and automatic conflict resolution for concurrent edits
+- Implemented secure document sharing system with role-based access control (read/write permissions) and real-time user presence tracking, supporting 100+ concurrent users
+- Designed responsive frontend using React.js and Material-UI, featuring real-time typing indicators, user presence awareness, and seamless document synchronization
+- Utilized MongoDB Atlas for scalable data storage, implementing efficient document versioning and access control mechanisms
+- Deployed microservices on Render with continuous integration/deployment via GitHub Actions, and frontend on Vercel, ensuring high availability and scalable performance`,
+technologies: ["React.js", "Node.js", "Express.js", "MongoDB Atlas", "Socket.IO", "JWT"],
+  },
   {
     title: "Assessing and Masking of Personally Identifiable Information (PII)",
     image: project1,
@@ -60,14 +73,14 @@ technologies: ["PyTorch", "DebertaV3", "Transformers", "MongoDB"],
     image: project2,
     description:
       "The is a 6-month project for my class 'Advanced Mobile Devices and Game Consoles'. Unity 2D game focused on time travel, hosted on WebGL for global access. It features intricate time-travel mechanics and integrates robust analytics to monitor gameplay. Technologies used include C# for scripting, Python for data processing, and Firebase for real-time data storage. Visual analytics are implemented using Tableau, with tools like heatmaps, Sankey diagrams, and bar plots to provide detailed insights into player behavior. Conducted under Professor Scott Easley in the Advanced Games Development course at USC, the project combines advanced game development with comprehensive data analysis to enhance player engagement and experience, To play the game, visit 'https://taylorashley30.github.io/GoldBuild/' .",
-    technologies: ["C#", "Python", "Tableau", "Firebase"],
+    technologies: ["C#", "Python", "Tableau", "Firebase", "Unity", "Git"],
   },
   {
     title: "Portfolio Website",
     image: project3,
     description:
       "My portfolio website, built with React and styled using Tailwind CSS, showcases my projects with a modern, responsive design. React powers the dynamic, interactive interface, while Tailwind ensures a sleek and professional appearance across all devices. This site reflects my skills in web development and design, integrating various technologies for enhanced functionality and user experience.",
-    technologies: ["React", "Tailwind", "Bootstrap"],
+    technologies: ["React", "Tailwind", "Bootstrap", "JavaScript"],
   },
   {
     title: "Forecast Finesse: Analysing stock performance",
