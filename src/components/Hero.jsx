@@ -4,6 +4,7 @@ import { TypeAnimation } from 'react-type-animation';
 import profilePic from "../assets/BhuvanProfile.jpg";
 import mouse from "../assets/mouse.png";
 import { motion } from "framer-motion";
+import ParticlesBackground from './ParticlesBackground'; 
 
 const container = (delay) => ({
     hidden: { x: -100, opacity: 0 },
@@ -66,7 +67,8 @@ const TextMorph = ({ initialText, finalText }) => {
 
 const Hero = () => {
     return (
-        <div className="border-b border-neutral-900 pb-4 lg:mb-35">
+        <div className="relative border-b border-neutral-900 pb-4 lg:mb-35 overflow-hidden">
+            <ParticlesBackground />
             <div className="flex flex-wrap">
                 <div className="w-full lg:w-1/2">
                     <div className="flex flex-col items-center lg:items-start">
