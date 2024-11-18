@@ -14,7 +14,7 @@ const TechnologiesGrid = () => {
       icon: RiReactjsLine,
       name: 'React',
       color: 'text-cyan-400',
-      experience: '3+ years',
+      experience: '2+ years',
       type: 'Frontend Development'
     },
     {
@@ -22,7 +22,7 @@ const TechnologiesGrid = () => {
       icon: FaNodeJs,
       name: 'Node.js',
       color: 'text-green-500',
-      experience: '3+ years',
+      experience: '2+ years',
       type: 'Backend Development'
     },
     {
@@ -46,7 +46,7 @@ const TechnologiesGrid = () => {
       icon: SiJavascript,
       name: 'JavaScript',
       color: 'text-yellow-400',
-      experience: '4+ years',
+      experience: '2+ years',
       type: 'Programming Language'
     },
     {
@@ -54,7 +54,7 @@ const TechnologiesGrid = () => {
       icon: SiTensorflow,
       name: 'TensorFlow',
       color: 'text-orange-500',
-      experience: '2+ years',
+      experience: '3+ years',
       type: 'Machine Learning'
     },
     {
@@ -70,7 +70,7 @@ const TechnologiesGrid = () => {
       icon: BiLogoPostgresql,
       name: 'PostgreSQL',
       color: 'text-sky-700',
-      experience: '3+ years',
+      experience: '1+ years',
       type: 'Database'
     }
   ];
