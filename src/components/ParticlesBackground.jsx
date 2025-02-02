@@ -17,99 +17,99 @@ const ParticlesBackground = () => {
             enable: false,
             zIndex: -1
           },
-        particles: {
-          number: {
-            value: 40,
-            density: {
-              enable: true,
-              value_area: 800
-            }
-          },
-          color: {
-            value: ["#8B5CF6", "#EC4899", "#3B82F6"]
-          },
-          shape: {
-            type: ["circle", "triangle"],
-          },
-          opacity: {
-            value: 0.1,
-            random: true,
-            anim: {
-              enable: true,
-              speed: 1,
-              opacity_min: 0.05,
-              sync: false
-            }
-          },
-          size: {
-            value: 3,
-            random: true,
-            anim: {
-              enable: true,
-              speed: 2,
-              size_min: 0.3,
-              sync: false
-            }
-          },
-          links: {
-            enable: true,
-            distance: 150,
-            color: "#8B5CF6",
-            opacity: 0.1,
-            width: 1,
-            triangles: {
-              enable: true,
-              opacity: 0.05
-            }
-          },
-          move: {
-            enable: true,
-            speed: 0.5,
-            direction: "none",
-            random: true,
-            straight: false,
-            outModes: "bounce",
-            attract: {
-              enable: true,
-              rotateX: 600,
-              rotateY: 1200
-            }
-          }
-        },
-        interactivity: {
-          detect_on: "window",
-          events: {
-            onHover: {
-              enable: true,
-              mode: ["grab", "bubble"]
-            },
-            onClick: {
-              enable: true,
-              mode: "push"
-            }
-          },
-          modes: {
-            grab: {
-              distance: 140,
-              links: {
-                opacity: 0.2
+          particles: {
+            number: {
+              value: 80,
+              density: {
+                enable: true,
+                value_area: 800
               }
             },
-            bubble: {
-              distance: 200,
-              size: 6,
-              duration: 0.3,
-              opacity: 0.8
+            color: {
+              value: ["#FF5A5F", "#00A699", "#FC642D", "#484848"]
             },
-            push: {
-              quantity: 4
+            shape: {
+              type: "circle",
+              stroke: {
+                width: 0,
+                color: "#000000"
+              },
+              polygon: {
+                nb_sides: 5
+              }
             },
-            retina_detect: true
+            opacity: {
+              value: 0.5,
+              random: false,
+              anim: {
+                enable: false,
+                speed: 1,
+                opacity_min: 0.1,
+                sync: false
+              }
+            },
+            size: {
+              value: 3,
+              random: true,
+              anim: {
+                enable: false,
+                speed: 40,
+                size_min: 0.1,
+                sync: false
+              }
+            },
+            line_linked: {
+              enable: true,
+              distance: 150,
+              color: "#ffffff",
+              opacity: 0.4,
+              width: 1
+            },
+            move: {
+              enable: true,
+              speed: 6,
+              direction: "none",
+              random: false,
+              straight: false,
+              out_mode: "bounce",
+              bounce: true,
+              attract: {
+                enable: true,
+                rotateX: 600,
+                rotateY: 1200
+              }
+            }
+          },
+          interactivity: {
+            detect_on: "window",
+            events: {
+              onhover: {
+                enable: true,
+                mode: "bubble"
+              },
+              onclick: {
+                enable: true,
+                mode: "push"
+              },
+              resize: true
+            },
+            modes: {
+              bubble: {
+                distance: 200,
+                size: 6,
+                duration: 2,
+                opacity: 0.8,
+                speed: 3
+              },
+              push: {
+                particles_nb: 4
+              }
+            }
+          },
+          retina_detect: true
             
           }
         }
-      }
-    }
     />
   );
 };

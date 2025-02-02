@@ -104,7 +104,7 @@ const Navbar = () => {
                     style={{ width: scrollProgress }}
                 ></div>
             </div>
-            <AnimatePresence>
+            {/* <AnimatePresence>
                 {showBackToTop && (
                     <motion.button
                         className="fixed bottom-8 right-8 bg-purple-500 text-white p-3 rounded-full shadow-lg z-50"
@@ -118,7 +118,7 @@ const Navbar = () => {
                         <FaArrowUp />
                     </motion.button>
                 )}
-            </AnimatePresence>
+            </AnimatePresence> */}
         </>
     );
 };
