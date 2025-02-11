@@ -20,6 +20,10 @@ const Projects = () => {
               initial={{ opacity: 0, x: -100 }}
               transition={{ duration: 1 }}
               className="w-full lg:w-1/4 lg:pr-8" // Consistent padding
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => window.open(project.github, "_blank")}
+              style={{ cursor: "pointer" }}
             >
               <div className="relative h-64 w-full mb-6"> {/* Fixed aspect ratio container */}
                 <img 
@@ -27,6 +31,19 @@ const Projects = () => {
                   alt={project.title} 
                   className="rounded absolute inset-0 w-full h-full object-contain object-center"
                 />
+                <motion.div
+                  className="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-50 transition-all duration-300 flex items-center justify-center"
+                  initial={{ opacity: 0 }}
+                  whileHover={{ opacity: 1 }}
+                >
+                  <motion.span
+                    className="text-white text-lg font-bold"
+                    initial={{ scale: 0 }}
+                    whileHover={{ scale: 1 }}
+                  >
+                    View on GitHub
+                  </motion.span>
+                </motion.div>
               </div>
             </motion.div>
             <motion.div 
