@@ -63,6 +63,7 @@ export const PROJECTS = [
 I applied rigorous statistical methods including 2×2 and 2×2×2 mixed ANOVAs and multiple regression analyses in Python and SPSS. The analysis revealed significant interaction effects (p = 0.030, partial η² = 0.174, Cohen’s d = 0.92), confirming that culturally aligned game content can meaningfully reduce anxiety and enhance player engagement. To support these insights, I engineered robust data pipelines that streamlined data cleaning, missing value imputation, and outlier detection—improving data quality by an estimated 15%.
 This work not only deepened my expertise in statistical modeling and data engineering but also provided actionable recommendations for integrating cultural sensitivity into game design.`,
 technologies: ["Python", "SPSS", "ANOVA", "Regression Analysis", "Statistical Analysis", "Data Engineering"],
+github: "https://github.com/Bhuvannnn/Statistical-Analysis-of-Cultural-Representation-in-Video-Games",
   },
   
   {title: "Real-Time Collaborative Document Platform",
@@ -76,6 +77,7 @@ Key Technical Achievements:
 - Utilized MongoDB Atlas for scalable data storage, implementing efficient document versioning and access control mechanisms
 - Deployed microservices on Render with continuous integration/deployment via GitHub Actions, and frontend on Vercel, ensuring high availability and scalable performance`,
 technologies: ["React.js", "Node.js", "Express.js", "MongoDB Atlas", "Socket.IO", "JWT"],
+github: "https://github.com/Bhuvannnn/real-time-collab",
   },
   {
     title: "Assessing and Masking of Personally Identifiable Information (PII)",
@@ -84,6 +86,7 @@ technologies: ["React.js", "Node.js", "Express.js", "MongoDB Atlas", "Socket.IO"
                   The primary enhancement is the integration of another dense layer with softmax activation function and relative position embedding for decoupling the attention scores, which more accurately identifies and obfuscate various types of personally identifiable information (PII) within textual data. This modified architecture leverages advanced contextual understanding and token-level prediction capabilities, surpassing conventional NER systems limited to a narrow set of predefined PII tags. The F-Beta Score generated with this model is 99.56%.
                   The project's innovation ensures adaptable and comprehensive data privacy solutions, aligning with stringent regulatory requirements and addressing the dynamic nature of PII.`,
 technologies: ["PyTorch", "DebertaV3", "Transformers", "MongoDB"],
+github: "https://github.com/Bhuvannnn/PII-Detection-and-Masking",
   },
   {
     title: "Me, Myself and Time: A Game based on Time Travel",
@@ -91,6 +94,7 @@ technologies: ["PyTorch", "DebertaV3", "Transformers", "MongoDB"],
     description:
       "The is a 6-month project for my class 'Advanced Mobile Devices and Game Consoles'. Unity 2D game focused on time travel, hosted on WebGL for global access. It features intricate time-travel mechanics and integrates robust analytics to monitor gameplay. Technologies used include C# for scripting, Python for data processing, and Firebase for real-time data storage. Visual analytics are implemented using Tableau, with tools like heatmaps, Sankey diagrams, and bar plots to provide detailed insights into player behavior. Conducted under Professor Scott Easley in the Advanced Games Development course at USC, the project combines advanced game development with comprehensive data analysis to enhance player engagement and experience, To play the game, visit 'https://bhuvannnn.github.io/Me-Myself-and-Time/WebGL%20Builds/Gold%20Build/' .",
     technologies: ["C#", "Python", "Tableau", "Firebase", "Unity", "Git"],
+    github: "https://github.com/Bhuvannnn/Me-Myself-and-Time",
   },
   {
     title: "Portfolio Website",
@@ -98,6 +102,7 @@ technologies: ["PyTorch", "DebertaV3", "Transformers", "MongoDB"],
     description:
       "My portfolio website, built with React and styled using Tailwind CSS, showcases my projects with a modern, responsive design. React powers the dynamic, interactive interface, while Tailwind ensures a sleek and professional appearance across all devices. This site reflects my skills in web development and design, integrating various technologies for enhanced functionality and user experience.",
     technologies: ["React", "Tailwind", "Bootstrap", "JavaScript"],
+    github:"https://github.com/Bhuvannnn/tech-portfolio",
   },
   {
     title: "Forecast Finesse: Analysing stock performance",
@@ -105,6 +110,7 @@ technologies: ["PyTorch", "DebertaV3", "Transformers", "MongoDB"],
     description:
       "Created a robust platform integrating sentiment analysis and real-time stock trading for NASDAQ-listed companies. Utilizing customized NLTK and BeautifulSoup, the system analyzes live Twitter and Google News feeds with 92% accuracy. The platform features a dynamic dashboard built with the MERN stack and hosted on Google Cloud Platform (GCP), offering live streaming data from Yahoo Finance. Users can view real-time graphs of stocks, and execute live buy and sell transactions. This comprehensive tool combines sentiment insights and trading capabilities, boosting general user profitability by 24% compared to other platforms",
     technologies: ["React", "Node.js", "Express.js", "MongoDB", "GCP", "NLTK",],
+    github:"https://github.com/Bhuvannnn/Dashboard-Stock-Forecasting-with-Sentiment-Analysis",
   },
 ];
 
