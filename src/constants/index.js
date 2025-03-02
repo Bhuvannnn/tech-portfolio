@@ -5,6 +5,7 @@ import project4 from "../assets/projects/project-4.jpg";
 import project5 from "../assets/projects/project-5.jpg";
 import project6 from "../assets/projects/project-6.png";
 import project7 from "../assets/projects/project-7.png";
+import project8 from "../assets/projects/project-8.png";
 
 export const HERO_CONTENT = `As a passionate graduate student at the University of Southern California, I specialize in crafting advanced Natural Language Processing (NLP) and Generative AI solutions. With 1.5 years of hands-on experience, I've developed expertise in building Large Language Models (LLMs) like Retrieval-Augmented Generation (RAG), Named Entity Recognition (NER) with DeBERTaV3, and BiLSTM-CNN architectures. Alongside my proficiency in LLMs, I also possess robust skills in full-stack development with technologies such as React, Next.js, Node.js, MySQL, PostgreSQL, and MongoDB. My goal is to blend my deep technical knowledge in AI with my web development skills to create innovative, scalable applications that deliver exceptional user experiences and drive business growth.`;
 
@@ -50,6 +51,13 @@ Integrated dynamic components into company's website, sparking a substantial 15%
 ];
 
 export const PROJECTS = [
+  {title: "SpotifyDash: Desktop Music Control Widget",
+    image: project8,
+    description: `SpotifyDash is a macOS widget application built with SwiftUI and WidgetKit that provides users with instant access to their Spotify playback controls and real-time track information directly from their desktop. The application features a sophisticated dual-control architecture that combines Spotify's Web API with local AppleScript integration, ensuring 95% functionality even during API outages. With automated authentication, intelligent caching of album artwork, and responsive UI that updates within 1 second of track changes, SpotifyDash delivers a seamless music control experience that reduced the time to control music by 65% compared to opening the full Spotify application`,
+    technologies: ["SwiftUI", "WidgetKit", "Spotify API", "AppleScript", "Rest APIs", "Swift"],
+    github: "https://github.com/Bhuvannnn/MusicWidgetApp",
+  },
+
   {title: "Healthcare Resource Optimization and Dashboard",
     image: project7,
     description: `Designed and developed a real-time Healthcare Resource Dashboard using Python, Flask, and PostgreSQL, enabling administrators to monitor bed occupancy, staff workload, and equipment usage with 95% resource utilization across 4 departments and 20+ medical equipment units. Implemented ETL pipelines processing 1000+ daily healthcare records, integrating a real-time analytics dashboard with Chart.js for interactive visualizations. Leveraged microservices architecture and containerization with Docker, reducing deployment time by 30%. Established CI/CD pipelines with Jenkins, automating testing and deployment. Ensured scalability and security through RESTful API design, environment variable protection, and database security configurations.`,
