@@ -68,7 +68,7 @@ export const PROJECTS = [
   {title: "Statistical Analysis of Cultural Representation in Video Games and it's Impact on Player Anxiety & Engagement",
     image: project6,
     description: `In this project, I spearheaded a research initiative to explore how culturally relevant elements in video games affect player anxiety and engagement. I designed a mixed experimental study with 27 participants—predominantly from Indian cultural backgrounds—to assess pre- and post-exposure anxiety levels using the State-Trait Anxiety Inventory and engagement measured via Likert scales.
-I applied rigorous statistical methods including 2×2 and 2×2×2 mixed ANOVAs and multiple regression analyses in Python and SPSS. The analysis revealed significant interaction effects (p = 0.030, partial η² = 0.174, Cohen’s d = 0.92), confirming that culturally aligned game content can meaningfully reduce anxiety and enhance player engagement. To support these insights, I engineered robust data pipelines that streamlined data cleaning, missing value imputation, and outlier detection—improving data quality by an estimated 15%.
+I applied rigorous statistical methods including 2×2 and 2×2×2 mixed ANOVAs and multiple regression analyses in Python and SPSS. The analysis revealed significant interaction effects (p = 0.030, partial η² = 0.174, Cohen's d = 0.92), confirming that culturally aligned game content can meaningfully reduce anxiety and enhance player engagement. To support these insights, I engineered robust data pipelines that streamlined data cleaning, missing value imputation, and outlier detection—improving data quality by an estimated 15%.
 This work not only deepened my expertise in statistical modeling and data engineering but also provided actionable recommendations for integrating cultural sensitivity into game design.`,
 technologies: ["Python", "SPSS", "ANOVA", "Regression Analysis", "Statistical Analysis", "Data Engineering"],
 github: "https://github.com/Bhuvannnn/Statistical-Analysis-of-Cultural-Representation-in-Video-Games",
@@ -126,4 +126,62 @@ export const CONTACT = {
   address: "325 W Adams Blvd, Los Angeles, CA 90007",
   phoneNo: "+1 (213) 331 1360 ",
   email: "bhuvanshah288@gmail.com",
+};
+
+// Add skills data for the radar chart
+export const SKILLS = {
+  categories: [
+    {
+      name: "Programming Languages",
+      skills: [
+        { name: "Python", level: 90 },
+        { name: "JavaScript", level: 85 },
+        { name: "C#", level: 75 },
+        { name: "SQL", level: 85 },
+        { name: "Swift", level: 65 }
+      ]
+    },
+    {
+      name: "AI/ML",
+      skills: [
+        { name: "NLP", level: 90 },
+        { name: "Generative AI", level: 85 },
+        { name: "LLMs", level: 85 },
+        { name: "Neural Networks", level: 80 },
+        { name: "Data Science", level: 75 }
+      ]
+    },
+    {
+      name: "Frontend",
+      skills: [
+        { name: "React", level: 85 },
+        { name: "Next.js", level: 75 },
+        { name: "HTML/CSS", level: 90 },
+        { name: "Tailwind", level: 85 },
+        { name: "UI/UX", level: 70 }
+      ]
+    },
+    {
+      name: "Backend",
+      skills: [
+        { name: "Node.js", level: 80 },
+        { name: "Express", level: 80 },
+        { name: "MongoDB", level: 75 },
+        { name: "PostgreSQL", level: 70 },
+        { name: "Firebase", level: 75 }
+      ]
+    }
+  ],
+  
+  // For radar chart visualization
+  radarData: [
+    { skill: "AI & ML", value: 90 },
+    { skill: "Web Development", value: 85 },
+    { skill: "Database Management", value: 80 },
+    { skill: "Cloud Services", value: 75 },
+    { skill: "DevOps", value: 70 },
+    { skill: "Mobile Development", value: 65 },
+    { skill: "UI/UX Design", value: 75 },
+    { skill: "Game Development", value: 70 }
+  ]
 };

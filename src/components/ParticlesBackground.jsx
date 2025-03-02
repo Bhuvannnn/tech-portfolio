@@ -19,14 +19,14 @@ const ParticlesBackground = () => {
           },
           particles: {
             number: {
-              value: 80,
+              value: 50,
               density: {
                 enable: true,
-                value_area: 800
+                value_area: 900
               }
             },
             color: {
-              value: ["#FF5A5F", "#00A699", "#FC642D", "#484848"]
+              value: ["#64748b", "#94a3b8", "#cbd5e1", "#475569"]
             },
             shape: {
               type: "circle",
@@ -39,11 +39,11 @@ const ParticlesBackground = () => {
               }
             },
             opacity: {
-              value: 0.5,
+              value: 0.3,
               random: false,
               anim: {
                 enable: false,
-                speed: 1,
+                speed: 0.5,
                 opacity_min: 0.1,
                 sync: false
               }
@@ -53,30 +53,30 @@ const ParticlesBackground = () => {
               random: true,
               anim: {
                 enable: false,
-                speed: 40,
+                speed: 20,
                 size_min: 0.1,
                 sync: false
               }
             },
             line_linked: {
               enable: true,
-              distance: 150,
-              color: "#ffffff",
-              opacity: 0.4,
+              distance: 180,
+              color: "#94a3b8",
+              opacity: 0.3,
               width: 1
             },
             move: {
               enable: true,
-              speed: 6,
+              speed: 1.5,
               direction: "none",
               random: false,
               straight: false,
-              out_mode: "bounce",
-              bounce: true,
+              out_mode: "out",
+              bounce: false,
               attract: {
                 enable: true,
-                rotateX: 600,
-                rotateY: 1200
+                rotateX: 300,
+                rotateY: 600
               }
             }
           },
@@ -85,7 +85,7 @@ const ParticlesBackground = () => {
             events: {
               onhover: {
                 enable: true,
-                mode: "bubble"
+                mode: "repulse"
               },
               onclick: {
                 enable: true,
@@ -94,15 +94,19 @@ const ParticlesBackground = () => {
               resize: true
             },
             modes: {
+              repulse: {
+                distance: 100,
+                duration: 0.4
+              },
               bubble: {
                 distance: 200,
-                size: 6,
+                size: 4,
                 duration: 2,
-                opacity: 0.8,
-                speed: 3
+                opacity: 0.6,
+                speed: 2
               },
               push: {
-                particles_nb: 4
+                particles_nb: 2
               }
             }
           },
