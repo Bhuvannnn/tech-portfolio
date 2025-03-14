@@ -6,6 +6,7 @@ import project5 from "../assets/projects/project-5.jpg";
 import project6 from "../assets/projects/project-6.png";
 import project7 from "../assets/projects/project-7.png";
 import project8 from "../assets/projects/project-8.png";
+import project9 from "../assets/projects/project-9.png";
 
 export const HERO_CONTENT = `As a passionate graduate student at the University of Southern California, I specialize in crafting advanced Natural Language Processing (NLP) and Generative AI solutions. With 1.5 years of hands-on experience, I've developed expertise in building Large Language Models (LLMs) like Retrieval-Augmented Generation (RAG), Named Entity Recognition (NER) with DeBERTaV3, and BiLSTM-CNN architectures. Alongside my proficiency in LLMs, I also possess robust skills in full-stack development with technologies such as React, Next.js, Node.js, MySQL, PostgreSQL, and MongoDB. My goal is to blend my deep technical knowledge in AI with my web development skills to create innovative, scalable applications that deliver exceptional user experiences and drive business growth.`;
 
@@ -51,6 +52,14 @@ Integrated dynamic components into company's website, sparking a substantial 15%
 ];
 
 export const PROJECTS = [
+  {
+    title: "NoteScape: Semantic Knowledge Graph Visualization System",
+    image: project9,
+    description: `Developed NoteScape, a full-stack application that transforms scattered notes into an interactive knowledge graph by automatically detecting relationships between ideas. The system analyzes note content using natural language processing techniques to identify connections, enabling users to visualize and navigate their knowledge in a network format. Built with React.js and D3.js for the frontend visualization, FastAPI for the backend API, Neo4j as the graph database, and custom NLP algorithms for relationship extraction. The application features a responsive UI with Material UI components, interactive graph visualization, automatic relationship detection, and support for importing notes from various formats.`,
+    technologies: ["React.js", "D3.js", "FastAPI", "Neo4j", "Python", "NLP", "Docker"],
+    github: "https://github.com/Bhuvannnn/NoteScape",
+  },
+
   {title: "SpotifyDash: Desktop Music Control Widget",
     image: project8,
     description: `SpotifyDash is a macOS widget application built with SwiftUI and WidgetKit that provides users with instant access to their Spotify playback controls and real-time track information directly from their desktop. The application features a sophisticated dual-control architecture that combines Spotify's Web API with local AppleScript integration, ensuring 95% functionality even during API outages. With automated authentication, intelligent caching of album artwork, and responsive UI that updates within 1 second of track changes, SpotifyDash delivers a seamless music control experience that reduced the time to control music by 65% compared to opening the full Spotify application`,
