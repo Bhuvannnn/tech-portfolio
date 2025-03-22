@@ -1,6 +1,35 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 
+// Add CSS for terminal font scaling
+const terminalStyles = `
+  .terminal-output pre {
+    font-size: 0.5rem;
+    line-height: 0.7rem;
+  }
+  
+  @media (min-width: 480px) {
+    .terminal-output pre {
+      font-size: 0.6rem;
+      line-height: 0.8rem;
+    }
+  }
+  
+  @media (min-width: 640px) {
+    .terminal-output pre {
+      font-size: 0.7rem;
+      line-height: 0.9rem;
+    }
+  }
+  
+  @media (min-width: 768px) {
+    .terminal-output pre {
+      font-size: 0.8rem;
+      line-height: 1rem;
+    }
+  }
+`;
+
 const TerminalLoader = ({ onComplete }) => {
   const [input, setInput] = useState('');
   const [lines, setLines] = useState([]);
@@ -8,23 +37,19 @@ const TerminalLoader = ({ onComplete }) => {
   const [isTyping, setIsTyping] = useState(true);
   const [skipAnimation, setSkipAnimation] = useState(false);
   const [activeLineIndex, setActiveLineIndex] = useState(-1);
+  const [targetSection, setTargetSection] = useState(null);
   const inputRef = useRef(null);
   const terminalRef = useRef(null);
   
   // Skip the typing animation and show all content immediately
   const handleSkip = () => {
     setSkipAnimation(true);
+    const asciiArt = getAsciiArt();
     const finalLines = [
       { 
         id: 'ascii-art',
         type: 'system', 
-        content: `
- ████████╗███████╗██████╗ ███╗   ███╗██╗███╗   ██╗ █████╗ ██╗     
- ╚══██╔══╝██╔════╝██╔══██╗████╗ ████║██║████╗  ██║██╔══██╗██║     
-    ██║   █████╗  ██████╔╝██╔████╔██║██║██╔██╗ ██║███████║██║     
-    ██║   ██╔══╝  ██╔══██╗██║╚██╔╝██║██║██║╚██╗██║██╔══██║██║     
-    ██║   ███████╗██║  ██║██║ ╚═╝ ██║██║██║ ╚████║██║  ██║███████╗
-    ╚═╝   ╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝╚══════╝`,
+        content: asciiArt,
         isComplete: true
       },
       { 
@@ -52,19 +77,49 @@ const TerminalLoader = ({ onComplete }) => {
     setIsTyping(false);
   };
   
-  // Initial welcome message typing animation
-  useEffect(() => {
-    // Define the complete messages to be shown
-    const completedMessages = [
-      { 
-        id: 'ascii-art',
-        content: `
+  // ASCII art for different screen sizes
+  const getAsciiArt = () => {
+    // For small mobile screens, show a simpler version
+    if (window.innerWidth < 480) {
+      return `<pre>
+ ████████╗███████╗██████╗ ███╗   ███╗
+ ╚══██╔══╝██╔════╝██╔══██╗████╗ ████║
+    ██║   █████╗  ██████╔╝██╔████╔██║
+    ██║   ██╔══╝  ██╔══██╗██║╚██╔╝██║
+    ██║   ███████╗██║  ██║██║ ╚═╝ ██║
+    ╚═╝   ╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝</pre>`;
+    }
+    
+    // For tablets and medium screens
+    if (window.innerWidth < 768) {
+      return `<pre>
  ████████╗███████╗██████╗ ███╗   ███╗██╗███╗   ██╗ █████╗ ██╗     
  ╚══██╔══╝██╔════╝██╔══██╗████╗ ████║██║████╗  ██║██╔══██╗██║     
     ██║   █████╗  ██████╔╝██╔████╔██║██║██╔██╗ ██║███████║██║     
     ██║   ██╔══╝  ██╔══██╗██║╚██╔╝██║██║██║╚██╗██║██╔══██║██║     
     ██║   ███████╗██║  ██║██║ ╚═╝ ██║██║██║ ╚████║██║  ██║███████╗
-    ╚═╝   ╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝╚══════╝` 
+    ╚═╝   ╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝╚══════╝</pre>`;
+    }
+    
+    // For large screens, full version
+    return `<pre>
+ ████████╗███████╗██████╗ ███╗   ███╗██╗███╗   ██╗ █████╗ ██╗     
+ ╚══██╔══╝██╔════╝██╔══██╗████╗ ████║██║████╗  ██║██╔══██╗██║     
+    ██║   █████╗  ██████╔╝██╔████╔██║██║██╔██╗ ██║███████║██║     
+    ██║   ██╔══╝  ██╔══██╗██║╚██╔╝██║██║██║╚██╗██║██╔══██║██║     
+    ██║   ███████╗██║  ██║██║ ╚═╝ ██║██║██║ ╚████║██║  ██║███████╗
+    ╚═╝   ╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝╚══════╝</pre>`;
+  };
+  
+  // Initial welcome message typing animation
+  useEffect(() => {
+    // Define the complete messages to be shown
+    const asciiArt = getAsciiArt();
+    
+    const completedMessages = [
+      { 
+        id: 'ascii-art',
+        content: asciiArt
       },
       { 
         id: 'welcome',
@@ -132,8 +187,27 @@ const TerminalLoader = ({ onComplete }) => {
     // Start typing text messages after a short delay
     currentTypingTimeout = setTimeout(typeMessage, 200);
     
+    // Handle resize events
+    const handleResize = () => {
+      const newAsciiArt = getAsciiArt();
+      setLines(prevLines => {
+        const updatedLines = [...prevLines];
+        const asciiArtIndex = updatedLines.findIndex(line => line.id === 'ascii-art');
+        if (asciiArtIndex !== -1) {
+          updatedLines[asciiArtIndex] = {
+            ...updatedLines[asciiArtIndex],
+            content: newAsciiArt
+          };
+        }
+        return updatedLines;
+      });
+    };
+    
+    window.addEventListener('resize', handleResize);
+    
     return () => {
       if (currentTypingTimeout) clearTimeout(currentTypingTimeout);
+      window.removeEventListener('resize', handleResize);
     };
   }, [skipAnimation]);
   
@@ -163,6 +237,9 @@ const TerminalLoader = ({ onComplete }) => {
     }
   };
 
+  // Track the previous command to check for sequences
+  const [previousCommand, setPreviousCommand] = useState('');
+
   // Process commands and generate appropriate responses
   const processCommand = (command) => {
     switch(command) {
@@ -181,41 +258,51 @@ const TerminalLoader = ({ onComplete }) => {
           { type: 'system', content: '>   projects      - View highlighted projects' },
           { type: 'system', content: '>   experience    - Work experience' },
           { type: 'system', content: '>   clear         - Clear terminal' },
-          { type: 'system', content: '>   help          - Show available commands' }
+          { type: 'system', content: '>   help          - Show available commands' },
+          { type: 'system', content: '>   [command] enter - Navigate directly to section' }
         ];
       case 'about':
+        setPreviousCommand('about');
         return [
           { type: 'system', content: '> About Bhuvan Shah:' },
-          { type: 'system', content: '> Full-stack developer and technology enthusiast with experience in modern web' },
-          { type: 'system', content: '> technologies and a passion for creating engaging user experiences.' },
-          { type: 'system', content: '> Currently focused on building innovative web applications and exploring' },
-          { type: 'system', content: '> new technologies to enhance user experiences.' }
+          { type: 'system', content: '> Full-stack developer and technology enthusiast' },
+          { type: 'system', content: '> with experience in modern web technologies.' },
+          { type: 'system', content: '> Type "enter" to navigate to this section.' }
         ];
       case 'skills':
+        setPreviousCommand('skills');
         return [
           { type: 'system', content: '> Technical Skills:' },
-          { type: 'system', content: '>   - Front-end: React, JavaScript, HTML, CSS, TailwindCSS' },
+          { type: 'system', content: '>   - Front-end: React, JavaScript, HTML, CSS' },
           { type: 'system', content: '>   - Back-end: Node.js, Express' },
-          { type: 'system', content: '>   - Other: Git, RESTful APIs' }
+          { type: 'system', content: '>   - Other: Git, RESTful APIs' },
+          { type: 'system', content: '> Type "enter" to navigate to this section.' }
         ];
       case 'contact':
+        setPreviousCommand('contact');
         return [
           { type: 'system', content: '> Contact Information:' },
           { type: 'system', content: '>   LinkedIn: linkedin.com/in/bhuvanshah/' },
           { type: 'system', content: '>   GitHub: github.com/Bhuvannnn' },
-          { type: 'system', content: '>   Instagram: instagram.com/bhu._.one/' }
+          { type: 'system', content: '>   Instagram: instagram.com/bhu._.one/' },
+          { type: 'system', content: '> Type "enter" to navigate to this section.' }
         ];
       case 'projects':
+        setPreviousCommand('projects');
         return [
           { type: 'system', content: '> Highlighted Projects:' },
-          { type: 'system', content: '> Type "enter" to access full portfolio with detailed project information.' }
+          { type: 'system', content: '> View Bhuvan\'s portfolio projects.' },
+          { type: 'system', content: '> Type "enter" to navigate to this section.' }
         ];
       case 'experience':
+        setPreviousCommand('experience');
         return [
           { type: 'system', content: '> Professional Experience:' },
-          { type: 'system', content: '> Type "enter" to access full portfolio with detailed work experience.' }
+          { type: 'system', content: '> Bhuvan\'s work history and accomplishments.' },
+          { type: 'system', content: '> Type "enter" to navigate to this section.' }
         ];
       case 'clear':
+        setPreviousCommand('');
         return [
           { type: 'system', content: '> Terminal cleared.' },
           { type: 'system', content: '> Type "help" for available commands.' }
@@ -223,8 +310,9 @@ const TerminalLoader = ({ onComplete }) => {
       case '':
         return []; // Empty response for empty command
       default:
+        setPreviousCommand('');
         return [
-          { type: 'system', content: `> Command not found: ${command}. Type "help" for available commands.` }
+          { type: 'system', content: `> Command not found: ${command}. Type "help" for commands.` }
         ];
     }
   };
@@ -239,12 +327,26 @@ const TerminalLoader = ({ onComplete }) => {
       
       if (command === 'clear') {
         setLines(processCommand(command));
+      } else if (command === 'enter' && previousCommand) {
+        // If 'enter' is typed after a valid section command, set target section
+        const section = previousCommand;
+        setTargetSection(section);
+        
+        const commandResponse = [
+          { type: 'system', content: `> Navigating to ${section} section...` }
+        ];
+        setLines([...lines, userInput, ...commandResponse]);
+        
+        // Navigate to the section with a delay
+        setTimeout(() => {
+          onComplete(section);
+        }, 800);
       } else {
         const commandResponse = processCommand(command);
         setLines([...lines, userInput, ...commandResponse]);
         
-        // If command is 'enter' or 'start', redirect to portfolio after a delay
-        if (command === 'enter' || command === 'start') {
+        // If command is 'enter' or 'start' without a previous command, just enter the portfolio
+        if ((command === 'enter' || command === 'start') && !previousCommand) {
           setTimeout(() => {
             onComplete();
           }, 800);
@@ -257,9 +359,12 @@ const TerminalLoader = ({ onComplete }) => {
   
   return (
     <div 
-      className="fixed inset-0 bg-neutral-950 z-50 flex flex-col justify-center p-4 md:p-8"
+      className="fixed inset-0 bg-neutral-950 z-50 flex flex-col justify-center p-2 sm:p-4 md:p-8"
       onClick={handleTerminalClick}
     >
+      {/* Terminal Styles */}
+      <style dangerouslySetInnerHTML={{ __html: terminalStyles }} />
+      
       <motion.div 
         className="max-w-3xl mx-auto w-full bg-black bg-opacity-90 rounded-md border border-gray-800 shadow-2xl overflow-hidden"
         initial={{ opacity: 0, y: 20 }}
@@ -267,12 +372,12 @@ const TerminalLoader = ({ onComplete }) => {
         transition={{ duration: 0.5 }}
       >
         {/* Terminal header with dots */}
-        <div className="bg-gray-900 px-4 py-2 flex items-center justify-between border-b border-gray-800">
+        <div className="bg-gray-900 px-2 sm:px-4 py-2 flex items-center justify-between border-b border-gray-800">
           <div className="flex items-center gap-1.5">
-            <div className="w-3 h-3 rounded-full bg-red-500"></div>
-            <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-            <div className="w-3 h-3 rounded-full bg-green-500"></div>
-            <div className="ml-4 text-neutral-400 text-xs font-mono">guest@bhuvan-portfolio ~ terminal</div>
+            <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-red-500"></div>
+            <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-yellow-500"></div>
+            <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-green-500"></div>
+            <div className="ml-2 sm:ml-4 text-neutral-400 text-xs font-mono truncate">guest@bhuvan-portfolio ~ terminal</div>
           </div>
           
           {/* Skip animation button for recruiters */}
@@ -289,32 +394,32 @@ const TerminalLoader = ({ onComplete }) => {
         {/* Terminal content */}
         <div 
           ref={terminalRef}
-          className="h-72 md:h-96 overflow-y-auto p-4 font-mono text-sm terminal-output"
+          className="h-[60vh] sm:h-72 md:h-96 overflow-y-auto p-2 sm:p-4 font-mono text-xs sm:text-sm terminal-output"
         >
           {/* Display full lines only */}
           {lines.map((line, index) => (
             <div 
               key={line.id || index} 
-              className={`mb-1 whitespace-pre-wrap ${line.type === 'system' ? 'text-cyan-400' : 'text-white'}`}
+              className={`mb-1 whitespace-pre-wrap break-words ${line.type === 'system' ? 'text-cyan-400' : 'text-white'}`}
+              dangerouslySetInnerHTML={{ __html: line.content }}
             >
-              {line.content}
             </div>
           ))}
           
           {/* Command input line - only show when not typing welcome message */}
           {!isTyping && (
-            <div className="flex items-center">
-              <span className="text-green-500">guest@bhuvan-portfolio:~$</span>
-              <span className="ml-2 text-white">{input}</span>
-              {cursorVisible && <span className="ml-px w-2 h-5 bg-white inline-block cursor-blink"></span>}
+            <div className="flex items-center flex-wrap">
+              <span className="text-green-500 text-xs sm:text-sm">guest@bhuvan-portfolio:~$</span>
+              <span className="ml-2 text-white text-xs sm:text-sm">{input}</span>
+              {cursorVisible && <span className="ml-px w-2 h-4 sm:h-5 bg-white inline-block cursor-blink"></span>}
             </div>
           )}
         </div>
         
         {/* Recruiter-friendly tip */}
-        <div className="bg-gray-900 p-3 border-t border-gray-800 text-center">
+        <div className="bg-gray-900 p-2 sm:p-3 border-t border-gray-800 text-center">
           <div className="text-xs text-gray-300 font-mono">
-            <span className="text-cyan-400">Tip:</span> Type <span className="text-yellow-400">enter</span> or <span className="text-yellow-400">start</span> and press Enter to access portfolio
+            <span className="text-cyan-400">Tip:</span> Type <span className="text-yellow-400">enter</span> or <span className="text-yellow-400">start</span> and press Enter
           </div>
         </div>
         

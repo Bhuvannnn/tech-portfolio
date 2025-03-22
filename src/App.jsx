@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import About from "./components/About";
@@ -8,14 +8,45 @@ import Projects from "./components/Projects";
 import Contact from "./components/Contact";
 import TerminalLoader from "./components/TerminalLoader";
 import CustomCursor from "./components/CustomCursor";
-import ScrollIndicator from "./components/ScrollIndicator";
-
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
+  
+  // Create refs for each section
+  const aboutRef = useRef(null);
+  const skillsRef = useRef(null);
+  const experienceRef = useRef(null);
+  const projectsRef = useRef(null);
+  const contactRef = useRef(null);
 
-  const handleLoadingComplete = () => {
+  const handleLoadingComplete = (section) => {
     setIsLoading(false);
+    
+    // If a specific section is provided, scroll to it after a short delay
+    if (section) {
+      setTimeout(() => {
+        switch(section) {
+          case 'about':
+            aboutRef.current?.scrollIntoView({ behavior: 'smooth' });
+            break;
+          case 'skills': // Maps to Technologies component
+            skillsRef.current?.scrollIntoView({ behavior: 'smooth' });
+            break;
+          case 'experience':
+            experienceRef.current?.scrollIntoView({ behavior: 'smooth' });
+            break;
+          case 'projects':
+            projectsRef.current?.scrollIntoView({ behavior: 'smooth' });
+            break;
+          case 'contact':
+            contactRef.current?.scrollIntoView({ behavior: 'smooth' });
+            break;
+          default:
+            // No scrolling if no valid section
+            break;
+        }
+      }, 100); // Small delay to ensure components are rendered
+    }
   };
 
   return (
@@ -24,7 +55,6 @@ const App = () => {
       {isLoading && <TerminalLoader onComplete={handleLoadingComplete} />}
 
       <CustomCursor />
-      <ScrollIndicator />
       
       <div className="fixed top-0 -z-10 h-full w-full">
         <div 
@@ -32,15 +62,25 @@ const App = () => {
         </div>
       </div>
 
-      <div className="container mx-auto px-8"> 
+      <div className="container mx-auto px-4 sm:px-8"> 
         <Navbar/>
-        <main className="pt-24">
+        <main className="pt-28 sm:pt-24">
           <Hero/>
-          <About/>
-          <Technologies/>
-          <Experience/>
-          <Projects/>
-          <Contact/>
+          <div ref={aboutRef}>
+            <About/>
+          </div>
+          <div ref={skillsRef}>
+            <Technologies/>
+          </div>
+          <div ref={experienceRef}>
+            <Experience/>
+          </div>
+          <div ref={projectsRef}>
+            <Projects/>
+          </div>
+          <div ref={contactRef}>
+            <Contact/>
+          </div>
         </main>
       </div>
     </div>

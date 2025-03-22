@@ -1,101 +1,120 @@
 import { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
 
 const CustomCursor = () => {
-  const [mousePosition, setMousePosition] = useState({
-    x: 0,
-    y: 0
-  });
-  const [isHovering, setIsHovering] = useState(false);
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [visible, setVisible] = useState(false);
+  const [clicked, setClicked] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    const mouseMove = e => {
-      setMousePosition({
-        x: e.clientX,
-        y: e.clientY
-      });
-    };
-
-    const handleHover = () => {
-      setIsHovering(true);
+    // Check if device is mobile/touch screen
+    const checkMobile = () => {
+      setIsMobile(window.matchMedia('(max-width: 768px)').matches || 'ontouchstart' in window);
     };
     
-    const handleLeave = () => {
-      setIsHovering(false);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+
+    const addEventListeners = () => {
+      document.addEventListener('mousemove', onMouseMove);
+      document.addEventListener('mouseenter', onMouseEnter);
+      document.addEventListener('mouseleave', onMouseLeave);
+      document.addEventListener('mousedown', onMouseDown);
+      document.addEventListener('mouseup', onMouseUp);
+      
+      // Add touch events for mobile
+      document.addEventListener('touchstart', onTouchStart);
+      document.addEventListener('touchmove', onTouchMove);
+      document.addEventListener('touchend', onTouchEnd);
     };
 
-    window.addEventListener('mousemove', mouseMove);
-    
-    document.querySelectorAll('a, button, .interactive').forEach(el => {
-      el.addEventListener('mouseenter', handleHover);
-      el.addEventListener('mouseleave', handleLeave);
-    });
-
-    // Hide the default cursor
-    document.body.style.cursor = 'none';
-
-    return () => {
-      window.removeEventListener('mousemove', mouseMove);
-      document.querySelectorAll('a, button, .interactive').forEach(el => {
-        el.removeEventListener('mouseenter', handleHover);
-        el.removeEventListener('mouseleave', handleLeave);
-      });
-      // Restore default cursor
-      document.body.style.cursor = 'auto';
+    const removeEventListeners = () => {
+      document.removeEventListener('mousemove', onMouseMove);
+      document.removeEventListener('mouseenter', onMouseEnter);
+      document.removeEventListener('mouseleave', onMouseLeave);
+      document.removeEventListener('mousedown', onMouseDown);
+      document.removeEventListener('mouseup', onMouseUp);
+      
+      // Remove touch events
+      document.removeEventListener('touchstart', onTouchStart);
+      document.removeEventListener('touchmove', onTouchMove);
+      document.removeEventListener('touchend', onTouchEnd);
     };
+
+    const onMouseMove = (e) => {
+      setPosition({ x: e.clientX, y: e.clientY });
+    };
+
+    const onTouchMove = (e) => {
+      if (e.touches && e.touches[0]) {
+        setPosition({ x: e.touches[0].clientX, y: e.touches[0].clientY });
+        setVisible(true);
+      }
+    };
+
+    const onTouchStart = (e) => {
+      if (e.touches && e.touches[0]) {
+        setPosition({ x: e.touches[0].clientX, y: e.touches[0].clientY });
+        setVisible(true);
+        setClicked(true);
+        
+        // Hide the cursor after a short delay (simulating tap)
+        setTimeout(() => {
+          setClicked(false);
+          setTimeout(() => {
+            setVisible(false);
+          }, 150);
+        }, 150);
+      }
+    };
+
+    const onTouchEnd = () => {
+      setClicked(false);
+      
+      // Hide cursor after touch end with a small delay
+      setTimeout(() => {
+        setVisible(false);
+      }, 100);
+    };
+
+    const onMouseEnter = () => {
+      setVisible(true);
+    };
+
+    const onMouseLeave = () => {
+      setVisible(false);
+    };
+
+    const onMouseDown = () => {
+      setClicked(true);
+    };
+
+    const onMouseUp = () => {
+      setClicked(false);
+    };
+
+    addEventListeners();
+    return () => removeEventListeners();
   }, []);
 
-  const variants = {
-    default: {
-      x: mousePosition.x - 15,
-      y: mousePosition.y - 15,
-      borderColor: '#808080',
-    },
-    hover: {
-      x: mousePosition.x - 22.5,
-      y: mousePosition.y - 22.5,
-      scale: 1.5,
-      borderColor: '#9333ea',
-    }
-  };
-
-  const dotVariants = {
-    default: {
-      x: mousePosition.x - 3,
-      y: mousePosition.y - 3,
-      backgroundColor: '#ffffff',
-    },
-    hover: {
-      x: mousePosition.x - 3.6,
-      y: mousePosition.y - 3.6,
-      scale: 1.2,
-    }
-  };
+  // Don't render custom cursor on mobile devices
+  if (isMobile) return null;
 
   return (
-    <>
-      <motion.div
-        className="cursor-ring fixed top-0 left-0 w-[30px] h-[30px] rounded-full border-2 border-gray-400 pointer-events-none z-50"
-        variants={variants}
-        animate={isHovering ? "hover" : "default"}
-        transition={{
-          type: "spring",
-          damping: 25,
-          stiffness: 300
-        }}
-      />
-      
-      <motion.div
-        className="cursor-dot fixed top-0 left-0 w-[6px] h-[6px] rounded-full bg-white pointer-events-none z-50"
-        variants={dotVariants}
-        animate={isHovering ? "hover" : "default"}
-        transition={{
-          type: "spring",
-          damping: 25,
-          stiffness: 500
-        }}
-      />
-    </>
+    <div 
+      className={`custom-cursor fixed pointer-events-none z-[9999] mix-blend-difference transition-transform duration-150 ${
+        visible ? 'opacity-100' : 'opacity-0'
+      } ${
+        clicked ? 'scale-50' : 'scale-100'
+      }`}
+      style={{
+        left: `${position.x}px`,
+        top: `${position.y}px`,
+        transform: 'translate(-50%, -50%)'
+      }}
+    >
+      <div className="h-5 w-5 rounded-full bg-white"></div>
+    </div>
   );
 };
 
