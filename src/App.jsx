@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import About from "./components/About";
@@ -6,7 +6,7 @@ import Technologies from "./components/Technologies";
 import Experience from "./components/Experience";
 import Projects from "./components/Projects";
 import Contact from "./components/Contact";
-import Loader from "./components/Loader";
+import TerminalLoader from "./components/TerminalLoader";
 import CustomCursor from "./components/CustomCursor";
 import ScrollIndicator from "./components/ScrollIndicator";
 
@@ -14,18 +14,14 @@ import ScrollIndicator from "./components/ScrollIndicator";
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 9000); // Adjust time
-
-    return () => clearTimeout(timer);
-  }, []);
+  const handleLoadingComplete = () => {
+    setIsLoading(false);
+  };
 
   return (
     <div className="overflow-x-hidden text-neutral-300 antialiased 
       selection:bg-cyan-300 selection:text-cyan-900">
-      {isLoading && <Loader />}
+      {isLoading && <TerminalLoader onComplete={handleLoadingComplete} />}
 
       <CustomCursor />
       <ScrollIndicator />
