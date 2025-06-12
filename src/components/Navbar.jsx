@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { FaLinkedin, FaGithub, FaInstagram, FaFileAlt, FaArrowUp, FaTerminal, FaBars, FaTimes } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-scroll';
-import logo from '/Users/rahulshah/Desktop/tech-portfolio/src/assets/BS LOGO-JULY 2024.png';
 
 const Navbar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
