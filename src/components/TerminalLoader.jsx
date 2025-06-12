@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
+// Removed TypeAnimation import
 
 // Add CSS for terminal font scaling
 const terminalStyles = `
@@ -34,7 +35,7 @@ const TerminalLoader = ({ onComplete }) => {
   const [input, setInput] = useState('');
   const [lines, setLines] = useState([]);
   const [cursorVisible, setCursorVisible] = useState(true);
-  const [isTyping, setIsTyping] = useState(true);
+  const [isTyping, setIsTyping] = useState(true); // Reverted state name
   const [skipAnimation, setSkipAnimation] = useState(false);
   const [activeLineIndex, setActiveLineIndex] = useState(-1);
   const [targetSection, setTargetSection] = useState(null);
@@ -42,31 +43,33 @@ const TerminalLoader = ({ onComplete }) => {
   const terminalRef = useRef(null);
   
   // Skip the typing animation and show all content immediately
+  // Reverted handleSkip logic
   const handleSkip = () => {
     setSkipAnimation(true);
-    const asciiArt = getAsciiArt();
+    const asciiArt = getAsciiArt(); // Need to ensure getAsciiArt is available
+    
     const finalLines = [
-      { 
+      {
         id: 'ascii-art',
-        type: 'system', 
+        type: 'system',
         content: asciiArt,
         isComplete: true
       },
-      { 
+      {
         id: 'welcome',
-        type: 'system', 
+        type: 'system',
         content: '> Welcome to Bhuvan Shah\'s Portfolio Terminal',
         isComplete: true
       },
-      { 
+      {
         id: 'enter-info',
-        type: 'system', 
+        type: 'system',
         content: '> Type "enter" or "start" to access the portfolio',
         isComplete: true
       },
-      { 
+      {
         id: 'help-info',
-        type: 'system', 
+        type: 'system',
         content: '> Type "help" for more commands',
         isComplete: true
       }
@@ -111,109 +114,73 @@ const TerminalLoader = ({ onComplete }) => {
     ╚═╝   ╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝╚══════╝</pre>`;
   };
   
-  // Initial welcome message typing animation
+  // Effect to set initial lines instantly and handle resize
   useEffect(() => {
-    // Define the complete messages to be shown
+    // Define the complete initial messages
     const asciiArt = getAsciiArt();
-    
-    const completedMessages = [
-      { 
+    const initialLines = [
+      {
         id: 'ascii-art',
-        content: asciiArt
+        type: 'system',
+        content: asciiArt,
+        isComplete: true
       },
-      { 
+      {
         id: 'welcome',
-        content: '> Welcome to Bhuvan Shah\'s Portfolio Terminal' 
+        type: 'system',
+        content: '> Welcome to Bhuvan Shah\'s Portfolio Terminal',
+        isComplete: true
       },
-      { 
+      {
         id: 'enter-info',
-        content: '> Type "enter" or "start" to access the portfolio' 
+        type: 'system',
+        content: '> Type "enter" or "start" to access the portfolio',
+        isComplete: true
       },
-      { 
+      {
         id: 'help-info',
-        content: '> Type "help" for more commands' 
-      }
-    ];
-    
-    // Display ASCII art immediately without typing effect
-    setLines([
-      { 
-        id: 'ascii-art',
-        type: 'system', 
-        content: completedMessages[0].content,
+        type: 'system',
+        content: '> Type "help" for more commands',
         isComplete: true
       }
-    ]);
-    
-    // Start typing from the second message
-    let currentMessageIndex = 1;
-    let currentTypingTimeout = null;
-    
-    const typeMessage = () => {
-      if (skipAnimation) {
-        if (currentTypingTimeout) clearTimeout(currentTypingTimeout);
-        return;
-      }
-      
-      if (currentMessageIndex < completedMessages.length) {
-        const message = completedMessages[currentMessageIndex];
-        
-        // Add a new line with the completed content immediately
-        // This prevents partial messages from being visible
-        setLines(prev => [
-          ...prev, 
-          { 
-            id: message.id,
-            type: 'system', 
-            content: message.content,
-            isComplete: true
-          }
-        ]);
-        
-        // Move to the next message
-        currentMessageIndex++;
-        
-        // Add a delay before typing the next message
-        if (currentMessageIndex < completedMessages.length) {
-          currentTypingTimeout = setTimeout(typeMessage, 300);
-        } else {
-          // All messages are typed
-          setActiveLineIndex(-1);
-          setIsTyping(false);
-        }
-      }
-    };
-    
-    // Start typing text messages after a short delay
-    currentTypingTimeout = setTimeout(typeMessage, 200);
-    
-    // Handle resize events
+    ];
+
+    // Set all initial lines at once if not skipped
+    if (!skipAnimation) {
+      setLines(initialLines);
+      setIsTyping(false); // Mark "typing" as complete immediately
+      setActiveLineIndex(-1); // Ensure no line is marked active
+    }
+
+    // Handle resize events for ASCII art
     const handleResize = () => {
       const newAsciiArt = getAsciiArt();
       setLines(prevLines => {
+        // Update ASCII art line if it exists
         const updatedLines = [...prevLines];
         const asciiArtIndex = updatedLines.findIndex(line => line.id === 'ascii-art');
         if (asciiArtIndex !== -1) {
           updatedLines[asciiArtIndex] = {
             ...updatedLines[asciiArtIndex],
-            content: newAsciiArt
+            content: newAsciiArt,
+            isComplete: true // Ensure it's marked complete
           };
         }
         return updatedLines;
       });
     };
-    
+
     window.addEventListener('resize', handleResize);
-    
+
     return () => {
-      if (currentTypingTimeout) clearTimeout(currentTypingTimeout);
       window.removeEventListener('resize', handleResize);
     };
-  }, [skipAnimation]);
+  }, [skipAnimation]); // Run only when skipAnimation changes or on mount
   
   // Auto-focus the input field and scroll to bottom on new lines
+  // Reverted effect for focusing input and blinking cursor
   useEffect(() => {
-    if (inputRef.current && !isTyping) {
+    if (inputRef.current && !isTyping) { // Use original state check
       inputRef.current.focus();
     }
     
@@ -228,11 +195,12 @@ const TerminalLoader = ({ onComplete }) => {
     }
     
     return () => clearInterval(cursorInterval);
-  }, [lines, isTyping]);
+  }, [lines, isTyping]); // Reverted dependencies
   
   // Re-focus when clicking anywhere in the terminal
+  // Reverted Re-focus logic
   const handleTerminalClick = () => {
-    if (inputRef.current && !isTyping) {
+    if (inputRef.current && !isTyping) { // Use original state check
       inputRef.current.focus();
     }
   };
@@ -318,8 +286,9 @@ const TerminalLoader = ({ onComplete }) => {
   };
   
   // Handle key input
+  // Reverted Handle key input logic
   const handleKeyDown = (e) => {
-    if (isTyping) return; // Prevent input while welcome message is typing
+    if (isTyping) return; // Use original state check
     
     if (e.key === 'Enter') {
       const command = input.trim().toLowerCase();
@@ -381,8 +350,9 @@ const TerminalLoader = ({ onComplete }) => {
           </div>
           
           {/* Skip animation button for recruiters */}
-          {isTyping && (
-            <button 
+          {/* Reverted Skip button logic */}
+          {isTyping && ( // Use original state check
+            <button
               onClick={handleSkip}
               className="text-xs text-gray-400 hover:text-white px-2 py-1 rounded hover:bg-gray-800 transition-colors"
             >
@@ -397,21 +367,23 @@ const TerminalLoader = ({ onComplete }) => {
           className="h-[60vh] sm:h-72 md:h-96 overflow-y-auto p-2 sm:p-4 font-mono text-xs sm:text-sm terminal-output"
         >
           {/* Display full lines only */}
+          {/* Simplified rendering logic: Display all lines */}
           {lines.map((line, index) => (
-            <div 
-              key={line.id || index} 
+            <div
+              key={line.id || index}
               className={`mb-1 whitespace-pre-wrap break-words ${line.type === 'system' ? 'text-cyan-400' : 'text-white'}`}
               dangerouslySetInnerHTML={{ __html: line.content }}
             >
             </div>
           ))}
           
-          {/* Command input line - only show when not typing welcome message */}
+          {/* Command input line - show when initial "typing" is done */}
           {!isTyping && (
             <div className="flex items-center flex-wrap">
               <span className="text-green-500 text-xs sm:text-sm">guest@bhuvan-portfolio:~$</span>
               <span className="ml-2 text-white text-xs sm:text-sm">{input}</span>
-              {cursorVisible && <span className="ml-px w-2 h-4 sm:h-5 bg-white inline-block cursor-blink"></span>}
+              {/* Show blinking cursor only when input is focused */}
+              {cursorVisible && document.activeElement === inputRef.current && <span className="ml-px w-2 h-4 sm:h-5 bg-white inline-block cursor-blink"></span>}
             </div>
           )}
         </div>

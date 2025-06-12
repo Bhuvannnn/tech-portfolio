@@ -91,17 +91,20 @@ const Technologies = () => {
             
             <div className="flex space-x-2 mb-6 overflow-x-auto pb-2">
               {SKILLS.categories.map((category) => (
-                <button
+                <motion.button // Convert to motion.button
                   key={category.name}
                   onClick={() => setSelectedCategory(category.name)}
-                  className={`px-4 py-2 rounded-full text-sm whitespace-nowrap transition-all duration-300 ${
+                  className={`px-4 py-2 rounded-full text-sm whitespace-nowrap transition-colors duration-200 ${ // Use transition-colors
                     selectedCategory === category.name
                       ? "bg-cyan-600 text-white"
-                      : "bg-gray-800 text-gray-300 hover:bg-gray-700"
+                      : "bg-gray-800 text-gray-300 hover:bg-gray-700" // Keep hover style for non-motion fallback
                   }`}
+                  whileHover={{ scale: 1.05, backgroundColor: "#4b5563" }} // Scale up and change bg on hover (adjust color if needed)
+                  whileTap={{ scale: 0.95 }} // Scale down on tap
+                  transition={{ type: "spring", stiffness: 400, damping: 17 }} // Springy transition
                 >
                   {category.name}
-                </button>
+                </motion.button>
               ))}
             </div>
             

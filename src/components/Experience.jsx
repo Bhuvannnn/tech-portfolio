@@ -24,6 +24,19 @@ const item = {
   }
 };
 
+// Variants for content inside timeline elements
+const contentVariants = {
+  hidden: { opacity: 0, y: 10 },
+  visible: (i) => ({ // Custom function to accept delay index
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: i * 0.1, // Stagger delay based on index
+      duration: 0.4
+    }
+  })
+};
+
 const Experience = () => {
   return (
     <div id="experience" className="my-24 scroll-mt-24">
@@ -58,10 +71,40 @@ const Experience = () => {
             iconStyle={{ background: '#0891b2', color: '#fff' }}
             icon={<Briefcase size={20} />}
           >
-            <h3 className="vertical-timeline-element-title text-xl font-semibold">{experience.role}</h3>
-            <h4 className="vertical-timeline-element-subtitle text-md text-cyan-400">{experience.company}</h4>
-            <p className="text-sm mt-2 text-gray-300">{experience.description}</p>
-            <div className="mt-4 flex flex-wrap gap-2">
+            <motion.h3
+              variants={contentVariants}
+              initial="hidden"
+              animate="visible"
+              custom={0} // Delay index 0
+              className="vertical-timeline-element-title text-xl font-semibold"
+            >
+              {experience.role}
+            </motion.h3>
+            <motion.h4
+              variants={contentVariants}
+              initial="hidden"
+              animate="visible"
+              custom={1} // Delay index 1
+              className="vertical-timeline-element-subtitle text-md text-cyan-400"
+            >
+              {experience.company}
+            </motion.h4>
+            <motion.p
+              variants={contentVariants}
+              initial="hidden"
+              animate="visible"
+              custom={2} // Delay index 2
+              className="text-sm mt-2 text-gray-300"
+            >
+              {experience.description}
+            </motion.p>
+            <motion.div
+              variants={contentVariants}
+              initial="hidden"
+              animate="visible"
+              custom={3} // Delay index 3
+              className="mt-4 flex flex-wrap gap-2"
+            >
               {experience.technologies.map((tech, techIndex) => (
                 <span
                   key={techIndex}
@@ -70,7 +113,7 @@ const Experience = () => {
                   {tech}
                 </span>
               ))}
-            </div>
+            </motion.div>
           </VerticalTimelineElement>
         ))}
       </VerticalTimeline>
