@@ -101,25 +101,7 @@ const Hero = () => {
                                     repeat={Infinity}
                                     className="flowing-gradient-text text-3xl tracking-tight"
                                 />
-                                {/* Animate the cover box */}
-                                <motion.div
-                                    className="absolute top-0 left-0 h-full bg-cyan-300 z-30"
-                                    initial={{ width: '100%', left: '-100%' }}
-                                    animate={{ left: ['-100%', '0%', '100%'] }}
-                                    transition={{
-                                        duration: 2,
-                                        ease: 'easeInOut',
-                                        times: [0, 0.5, 1]
-                                    }}
-                                />
-                                {/* <motion.span
-                                    className="relative z-10 bg-gradient-to-r from-pink-300 via-slate-500 to-purple-500 bg-clip-text text-3xl tracking-tight text-transparent"
-                                    initial={{ opacity: 0 }}
-                                    animate={{ opacity: 1 }}
-                                    transition={{ delay: 0.6, duration: 1 }}
-                                >
-                                    Software Developer
-                                </motion.span> */}
+                                {/* Removed cover box animation and commented-out span */}
                             </div>
                         </div>
                         <motion.p

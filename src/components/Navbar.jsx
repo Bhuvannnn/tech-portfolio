@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { FaLinkedin, FaGithub, FaInstagram, FaFileAlt, FaArrowUp, FaTerminal, FaBars, FaTimes } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-scroll';
-import logo from '/Users/rahulshah/Desktop/tech-portfolio/src/assets/BS LOGO-JULY 2024.png';
+// Removed unused logo import
 
 const Navbar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
@@ -98,12 +98,31 @@ const Navbar = () => {
                         </div>
 
                         {/* Desktop Navigation */}
-                        <div className="hidden md:flex flex-wrap items-center justify-center md:justify-end gap-3 md:gap-4 font-mono text-xs md:text-sm">
+                        {/* Container for desktop nav items with stagger animation */}
+                        <motion.div
+                            className="hidden md:flex flex-wrap items-center justify-center md:justify-end gap-3 md:gap-4 font-mono text-xs md:text-sm"
+                            initial="hidden"
+                            animate="visible"
+                            variants={{
+                                hidden: { opacity: 0 },
+                                visible: {
+                                    opacity: 1,
+                                    transition: {
+                                        delayChildren: 0.5, // Start after logo fades in
+                                        staggerChildren: 0.1
+                                    }
+                                }
+                            }}
+                        >
                             {['about', 'skills', 'experience', 'projects', 'contact'].map((section, index) => (
                                 <motion.div
                                     key={index}
                                     whileHover={{ scale: 1.05 }}
                                     whileTap={{ scale: 0.95 }}
+                                    variants={{ // Add variants for individual items
+                                        hidden: { opacity: 0, y: -10 },
+                                        visible: { opacity: 1, y: 0 }
+                                    }}
                                     className={`px-3 py-1 rounded border ${
                                         activeSection === section 
                                             ? 'border-cyan-500 bg-cyan-500/10 text-cyan-400' 
@@ -127,6 +146,10 @@ const Navbar = () => {
                             <motion.div
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
+                                variants={{ // Add variants for individual items
+                                    hidden: { opacity: 0, y: -10 },
+                                    visible: { opacity: 1, y: 0 }
+                                }}
                                 className="px-3 py-1 rounded border border-gray-700 hover:border-cyan-500 hover:bg-cyan-900/20 cursor-pointer"
                                 onClick={handleResumeClick}
                             >
@@ -137,6 +160,10 @@ const Navbar = () => {
                             <motion.div
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
+                                variants={{ // Add variants for individual items
+                                    hidden: { opacity: 0, y: -10 },
+                                    visible: { opacity: 1, y: 0 }
+                                }}
                                 className="px-3 py-1 rounded border border-gray-700 hover:border-cyan-500 hover:bg-cyan-900/20 cursor-pointer"
                                 onClick={handleLinkedInClick}
                             >
@@ -147,13 +174,17 @@ const Navbar = () => {
                             <motion.div
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
+                                variants={{ // Add variants for individual items
+                                    hidden: { opacity: 0, y: -10 },
+                                    visible: { opacity: 1, y: 0 }
+                                }}
                                 className="px-3 py-1 rounded border border-gray-700 hover:border-cyan-500 hover:bg-cyan-900/20 cursor-pointer"
                                 onClick={handleGithubClick}
                             >
                                 <span className="text-cyan-400 mr-1">$</span>
                                 <span>github</span>
                             </motion.div>
-                        </div>
+                        </motion.div>
                     </div>
                 </div>
             </nav>

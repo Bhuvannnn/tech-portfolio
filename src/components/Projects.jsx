@@ -82,11 +82,13 @@ const ProjectItem = ({ project, index, isFlipped, handleFlip, handleGitHubClick,
   const isInView = useInView(ref, { once: true, amount: 0.2 });
   
   return (
-    <motion.div 
+    <motion.div
       ref={ref}
-      className="flex flex-wrap lg:justify-center items-start"
+      className="flex flex-wrap lg:justify-center items-start mb-8" // Added mb-8 for spacing if needed
       variants={variants}
       animate={isInView ? "visible" : "hidden"}
+      whileHover={{ scale: 1.02 }} // Add subtle scale effect on hover
+      transition={{ type: "spring", stiffness: 300, damping: 15 }} // Add transition for hover effect
     >
       {/* Flip Container */}
       <div
