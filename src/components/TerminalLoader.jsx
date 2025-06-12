@@ -1,35 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-// Removed TypeAnimation import
-
-// Add CSS for terminal font scaling
-const terminalStyles = `
-  .terminal-output pre {
-    font-size: 0.5rem;
-    line-height: 0.7rem;
-  }
-  
-  @media (min-width: 480px) {
-    .terminal-output pre {
-      font-size: 0.6rem;
-      line-height: 0.8rem;
-    }
-  }
-  
-  @media (min-width: 640px) {
-    .terminal-output pre {
-      font-size: 0.7rem;
-      line-height: 0.9rem;
-    }
-  }
-  
-  @media (min-width: 768px) {
-    .terminal-output pre {
-      font-size: 0.8rem;
-      line-height: 1rem;
-    }
-  }
-`;
+import "../terminal.css";
 
 const TerminalLoader = ({ onComplete }) => {
   const [input, setInput] = useState('');
@@ -331,8 +302,6 @@ const TerminalLoader = ({ onComplete }) => {
       className="fixed inset-0 bg-neutral-950 z-50 flex flex-col justify-center p-2 sm:p-4 md:p-8"
       onClick={handleTerminalClick}
     >
-      {/* Terminal Styles */}
-      <style dangerouslySetInnerHTML={{ __html: terminalStyles }} />
       
       <motion.div 
         className="max-w-3xl mx-auto w-full bg-black bg-opacity-90 rounded-md border border-gray-800 shadow-2xl overflow-hidden"
