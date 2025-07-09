@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ReactCardFlip from "react-card-flip";
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
@@ -6,6 +6,19 @@ import { PROJECTS } from "../constants";
 
 const Projects = () => {
   const [isFlipped, setIsFlipped] = useState({});
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Detect mobile screen
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   // Handle flip state for each project
   const handleFlip = (index) => {
@@ -17,27 +30,29 @@ const Projects = () => {
     window.open(url, "_blank");
   };
 
-  // Animation variants
+  // Animation variants - different for mobile and desktop
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2
+        staggerChildren: isMobile ? 0.1 : 0.2, // Faster on mobile
+        delayChildren: isMobile ? 0 : 0.1
       }
     }
   };
 
   const projectVariants = {
-    hidden: { opacity: 0, x: -50 },
+    hidden: { opacity: 0, y: isMobile ? 10 : -50 }, // Smaller movement on mobile
     visible: { 
       opacity: 1, 
-      x: 0,
+      y: 0,
       transition: { 
-        type: "spring", 
-        damping: 15, 
-        stiffness: 100,
-        duration: 0.6 
+        type: isMobile ? "tween" : "spring", // Simpler animation on mobile
+        duration: isMobile ? 0.3 : 0.6,
+        ease: isMobile ? "easeOut" : undefined,
+        damping: isMobile ? undefined : 15,
+        stiffness: isMobile ? undefined : 100
       } 
     }
   };
@@ -48,8 +63,8 @@ const Projects = () => {
         className="my-20 text-center text-4xl"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.5 }}
-        transition={{ duration: 0.5 }}
+        viewport={{ once: true, amount: isMobile ? 0.1 : 0.5 }} // Trigger earlier on mobile
+        transition={{ duration: isMobile ? 0.3 : 0.5 }}
       >
         Projects
       </motion.h2>
@@ -58,7 +73,11 @@ const Projects = () => {
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.1 }}
+        viewport={{ 
+          once: true, 
+          amount: isMobile ? 0.01 : 0.1, // Much earlier trigger on mobile
+          margin: isMobile ? "0px 0px -200px 0px" : undefined // Trigger 200px before viewport on mobile
+        }}
       >
         {PROJECTS.map((project, index) => (
           <ProjectItem 
@@ -69,6 +88,7 @@ const Projects = () => {
             handleFlip={handleFlip} 
             handleGitHubClick={handleGitHubClick} 
             variants={projectVariants}
+            isMobile={isMobile}
           />
         ))}
       </motion.div>
@@ -77,24 +97,34 @@ const Projects = () => {
 };
 
 // Separate component for each project item
-const ProjectItem = ({ project, index, isFlipped, handleFlip, handleGitHubClick, variants }) => {
+const ProjectItem = ({ project, index, isFlipped, handleFlip, handleGitHubClick, variants, isMobile }) => {
   const ref = React.useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.2 });
+  const isInView = useInView(ref, { 
+    once: true, 
+    amount: isMobile ? 0.01 : 0.2, // Much earlier trigger on mobile
+    margin: isMobile ? "0px 0px -100px 0px" : undefined // Trigger 100px before viewport on mobile
+  });
   
   return (
     <motion.div
       ref={ref}
-      className="flex flex-wrap lg:justify-center items-start mb-8" // Added mb-8 for spacing if needed
+      className="flex flex-wrap lg:justify-center items-start mb-8"
       variants={variants}
       animate={isInView ? "visible" : "hidden"}
-      whileHover={{ scale: 1.02 }} // Add subtle scale effect on hover
-      transition={{ type: "spring", stiffness: 300, damping: 15 }} // Add transition for hover effect
+      whileHover={{ scale: isMobile ? 1.01 : 1.02 }} // Smaller hover effect on mobile
+      transition={{ 
+        type: isMobile ? "tween" : "spring", 
+        duration: isMobile ? 0.2 : undefined,
+        stiffness: isMobile ? undefined : 300, 
+        damping: isMobile ? undefined : 15 
+      }}
     >
       {/* Flip Container */}
       <div
         className="w-full lg:w-1/4 lg:pr-8 cursor-pointer"
-        onMouseEnter={() => handleFlip(index)}
-        onMouseLeave={() => handleFlip(index)}
+        onMouseEnter={() => !isMobile && handleFlip(index)} // Disable hover on mobile
+        onMouseLeave={() => !isMobile && handleFlip(index)}
+        onClick={() => isMobile && handleFlip(index)} // Enable tap on mobile
       >
         <ReactCardFlip isFlipped={isFlipped[index]} flipDirection="horizontal">
           {/* Front Side */}
@@ -102,14 +132,15 @@ const ProjectItem = ({ project, index, isFlipped, handleFlip, handleGitHubClick,
             <img
               src={project.image}
               alt={project.title}
-              className="w-full h-full object-contain" // Use object-contain to maintain aspect ratio
+              className="w-full h-full object-contain"
+              loading="lazy"
             />
           </div>
 
           {/* Back Side */}
           <div
             className="relative h-64 w-full bg-neutral-900 rounded-lg flex items-center justify-center"
-            onClick={() => handleGitHubClick(project.github)} // Add onClick here
+            onClick={() => handleGitHubClick(project.github)}
           >
             <div className="text-center p-4">
               <svg
@@ -130,13 +161,14 @@ const ProjectItem = ({ project, index, isFlipped, handleFlip, handleGitHubClick,
       {/* Project Description with animation */}
       <motion.div 
         className="w-full lg:w-3/4"
-        initial={{ opacity: 0, x: 50 }}
-        animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
+        initial={{ opacity: 0, y: isMobile ? 10 : 50 }} // Smaller movement on mobile
+        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: isMobile ? 10 : 50 }}
         transition={{ 
-          duration: 0.5, 
-          delay: 0.2,
-          type: "spring",
-          damping: 15
+          duration: isMobile ? 0.3 : 0.5, 
+          delay: isMobile ? 0.1 : 0.2,
+          type: isMobile ? "tween" : "spring",
+          ease: isMobile ? "easeOut" : undefined,
+          damping: isMobile ? undefined : 15
         }}
       >
         <h6 className="mb-2 font-semibold text-xl text-purple-400">
@@ -155,18 +187,19 @@ const ProjectItem = ({ project, index, isFlipped, handleFlip, handleGitHubClick,
           className="flex flex-wrap gap-2"
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-          transition={{ duration: 0.5, delay: 0.4 }}
+          transition={{ duration: isMobile ? 0.3 : 0.5, delay: isMobile ? 0.2 : 0.4 }}
         >
           {project.technologies.map((tech, techIndex) => (
             <motion.span
               key={techIndex}
               className="rounded bg-purple-500/10 px-3 py-1 text-sm font-medium text-purple-300"
-              initial={{ opacity: 0, y: 10 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+              initial={{ opacity: 0, y: isMobile ? 5 : 10 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: isMobile ? 5 : 10 }}
               transition={{ 
-                duration: 0.3, 
-                delay: 0.5 + (techIndex * 0.05),
-                type: "spring"
+                duration: isMobile ? 0.2 : 0.3, 
+                delay: isMobile ? 0.3 + (techIndex * 0.02) : 0.5 + (techIndex * 0.05),
+                type: isMobile ? "tween" : "spring",
+                ease: isMobile ? "easeOut" : undefined
               }}
             >
               {tech}
