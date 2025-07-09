@@ -4,10 +4,151 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Bhuvan's Portfolio</title>
+    
+    <!-- Primary Meta Tags -->
+    <title>Bhuvan Shah - AI Engineer & Full-Stack Developer | USC Graduate Student</title>
+    <meta name="title" content="Bhuvan Shah - AI Engineer & Full-Stack Developer | USC Graduate Student">
+    <meta name="description" content="AI Engineer and Full-Stack Developer with expertise in NLP, LLMs, React, and Node.js. Graduate student at USC specializing in Natural Language Processing and Generative AI solutions.">
+    <meta name="keywords" content="AI Engineer, Full-Stack Developer, NLP, LLMs, React, Node.js, USC, Machine Learning, Data Science, Software Development">
+    <meta name="author" content="Bhuvan Shah">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://bhuvannnn.github.io/tech-portfolio/">
+    <meta property="og:title" content="Bhuvan Shah - AI Engineer & Full-Stack Developer">
+    <meta property="og:description" content="AI Engineer and Full-Stack Developer with expertise in NLP, LLMs, React, and Node.js. Graduate student at USC specializing in Natural Language Processing and Generative AI solutions.">
+    <meta property="og:image" content="https://bhuvannnn.github.io/tech-portfolio/src/assets/BhuvanProfile.jpg">
+    <meta property="og:site_name" content="Bhuvan Shah Portfolio">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://bhuvannnn.github.io/tech-portfolio/">
+    <meta property="twitter:title" content="Bhuvan Shah - AI Engineer & Full-Stack Developer">
+    <meta property="twitter:description" content="AI Engineer and Full-Stack Developer with expertise in NLP, LLMs, React, and Node.js. Graduate student at USC specializing in Natural Language Processing and Generative AI solutions.">
+    <meta property="twitter:image" content="https://bhuvannnn.github.io/tech-portfolio/src/assets/BhuvanProfile.jpg">
+    
+    <!-- Additional Meta Tags -->
+    <meta name="theme-color" content="#3b82f6">
+    <meta name="msapplication-TileColor" content="#3b82f6">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Bhuvan Shah Portfolio">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://bhuvannnn.github.io/tech-portfolio/">
+    
+    <!-- Preconnect to external domains -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Bhuvan Shah",
+      "jobTitle": "AI Engineer & Full-Stack Developer",
+      "alumniOf": {
+        "@type": "CollegeOrUniversity",
+        "name": "University of Southern California"
+      },
+      "description": "AI Engineer and Full-Stack Developer with expertise in NLP, LLMs, React, and Node.js. Graduate student at USC specializing in Natural Language Processing and Generative AI solutions.",
+      "url": "https://bhuvannnn.github.io/tech-portfolio/",
+      "image": "https://bhuvannnn.github.io/tech-portfolio/src/assets/BhuvanProfile.jpg",
+      "sameAs": [
+        "https://www.linkedin.com/in/bhuvanshah/",
+        "https://github.com/Bhuvannnn",
+        "https://www.instagram.com/bhu._.one/"
+      ],
+      "knowsAbout": [
+        "Natural Language Processing",
+        "Large Language Models",
+        "React.js",
+        "Node.js",
+        "Python",
+        "Machine Learning",
+        "Full-Stack Development",
+        "Data Science"
+      ],
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Los Angeles",
+        "addressRegion": "CA",
+        "addressCountry": "US"
+      },
+      "email": "bhuvanshah288@gmail.com",
+      "telephone": "+1-213-331-1360"
+    }
+    </script>
+    
+    <!-- Organization Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Bhuvan Shah Portfolio",
+      "url": "https://bhuvannnn.github.io/tech-portfolio/",
+      "logo": "https://bhuvannnn.github.io/tech-portfolio/src/assets/BhuvanProfile.jpg",
+      "description": "Professional portfolio showcasing AI engineering and full-stack development projects"
+    }
+    </script>
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX', {
+        page_title: 'Bhuvan Shah Portfolio',
+        page_location: window.location.href
+      });
+    </script>
+    
+    <!-- Google Site Verification -->
+    <meta name="google-site-verification" content="your-verification-code" />
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
+    
+    <!-- Additional Analytics Events -->
+    <script>
+      // Track portfolio interactions
+      document.addEventListener('DOMContentLoaded', function() {
+        // Track project clicks
+        document.addEventListener('click', function(e) {
+          if (e.target.closest('[data-project-link]')) {
+            gtag('event', 'click', {
+              event_category: 'Portfolio',
+              event_label: 'Project Link Click',
+              value: e.target.closest('[data-project-link]').dataset.projectName
+            });
+          }
+        });
+        
+        // Track form submissions
+        const contactForm = document.querySelector('#contact form');
+        if (contactForm) {
+          contactForm.addEventListener('submit', function() {
+            gtag('event', 'submit', {
+              event_category: 'Contact',
+              event_label: 'Contact Form Submission'
+            });
+          });
+        }
+        
+        // Track resume downloads
+        document.addEventListener('click', function(e) {
+          if (e.target.closest('[data-resume-download]')) {
+            gtag('event', 'download', {
+              event_category: 'Portfolio',
+              event_label: 'Resume Download'
+            });
+          }
+        });
+      });
+    </script>
   </body>
 </html>

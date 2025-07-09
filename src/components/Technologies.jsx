@@ -1,65 +1,59 @@
 import React, { useState } from 'react';
 import { motion } from "framer-motion";
 import { SKILLS } from "../constants";
-import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer, Tooltip } from 'recharts';
-
-const container = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      delayChildren: 0.3,
-      staggerChildren: 0.1
-    }
-  }
-};
-
-const item = {
-  hidden: { y: 20, opacity: 0 },
-  visible: {
-    y: 0,
-    opacity: 1
-  }
-};
 
 const Technologies = () => {
   const [selectedCategory, setSelectedCategory] = useState("Programming Languages");
-  const selectedCategoryData = SKILLS.categories.find(cat => cat.name === selectedCategory);
+
+  const container = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        delayChildren: 0.3,
+        staggerChildren: 0.1
+      }
+    }
+  };
+
+  const item = {
+    hidden: { y: 30, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.8,
+        ease: "easeOut"
+      }
+    }
+  };
 
   const renderSkillBars = () => {
+    const selectedCategoryData = SKILLS.categories.find(cat => cat.name === selectedCategory);
+    if (!selectedCategoryData) return null;
+
     return selectedCategoryData.skills.map((skill, index) => (
       <motion.div
         key={skill.name}
-        initial={{ opacity: 0, x: -50 }}
+        initial={{ opacity: 0, x: -30 }}
         animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.5, delay: index * 0.1 }}
-        className="mb-4"
+        transition={{ duration: 0.6, delay: index * 0.1, ease: "easeOut" }}
+        className="mb-6"
       >
-        <div className="flex justify-between mb-1">
-          <span className="text-sm font-medium text-gray-300">{skill.name}</span>
-          <span className="text-xs font-medium text-gray-400">{skill.level}%</span>
+        <div className="flex justify-between items-center mb-2">
+          <span className="text-sm font-medium text-gray-700">{skill.name}</span>
+          <span className="text-xs font-medium text-gray-500">{skill.level}%</span>
         </div>
-        <div className="w-full bg-gray-800 rounded-full h-2.5">
+        <div className="w-full bg-gray-200 rounded-full h-2">
           <motion.div 
-            className="h-2.5 rounded-full bg-gradient-to-r from-cyan-500 to-blue-500"
+            className="h-2 rounded-full bg-gradient-to-r from-blue-500 to-blue-600"
             initial={{ width: 0 }}
             animate={{ width: `${skill.level}%` }}
-            transition={{ duration: 1, delay: index * 0.1 }}
+            transition={{ duration: 1.2, delay: index * 0.1, ease: "easeOut" }}
           ></motion.div>
         </div>
       </motion.div>
     ));
-  };
-
-  const CustomTooltip = ({ active, payload }) => {
-    if (active && payload && payload.length) {
-      return (
-        <div className="bg-gray-900 p-2 rounded-md border border-gray-700">
-          <p className="text-cyan-400">{payload[0].payload.skill}: {payload[0].value}</p>
-        </div>
-      );
-    }
-    return null;
   };
 
   return (
@@ -69,76 +63,171 @@ const Technologies = () => {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }}
-        className="mb-10"
+        className="mb-16"
       >
-        <h2 className="mb-2 text-3xl font-bold tracking-tight">
-          <motion.span variants={item} className="bg-gradient-to-r from-pink-500 via-blue-500 to-violet-500 bg-clip-text text-transparent">
-            Skills & Technologies
-          </motion.span>
-        </h2>
-        <motion.div variants={item} className="h-1 w-16 bg-cyan-600"></motion.div>
+        <motion.h2 
+          variants={item}
+          className="text-4xl font-bold text-center text-gray-900 mb-4"
+        >
+          Skills & <span className="text-blue-600">Technologies</span>
+        </motion.h2>
+        <motion.div 
+          variants={item}
+          className="h-1 w-16 bg-blue-600 mx-auto"
+        ></motion.div>
       </motion.div>
 
-      <div className="mt-10 flex flex-col lg:flex-row">
-        <div className="w-full lg:w-1/2 mt-4 lg:mt-0 lg:pr-8">
+      <div className="max-w-6xl mx-auto">
+        {/* Category Tabs */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          viewport={{ once: true, amount: 0.3 }}
+          className="mb-12"
+        >
+          <div className="flex flex-wrap justify-center gap-3">
+            {SKILLS.categories.map((category, index) => (
+              <motion.button
+                key={category.name}
+                onClick={() => setSelectedCategory(category.name)}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1, ease: "easeOut" }}
+                viewport={{ once: true, amount: 0.3 }}
+                className={`px-6 py-3 rounded-lg text-sm font-medium transition-all duration-300 ${
+                  selectedCategory === category.name
+                    ? "bg-blue-600 text-white shadow-lg"
+                    : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                }`}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                {category.name}
+              </motion.button>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Skills Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          {/* Skill Bars */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="mb-6"
+            initial={{ opacity: 0, x: -60 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            viewport={{ once: true, amount: 0.3 }}
+            className="bg-white p-8 rounded-xl shadow-lg"
           >
-            <h3 className="text-xl font-semibold mb-4 text-gray-200">My Expertise</h3>
-            
-            <div className="flex space-x-2 mb-6 overflow-x-auto pb-2">
-              {SKILLS.categories.map((category) => (
-                <motion.button // Convert to motion.button
+            <motion.h3 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+              viewport={{ once: true, amount: 0.3 }}
+              className="text-2xl font-semibold mb-6 text-gray-900"
+            >
+              {selectedCategory}
+            </motion.h3>
+            {renderSkillBars()}
+          </motion.div>
+
+          {/* Skills Overview */}
+          <motion.div
+            initial={{ opacity: 0, x: 60 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            viewport={{ once: true, amount: 0.3 }}
+            className="bg-white p-8 rounded-xl shadow-lg"
+          >
+            <motion.h3 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+              viewport={{ once: true, amount: 0.3 }}
+              className="text-2xl font-semibold mb-6 text-gray-900"
+            >
+              Expertise Overview
+            </motion.h3>
+            <div className="space-y-6">
+              {SKILLS.categories.map((category, index) => (
+                <motion.div
                   key={category.name}
-                  onClick={() => setSelectedCategory(category.name)}
-                  className={`px-4 py-2 rounded-full text-sm whitespace-nowrap transition-colors duration-200 ${ // Use transition-colors
-                    selectedCategory === category.name
-                      ? "bg-cyan-600 text-white"
-                      : "bg-gray-800 text-gray-300 hover:bg-gray-700" // Keep hover style for non-motion fallback
-                  }`}
-                  whileHover={{ scale: 1.05, backgroundColor: "#4b5563" }} // Scale up and change bg on hover (adjust color if needed)
-                  whileTap={{ scale: 0.95 }} // Scale down on tap
-                  transition={{ type: "spring", stiffness: 400, damping: 17 }} // Springy transition
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.1, ease: "easeOut" }}
+                  viewport={{ once: true, amount: 0.3 }}
+                  className="border-l-4 border-blue-600 pl-4"
                 >
-                  {category.name}
-                </motion.button>
+                  <h4 className="font-semibold text-gray-900 mb-2">
+                    {category.name}
+                  </h4>
+                  <div className="flex flex-wrap gap-2">
+                    {category.skills.slice(0, 3).map((skill, skillIndex) => (
+                      <motion.span
+                        key={skillIndex}
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.4, delay: skillIndex * 0.05, ease: "easeOut" }}
+                        viewport={{ once: true, amount: 0.3 }}
+                        className="px-3 py-1 bg-blue-100 text-blue-700 text-sm rounded-full font-medium"
+                      >
+                        {skill.name}
+                      </motion.span>
+                    ))}
+                    {category.skills.length > 3 && (
+                      <motion.span
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.4, delay: 0.15, ease: "easeOut" }}
+                        viewport={{ once: true, amount: 0.3 }}
+                        className="px-3 py-1 bg-gray-100 text-gray-600 text-sm rounded-full font-medium"
+                      >
+                        +{category.skills.length - 3} more
+                      </motion.span>
+                    )}
+                  </div>
+                </motion.div>
               ))}
             </div>
-            
-            <div className="mt-6">
-              {renderSkillBars()}
-            </div>
           </motion.div>
         </div>
-        
-        <div className="w-full lg:w-1/2 mt-8 lg:mt-0">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5 }}
-            className="h-80 p-4"
+
+        {/* Additional Skills */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+          viewport={{ once: true, amount: 0.3 }}
+          className="mt-16 bg-gradient-to-r from-blue-50 to-indigo-50 p-8 rounded-xl"
+        >
+          <motion.h3 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            viewport={{ once: true, amount: 0.3 }}
+            className="text-2xl font-semibold text-center text-gray-900 mb-8"
           >
-            <h3 className="text-xl font-semibold mb-4 text-center text-gray-200">Skill Domains</h3>
-            <ResponsiveContainer width="100%" height="100%">
-              <RadarChart cx="50%" cy="50%" outerRadius="80%" data={SKILLS.radarData}>
-                <PolarGrid strokeOpacity={0.3} />
-                <PolarAngleAxis dataKey="skill" tick={{ fill: '#94a3b8', fontSize: 12 }} />
-                <PolarRadiusAxis angle={30} domain={[0, 100]} tick={{ fill: '#94a3b8' }} />
-                <Radar
-                  name="Skills"
-                  dataKey="value"
-                  stroke="#0891b2"
-                  fill="#0891b2"
-                  fillOpacity={0.5}
-                />
-                <Tooltip content={<CustomTooltip />} />
-              </RadarChart>
-            </ResponsiveContainer>
-          </motion.div>
-        </div>
+            Additional Skills & Tools
+          </motion.h3>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            {[
+              "Git & GitHub", "Docker", "AWS", "Firebase",
+              "REST APIs", "GraphQL", "CI/CD", "Agile/Scrum",
+              "Data Analysis", "Machine Learning", "Tableau", "PostgreSQL"
+            ].map((skill, index) => (
+              <motion.div
+                key={skill}
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, delay: index * 0.05, ease: "easeOut" }}
+                viewport={{ once: true, amount: 0.3 }}
+                className="text-center p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300"
+              >
+                <span className="text-gray-700 font-medium">{skill}</span>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
       </div>
     </section>
   );

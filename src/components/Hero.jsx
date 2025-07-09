@@ -2,17 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { HERO_CONTENT } from "../constants";
 import { TypeAnimation } from 'react-type-animation';
 import profilePic from "../assets/BhuvanProfile.jpg";
-import mouse from "../assets/mouse.png";
 import { motion } from "framer-motion";
-import ParticlesBackground from './ParticlesBackground'; 
-
-const container = (delay) => ({
-    hidden: { x: -100, opacity: 0 },
-    visible: {
-        x: 0, opacity: 1,
-        transition: { delay: delay, duration: 0.5 }
-    },
-});
 
 const TextMorph = ({ initialText, finalText }) => {
     const [displayedText, setDisplayedText] = useState(initialText);
@@ -48,7 +38,7 @@ const TextMorph = ({ initialText, finalText }) => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1 }}
-            className="pb-16 text-6xl font-thin tracking-tight lg:mt-16 lg:text-6xl"
+            className="pb-8 text-5xl lg:text-6xl font-bold tracking-tight lg:mt-16"
         >
             {displayedText.split('').map((char, index) => (
                 <motion.span
@@ -58,7 +48,7 @@ const TextMorph = ({ initialText, finalText }) => {
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ duration: 0.2, delay: index * 0.05 }}
                 >
-                    {char === ' ' ? '\u00A0' : char} {/* Non-breaking space for spaces */}
+                    {char === ' ' ? '\u00A0' : char}
                 </motion.span>
             ))}
         </motion.div>
@@ -67,75 +57,88 @@ const TextMorph = ({ initialText, finalText }) => {
 
 const Hero = () => {
     return (
-        <div className="relative border-b border-neutral-900 pb-4 lg:mb-35 overflow-hidden">
-            <ParticlesBackground />
-            <div className="flex flex-wrap">
+        <div className="relative border-b border-gray-200 pb-16 lg:mb-20">
+            <div className="flex flex-wrap items-center min-h-[80vh]">
                 <div className="w-full lg:w-1/2">
                     <div className="flex flex-col items-center lg:items-start">
-                        <div className="whitespace-nowrap"> {/* Added wrapper div with whitespace-nowrap */}
+                        <div className="whitespace-nowrap">
                             <TextMorph
                                 initialText="こんにちは こんにちは"
                                 finalText="Bhuvan Shah"
                             />
                         </div>
-                        <div className="relative flex flex-col items-start">
-                            <div className="relative inline-block overflow-hidden">
+                        
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.6, delay: 0.2 }}
+                            className="mb-6"
+                        >
                             <TypeAnimation
-                                    sequence={[
-                                        'Software Developer',
-                                        2000,
-                                        'Data Scientist',
-                                        2000,
-                                        'Data Engineer',
-                                        2000,
-                                        'Data Analyst',
-                                        2000,
-                                        'AI Engineer',
-                                        2000,
-                                        'LLM Developer',
-                                        2000,
-                                    ]}
-                                    wrapper="span"
-                                    speed={50}
-                                    style={{ fontSize: '2em', display: 'inline-block' }}
-                                    repeat={Infinity}
-                                    className="flowing-gradient-text text-3xl tracking-tight"
-                                />
-                                {/* Removed cover box animation and commented-out span */}
-                            </div>
-                        </div>
+                                sequence={[
+                                    'AI Engineer',
+                                    2000,
+                                    'Full-Stack Developer',
+                                    2000,
+                                    'Data Scientist',
+                                    2000,
+                                    'NLP Specialist',
+                                    2000,
+                                ]}
+                                wrapper="span"
+                                speed={50}
+                                className="text-2xl lg:text-3xl text-blue-600 font-semibold"
+                                repeat={Infinity}
+                            />
+                        </motion.div>
+                        
                         <motion.p
-                            variants={container(1)}
-                            initial='hidden'
-                            animate='visible'
-                            className="my-2 max-w-xl py-6 font-light tracking-tighter text-justify"
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.6, delay: 0.4 }}
+                            className="text-lg text-gray-600 max-w-xl text-center lg:text-left leading-relaxed mb-8"
                         >
                             {HERO_CONTENT}
                         </motion.p>
+                        
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.6, delay: 0.6 }}
+                            className="flex flex-col sm:flex-row gap-4"
+                        >
+                            <a
+                                href="#projects"
+                                className="px-8 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 font-medium text-center"
+                            >
+                                View Projects
+                            </a>
+                            <a
+                                href="#contact"
+                                className="px-8 py-3 border-2 border-blue-600 text-blue-600 rounded-lg hover:bg-blue-50 transition-colors duration-200 font-medium text-center"
+                            >
+                                Get in Touch
+                            </a>
+                        </motion.div>
                     </div>
                 </div>
                 <div className="w-full lg:w-1/2 lg:p-8">
                     <div className="flex justify-center">
-                        <motion.img
-                            initial={{ x: 100, opacity: 0 }}
-                            animate={{ x: 0, opacity: 1 }}
-                            transition={{ delay: 1.2, duration: 0.5 }}
-                            src={profilePic}
-                            alt='Bhuvan Shah'
-                            className="rounded-2xl h-80 w-80 lg:h-96 lg:w-96 object-cover"
-                        />
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ delay: 0.8, duration: 0.6 }}
+                            className="relative"
+                        >
+                            <img
+                                src={profilePic}
+                                alt='Bhuvan Shah'
+                                className="rounded-2xl h-80 w-80 lg:h-96 lg:w-96 object-cover shadow-2xl"
+                            />
+                            <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-blue-600/20 to-purple-600/20"></div>
+                        </motion.div>
                     </div>
                 </div>
-            </div>
-            <div className="flex justify-center mt-8">
-                <motion.img
-                    src={mouse}
-                    alt="Scroll indicator"
-                    className="h-10 w-10"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1, y: [0, 10, 0] }}
-                    transition={{ duration: 1.5, repeat: Infinity }}
-                />
             </div>
         </div>
     );
