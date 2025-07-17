@@ -6,12 +6,8 @@ import Technologies from "./components/Technologies";
 import Experience from "./components/Experience";
 import Projects from "./components/Projects";
 import Contact from "./components/Contact";
-import TerminalLoader from "./components/TerminalLoader";
-import CustomCursor from "./components/CustomCursor";
 
 const App = () => {
-  const [isLoading, setIsLoading] = useState(true);
-  
   // Create refs for each section
   const aboutRef = useRef(null);
   const skillsRef = useRef(null);
@@ -19,42 +15,9 @@ const App = () => {
   const projectsRef = useRef(null);
   const contactRef = useRef(null);
 
-  const handleLoadingComplete = (section) => {
-    setIsLoading(false);
-    
-    // If a specific section is provided, scroll to it after a short delay
-    if (section) {
-      setTimeout(() => {
-        switch(section) {
-          case 'about':
-            aboutRef.current?.scrollIntoView({ behavior: 'smooth' });
-            break;
-          case 'skills': // Maps to Technologies component
-            skillsRef.current?.scrollIntoView({ behavior: 'smooth' });
-            break;
-          case 'experience':
-            experienceRef.current?.scrollIntoView({ behavior: 'smooth' });
-            break;
-          case 'projects':
-            projectsRef.current?.scrollIntoView({ behavior: 'smooth' });
-            break;
-          case 'contact':
-            contactRef.current?.scrollIntoView({ behavior: 'smooth' });
-            break;
-          default:
-            // No scrolling if no valid section
-            break;
-        }
-      }, 100); // Small delay to ensure components are rendered
-    }
-  };
-
   return (
     <div className="overflow-x-hidden text-neutral-300 antialiased 
       selection:bg-cyan-300 selection:text-cyan-900">
-      {isLoading && <TerminalLoader onComplete={handleLoadingComplete} />}
-
-      <CustomCursor />
       
       <div className="fixed top-0 -z-10 h-full w-full">
         <div 

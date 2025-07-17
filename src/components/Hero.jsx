@@ -4,7 +4,8 @@ import { TypeAnimation } from 'react-type-animation';
 import profilePic from "../assets/BhuvanProfile.jpg";
 import mouse from "../assets/mouse.png";
 import { motion } from "framer-motion";
-import ParticlesBackground from './ParticlesBackground'; 
+import ParticlesBackground from './ParticlesBackground';
+import { BlurFade } from "./BlurFade";
 
 const container = (delay) => ({
     hidden: { x: -100, opacity: 0 },
@@ -66,13 +67,15 @@ const TextMorph = ({ initialText, finalText }) => {
 };
 
 const Hero = () => {
+    // Split hero content into lines
+    const heroLines = HERO_CONTENT.split(/\n|\. /).filter(Boolean);
     return (
         <div className="relative border-b border-neutral-900 pb-4 lg:mb-35 overflow-hidden">
             <ParticlesBackground />
             <div className="flex flex-wrap">
                 <div className="w-full lg:w-1/2">
                     <div className="flex flex-col items-center lg:items-start">
-                        <div className="whitespace-nowrap"> {/* Added wrapper div with whitespace-nowrap */}
+                        <div className="whitespace-nowrap">
                             <TextMorph
                                 initialText="こんにちは こんにちは"
                                 finalText="Bhuvan Shah"
@@ -80,9 +83,9 @@ const Hero = () => {
                         </div>
                         <div className="relative flex flex-col items-start">
                             <div className="relative inline-block overflow-hidden">
-                            <TypeAnimation
+                                <TypeAnimation
                                     sequence={[
-                                        'Software Developer',
+                                        'Software Engineer',
                                         2000,
                                         'Data Scientist',
                                         2000,
@@ -101,17 +104,16 @@ const Hero = () => {
                                     repeat={Infinity}
                                     className="flowing-gradient-text text-3xl tracking-tight"
                                 />
-                                {/* Removed cover box animation and commented-out span */}
                             </div>
                         </div>
-                        <motion.p
-                            variants={container(1)}
-                            initial='hidden'
-                            animate='visible'
-                            className="my-2 max-w-xl py-6 font-light tracking-tighter text-justify"
-                        >
-                            {HERO_CONTENT}
-                        </motion.p>
+                        {/* Animated hero content using BlurFade */}
+                        <div className="my-2 max-w-xl py-6 font-light tracking-tighter text-justify">
+                            {heroLines.map((line, idx) => (
+                                <BlurFade key={idx} delay={0.2 * idx} inView>
+                                    <div style={{ fontSize: '1.2em', marginBottom: '0.5em' }}>{line.trim()}</div>
+                                </BlurFade>
+                            ))}
+                        </div>
                     </div>
                 </div>
                 <div className="w-full lg:w-1/2 lg:p-8">

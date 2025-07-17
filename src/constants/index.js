@@ -8,13 +8,13 @@ import project7 from "../assets/projects/project-7.png";
 import project8 from "../assets/projects/project-8.png";
 import project9 from "../assets/projects/project-9.png";
 
-export const HERO_CONTENT = `As a passionate graduate student at the University of Southern California, I specialize in crafting advanced Natural Language Processing (NLP) and Generative AI solutions. With 1.5 years of hands-on experience, I've developed expertise in building Large Language Models (LLMs) like Retrieval-Augmented Generation (RAG), Named Entity Recognition (NER) with DeBERTaV3, and BiLSTM-CNN architectures. Alongside my proficiency in LLMs, I also possess robust skills in full-stack development with technologies such as React, Next.js, Node.js, MySQL, PostgreSQL, and MongoDB. My goal is to blend my deep technical knowledge in AI with my web development skills to create innovative, scalable applications that deliver exceptional user experiences and drive business growth.`;
+export const HERO_CONTENT = `Software Engineer & Data Practitioner blending full-stack engineering, ML pipelines, and real-time systems to build scalable, intelligent products. `;
 
 export const ABOUT_TEXT = `I am a dedicated and versatile professional specializing in software solutions majorly including Natural Language Processing (NLP) and Generative AI. Currently, as a graduate student at the University of Southern California, I am honing my skills in building advanced NLP architectures, including custom LSTM networks, RAG models, and fine-tuned transformers like DeBERTaV3. With a solid foundation in full-stack development, I have 1.5 years of experience working with front-end technologies like React and Next.js, and back-end technologies including Node.js, MySQL, PostgreSQL, and MongoDB. My journey in technology is driven by a deep curiosity and a commitment to solving complex problems through innovative solutions. I thrive in collaborative environments where I can contribute to cutting-edge projects and continuously learn new skills. Outside of my technical pursuits, I enjoy staying active, exploring new technologies, and contributing to open-source projects.`;
 
 export const EXPERIENCES = [
   {
-    year: "2024 - Present",
+    year: "May 2024 - May 2025",
     role: "Teaching Associate",
     company: "University of Southern California",
     description: `As a Teaching Associate for "CSCI 526 - Advanced Mobile Devices and Game Consoles" a masters level course at the University of Southern California, I support the academic journey of 90 students. My responsibilities include conducting office hours where I provide guidance on C# coding challenges and course concepts. 
@@ -138,59 +138,21 @@ export const CONTACT = {
 };
 
 // Add skills data for the radar chart
-export const SKILLS = {
-  categories: [
-    {
-      name: "Programming Languages",
-      skills: [
-        { name: "Python", level: 90 },
-        { name: "JavaScript", level: 85 },
-        { name: "C#", level: 75 },
-        { name: "SQL", level: 85 },
-        { name: "Swift", level: 65 }
-      ]
-    },
-    {
-      name: "AI/ML",
-      skills: [
-        { name: "NLP", level: 90 },
-        { name: "Generative AI", level: 85 },
-        { name: "LLMs", level: 85 },
-        { name: "Neural Networks", level: 80 },
-        { name: "Data Science", level: 75 }
-      ]
-    },
-    {
-      name: "Frontend",
-      skills: [
-        { name: "React", level: 85 },
-        { name: "Next.js", level: 75 },
-        { name: "HTML/CSS", level: 90 },
-        { name: "Tailwind", level: 85 },
-        { name: "UI/UX", level: 70 }
-      ]
-    },
-    {
-      name: "Backend",
-      skills: [
-        { name: "Node.js", level: 80 },
-        { name: "Express", level: 80 },
-        { name: "MongoDB", level: 75 },
-        { name: "PostgreSQL", level: 70 },
-        { name: "Firebase", level: 75 }
-      ]
-    }
-  ],
-  
-  // For radar chart visualization
-  radarData: [
-    { skill: "AI & ML", value: 90 },
-    { skill: "Web Development", value: 85 },
-    { skill: "Database Management", value: 80 },
-    { skill: "Cloud Services", value: 75 },
-    { skill: "DevOps", value: 70 },
-    { skill: "Mobile Development", value: 65 },
-    { skill: "UI/UX Design", value: 75 },
-    { skill: "Game Development", value: 70 }
-  ]
-};
+export const SKILLS = [
+  {
+    category: "Languages",
+    skills: ["Python", "JavaScript", "C#", "SQL", "Swift"]
+  },
+  {
+    category: "AI/ML",
+    skills: ["NLP", "Generative AI", "LLMs", "Neural Networks", "Data Science"]
+  },
+  {
+    category: "Frontend",
+    skills: ["React", "Next.js", "HTML/CSS", "Tailwind", "UI/UX"]
+  },
+  {
+    category: "Backend",
+    skills: ["Node.js", "Express", "MongoDB", "PostgreSQL", "Firebase"]
+  }
+];
