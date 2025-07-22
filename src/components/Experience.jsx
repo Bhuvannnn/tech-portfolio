@@ -1,122 +1,144 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { EXPERIENCES } from "../constants";
-import { motion } from "framer-motion";
-import { VerticalTimeline, VerticalTimelineElement } from 'react-vertical-timeline-component';
-import 'react-vertical-timeline-component/style.min.css';
-import { Briefcase } from 'lucide-react';
-
-const container = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      delayChildren: 0.3,
-      staggerChildren: 0.2
-    }
-  }
-};
-
-const item = {
-  hidden: { y: 20, opacity: 0 },
-  visible: {
-    y: 0,
-    opacity: 1
-  }
-};
-
-// Variants for content inside timeline elements
-const contentVariants = {
-  hidden: { opacity: 0, y: 10 },
-  visible: (i) => ({ // Custom function to accept delay index
-    opacity: 1,
-    y: 0,
-    transition: {
-      delay: i * 0.1, // Stagger delay based on index
-      duration: 0.4
-    }
-  })
-};
+import { motion, AnimatePresence } from "framer-motion";
+import { ChevronRightIcon } from "lucide-react";
+import { BlurFade } from "./BlurFade";
 
 const Experience = () => {
+  const [expandedIndex, setExpandedIndex] = useState(null);
+  const [hoveredIndex, setHoveredIndex] = useState(null);
+
+  const handleCardClick = (index) => {
+    setExpandedIndex(expandedIndex === index ? null : index);
+  };
+
+  const handleMouseEnter = (index) => setHoveredIndex(index);
+  const handleMouseLeave = () => setHoveredIndex(null);
+
   return (
     <div id="experience" className="my-24 scroll-mt-24">
-      <motion.div
-        variants={container}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.2 }}
-      >
-        <h2 className="mb-2 text-3xl font-bold tracking-tight">
-          <motion.span variants={item} className="bg-gradient-to-r from-pink-500 via-blue-500 to-violet-500 bg-clip-text text-transparent">
-            Experience
-          </motion.span>
+      <BlurFade direction="up" duration={0.7}>
+        <h2 className="mb-12 text-3xl font-bold tracking-tight bg-gradient-to-r from-pink-500 via-blue-500 to-violet-500 bg-clip-text text-transparent">
+          Work Experience
         </h2>
-        <motion.div variants={item} className="h-1 w-16 bg-cyan-600"></motion.div>
-      </motion.div>
+      </BlurFade>
 
-      <VerticalTimeline lineColor="#0891b2" animate={true}>
+      <div className="space-y-8">
         {EXPERIENCES.map((experience, index) => (
-          <VerticalTimelineElement
-            key={index}
-            className="vertical-timeline-element--work"
-            contentStyle={{ 
-              background: 'rgba(15, 23, 42, 0.8)', 
-              color: '#e2e8f0',
-              boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
-              borderRadius: '0.75rem',
-              border: '1px solid rgba(30, 41, 59, 0.5)'
-            }}
-            contentArrowStyle={{ borderRight: '7px solid rgba(15, 23, 42, 0.8)' }}
-            date={experience.year}
-            iconStyle={{ background: '#0891b2', color: '#fff' }}
-            icon={<Briefcase size={20} />}
-          >
-            <motion.h3
-              variants={contentVariants}
-              initial="hidden"
-              animate="visible"
-              custom={0} // Delay index 0
-              className="vertical-timeline-element-title text-xl font-semibold"
+          <BlurFade key={index} delay={0.15 * index} inView>
+            <div
+              className="group cursor-pointer"
+              onClick={() => handleCardClick(index)}
+              onMouseEnter={() => handleMouseEnter(index)}
+              onMouseLeave={handleMouseLeave}
             >
-              {experience.role}
-            </motion.h3>
-            <motion.h4
-              variants={contentVariants}
-              initial="hidden"
-              animate="visible"
-              custom={1} // Delay index 1
-              className="vertical-timeline-element-subtitle text-md text-cyan-400"
-            >
-              {experience.company}
-            </motion.h4>
-            <motion.p
-              variants={contentVariants}
-              initial="hidden"
-              animate="visible"
-              custom={2} // Delay index 2
-              className="text-sm mt-2 text-gray-300"
-            >
-              {experience.description}
-            </motion.p>
-            <motion.div
-              variants={contentVariants}
-              initial="hidden"
-              animate="visible"
-              custom={3} // Delay index 3
-              className="mt-4 flex flex-wrap gap-2"
-            >
-              {experience.technologies.map((tech, techIndex) => (
-                <span
-                  key={techIndex}
-                  className="inline-block rounded-full bg-gray-800 px-3 py-1 text-xs"
-                >
-                  {tech}
-                </span>
-              ))}
-            </motion.div>
-          </VerticalTimelineElement>
+              <div className="flex items-start space-x-4">
+                {/* Company Logo/Avatar */}
+                <div className="flex-shrink-0">
+                  {experience.logo ? (
+                    <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center overflow-hidden shadow-sm border border-gray-200">
+                      <img 
+                        src={experience.logo} 
+                        alt={`${experience.company} logo`}
+                        className={`object-contain ${
+                          experience.company === "University of Southern California" ? "w-11 h-11" :
+                          experience.company === "VueInternational" ? "w-11 h-11 scale-125" :
+                          "w-10 h-10"
+                        }`}
+                        style={{ 
+                          filter: 'contrast(1.1) brightness(1.05)',
+                          imageRendering: 'crisp-edges',
+                          ...(experience.company === "VueInternational" && { 
+                            transform: 'scale(1.25)',
+                            maxWidth: '44px',
+                            maxHeight: '44px'
+                          })
+                        }}
+                      />
+                    </div>
+                  ) : (
+                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center text-white font-bold text-lg shadow-sm">
+                      {experience.company.charAt(0)}
+                    </div>
+                  )}
+                </div>
+
+                {/* Content */}
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-start justify-between">
+                    <div className="flex-1">
+                      <h3 className="text-lg font-semibold text-white mb-1 flex items-center gap-1 relative group">
+                        {experience.role}
+                        <motion.span
+                          initial={{ x: -8, opacity: 0, rotate: 0 }}
+                          animate={expandedIndex === index
+                            ? { x: 4, opacity: 1, rotate: 90 }
+                            : hoveredIndex === index
+                              ? { x: 4, opacity: 1, rotate: 0 }
+                              : { x: -8, opacity: 0, rotate: 0 }}
+                          transition={{ type: 'spring', stiffness: 400, damping: 30, duration: 0.3 }}
+                          className="inline-block ml-1 text-gray-400"
+                        >
+                          <ChevronRightIcon className="w-4 h-4" />
+                        </motion.span>
+                      </h3>
+                      <p className="text-cyan-400 font-medium text-sm mb-2">
+                        {experience.company}
+                      </p>
+                      
+                      {/* Technologies */}
+                      <div className="flex flex-wrap gap-1.5 mb-3">
+                        {experience.technologies.map((tech, techIndex) => (
+                          <span
+                            key={techIndex}
+                            className="inline-block rounded-md bg-gray-800/50 px-2 py-1 text-xs text-gray-300"
+                          >
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Date and Chevron */}
+                    <div className="flex items-center space-x-2 ml-4">
+                      <span className="text-sm text-gray-400 whitespace-nowrap">
+                        {experience.year}
+                      </span>
+                      <ChevronRightIcon
+                        className={`w-4 h-4 text-gray-400 transition-all duration-300 ease-out group-hover:translate-x-1 ${
+                          expandedIndex === index ? 'rotate-90' : 'rotate-0'
+                        }`}
+                      />
+                    </div>
+                  </div>
+
+                  {/* Expandable Description */}
+                  <AnimatePresence>
+                    {expandedIndex === index && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: "auto" }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{
+                          duration: 0.3,
+                          ease: [0.16, 1, 0.3, 1],
+                        }}
+                        className="overflow-hidden"
+                      >
+                        <div className="pt-4 mt-4 border-t border-gray-800/50">
+                          <p className="text-gray-300 text-sm leading-relaxed">
+                            {experience.description}
+                          </p>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              </div>
+            </div>
+          </BlurFade>
         ))}
-      </VerticalTimeline>
+      </div>
     </div>
   );
 };

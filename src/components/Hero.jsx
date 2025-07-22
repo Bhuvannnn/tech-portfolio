@@ -93,10 +93,6 @@ const Hero = () => {
                                         2000,
                                         'Data Analyst',
                                         2000,
-                                        'AI Engineer',
-                                        2000,
-                                        'LLM Developer',
-                                        2000,
                                     ]}
                                     wrapper="span"
                                     speed={50}
