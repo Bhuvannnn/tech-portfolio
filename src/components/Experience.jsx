@@ -5,11 +5,15 @@ import { ChevronRightIcon } from "lucide-react";
 import { BlurFade } from "./BlurFade";
 
 const Experience = () => {
-  const [expandedIndex, setExpandedIndex] = useState(null);
+  const [expandedIndexes, setExpandedIndexes] = useState([]);
   const [hoveredIndex, setHoveredIndex] = useState(null);
 
   const handleCardClick = (index) => {
-    setExpandedIndex(expandedIndex === index ? null : index);
+    setExpandedIndexes((prev) =>
+      prev.includes(index)
+        ? prev.filter((i) => i !== index)
+        : [...prev, index]
+    );
   };
 
   const handleMouseEnter = (index) => setHoveredIndex(index);
@@ -32,9 +36,9 @@ const Experience = () => {
               onMouseEnter={() => handleMouseEnter(index)}
               onMouseLeave={handleMouseLeave}
             >
-              <div className="flex items-start space-x-4">
+              <div className="flex items-start space-x-3 sm:space-x-4 w-full">
                 {/* Company Logo/Avatar */}
-                <div className="flex-shrink-0">
+                <div className="flex-shrink-0 mb-0 sm:mb-0">
                   {experience.logo ? (
                     <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center overflow-hidden shadow-sm border border-gray-200">
                       <img 
@@ -65,29 +69,32 @@ const Experience = () => {
 
                 {/* Content */}
                 <div className="flex-1 min-w-0">
-                  <div className="flex items-start justify-between">
+                  <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between w-full">
                     <div className="flex-1">
-                      <h3 className="text-lg font-semibold text-white mb-1 flex items-center gap-1 relative group">
+                      <h3 className="text-lg font-semibold text-white mb-1 flex items-center gap-1 relative">
                         {experience.role}
                         <motion.span
                           initial={{ x: -8, opacity: 0, rotate: 0 }}
-                          animate={expandedIndex === index
+                          animate={expandedIndexes.includes(index)
                             ? { x: 4, opacity: 1, rotate: 90 }
                             : hoveredIndex === index
                               ? { x: 4, opacity: 1, rotate: 0 }
                               : { x: -8, opacity: 0, rotate: 0 }}
                           transition={{ type: 'spring', stiffness: 400, damping: 30, duration: 0.3 }}
-                          className="inline-block ml-1 text-gray-400"
+                          className="inline-block ml-1 text-gray-400 group-hover:opacity-100"
                         >
                           <ChevronRightIcon className="w-4 h-4" />
                         </motion.span>
                       </h3>
-                      <p className="text-cyan-400 font-medium text-sm mb-2">
+                      <p className="text-cyan-400 font-medium text-sm mb-1">
                         {experience.company}
                       </p>
+                      <span className="text-sm text-gray-400 sm:hidden mb-2 block">
+                        {experience.year}
+                      </span>
                       
                       {/* Technologies */}
-                      <div className="flex flex-wrap gap-1.5 mb-3">
+                      <div className="flex flex-wrap gap-1.5 mb-3 justify-center sm:justify-start hidden sm:flex">
                         {experience.technologies.map((tech, techIndex) => (
                           <span
                             key={techIndex}
@@ -100,13 +107,13 @@ const Experience = () => {
                     </div>
 
                     {/* Date and Chevron */}
-                    <div className="flex items-center space-x-2 ml-4">
+                    <div className="hidden sm:flex items-center space-x-2 ml-auto sm:ml-4 mt-0 sm:mt-0">
                       <span className="text-sm text-gray-400 whitespace-nowrap">
                         {experience.year}
                       </span>
                       <ChevronRightIcon
                         className={`w-4 h-4 text-gray-400 transition-all duration-300 ease-out group-hover:translate-x-1 ${
-                          expandedIndex === index ? 'rotate-90' : 'rotate-0'
+                          expandedIndexes.includes(index) ? 'rotate-90' : 'rotate-0'
                         }`}
                       />
                     </div>
@@ -114,7 +121,7 @@ const Experience = () => {
 
                   {/* Expandable Description */}
                   <AnimatePresence>
-                    {expandedIndex === index && (
+                    {expandedIndexes.includes(index) && (
                       <motion.div
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: "auto" }}

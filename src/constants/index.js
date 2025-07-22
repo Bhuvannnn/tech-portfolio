@@ -83,6 +83,7 @@ export const PROJECTS = [
   {
     title: "NoteScape: Semantic Knowledge Graph Visualization System",
     image: project9,
+    shortDescription: "A full-stack app that turns your notes into an interactive knowledge graph.",
     description: `Developed NoteScape, a full-stack application that transforms scattered notes into an interactive knowledge graph by automatically detecting relationships between ideas. The system analyzes note content using natural language processing techniques to identify connections, enabling users to visualize and navigate their knowledge in a network format. Built with React.js and D3.js for the frontend visualization, FastAPI for the backend API, Neo4j as the graph database, and custom NLP algorithms for relationship extraction. The application features a responsive UI with Material UI components, interactive graph visualization, automatic relationship detection, and support for importing notes from various formats.`,
     technologies: ["React.js", "D3.js", "FastAPI", "Neo4j", "Python", "NLP", "Docker"],
     github: "https://github.com/Bhuvannnn/NoteScape",
@@ -90,6 +91,7 @@ export const PROJECTS = [
 
   {title: "SpotifyDash: Desktop Music Control Widget",
     image: project8,
+    shortDescription: "A macOS widget for instant Spotify control.",
     description: `SpotifyDash is a macOS widget application built with SwiftUI and WidgetKit that provides users with instant access to their Spotify playback controls and real-time track information directly from their desktop. The application features a sophisticated dual-control architecture that combines Spotify's Web API with local AppleScript integration, ensuring 95% functionality even during API outages. With automated authentication, intelligent caching of album artwork, and responsive UI that updates within 1 second of track changes, SpotifyDash delivers a seamless music control experience that reduced the time to control music by 65% compared to opening the full Spotify application`,
     technologies: ["SwiftUI", "WidgetKit", "Spotify API", "AppleScript", "Rest APIs", "Swift"],
     github: "https://github.com/Bhuvannnn/MusicWidgetApp",
@@ -97,6 +99,7 @@ export const PROJECTS = [
 
   {title: "Healthcare Resource Optimization and Dashboard",
     image: project7,
+    shortDescription: "A real-time dashboard for healthcare resource monitoring.",
     description: `Designed and developed a real-time Healthcare Resource Dashboard using Python, Flask, and PostgreSQL, enabling administrators to monitor bed occupancy, staff workload, and equipment usage with 95% resource utilization across 4 departments and 20+ medical equipment units. Implemented ETL pipelines processing 1000+ daily healthcare records, integrating a real-time analytics dashboard with Chart.js for interactive visualizations. Leveraged microservices architecture and containerization with Docker, reducing deployment time by 30%. Established CI/CD pipelines with Jenkins, automating testing and deployment. Ensured scalability and security through RESTful API design, environment variable protection, and database security configurations.`,
     technologies: ["Python", "Flask", "PostgreSQL", "ETL", "Chart.js", "Docker", "Jenkins", "CI/CD"],
     github: "https://github.com/Bhuvannnn/Healthcare-Resource-Optimisation-",
@@ -104,6 +107,7 @@ export const PROJECTS = [
 
   {title: "Statistical Analysis of Cultural Representation in Video Games and it's Impact on Player Anxiety & Engagement",
     image: project6,
+    shortDescription: "Research on cultural representation and player anxiety in video games.",
     description: `In this project, I spearheaded a research initiative to explore how culturally relevant elements in video games affect player anxiety and engagement. I designed a mixed experimental study with 27 participants—predominantly from Indian cultural backgrounds—to assess pre- and post-exposure anxiety levels using the State-Trait Anxiety Inventory and engagement measured via Likert scales.
 I applied rigorous statistical methods including 2×2 and 2×2×2 mixed ANOVAs and multiple regression analyses in Python and SPSS. The analysis revealed significant interaction effects (p = 0.030, partial η² = 0.174, Cohen's d = 0.92), confirming that culturally aligned game content can meaningfully reduce anxiety and enhance player engagement. To support these insights, I engineered robust data pipelines that streamlined data cleaning, missing value imputation, and outlier detection—improving data quality by an estimated 15%.
 This work not only deepened my expertise in statistical modeling and data engineering but also provided actionable recommendations for integrating cultural sensitivity into game design.`,
@@ -113,6 +117,7 @@ github: "https://github.com/Bhuvannnn/Statistical-Analysis-of-Cultural-Represent
   
   {title: "Real-Time Collaborative Document Platform",
     image: project5,
+    shortDescription: "A real-time collaborative document editing platform.",
     description: `Developed a full-stack real-time collaborative document editing platform using microservices architecture, enabling multiple users to simultaneously edit and collaborate on documents with features similar to Google Docs.
 Key Technical Achievements:
 - Engineered a scalable microservices architecture using Node.js and Express.js, implementing JWT authentication, real-time WebSocket communication, and document management services, achieving 99.9% service availability
@@ -127,6 +132,7 @@ github: "https://github.com/Bhuvannnn/real-time-collab",
   {
     title: "Assessing and Masking of Personally Identifiable Information (PII)",
     image: project1,
+    shortDescription: "A PII detection and masking system.",
     description: `The project involves advancing privacy protection by designing a Named Entity Recognition (NER) system using the DeBERTaV3 model as its backbone.
                   The primary enhancement is the integration of another dense layer with softmax activation function and relative position embedding for decoupling the attention scores, which more accurately identifies and obfuscate various types of personally identifiable information (PII) within textual data. This modified architecture leverages advanced contextual understanding and token-level prediction capabilities, surpassing conventional NER systems limited to a narrow set of predefined PII tags. The F-Beta Score generated with this model is 99.56%.
                   The project's innovation ensures adaptable and comprehensive data privacy solutions, aligning with stringent regulatory requirements and addressing the dynamic nature of PII.`,
@@ -136,6 +142,7 @@ github: "https://github.com/Bhuvannnn/PII-Detection-and-Masking",
   {
     title: "Me, Myself and Time: A Game based on Time Travel",
     image: project2,
+    shortDescription: "A Unity 2D game about time travel.",
     description:
       "The is a 6-month project for my class 'Advanced Mobile Devices and Game Consoles'. Unity 2D game focused on time travel, hosted on WebGL for global access. It features intricate time-travel mechanics and integrates robust analytics to monitor gameplay. Technologies used include C# for scripting, Python for data processing, and Firebase for real-time data storage. Visual analytics are implemented using Tableau, with tools like heatmaps, Sankey diagrams, and bar plots to provide detailed insights into player behavior. Conducted under Professor Scott Easley in the Advanced Games Development course at USC, the project combines advanced game development with comprehensive data analysis to enhance player engagement and experience, To play the game, visit 'https://bhuvannnn.github.io/Me-Myself-and-Time/WebGL%20Builds/Gold%20Build/' .",
     technologies: ["C#", "Python", "Tableau", "Firebase", "Unity", "Git"],
@@ -144,6 +151,7 @@ github: "https://github.com/Bhuvannnn/PII-Detection-and-Masking",
   {
     title: "Portfolio Website",
     image: project3,
+    shortDescription: "My personal portfolio website.",
     description:
       "My portfolio website, built with React and styled using Tailwind CSS, showcases my projects with a modern, responsive design. React powers the dynamic, interactive interface, while Tailwind ensures a sleek and professional appearance across all devices. This site reflects my skills in web development and design, integrating various technologies for enhanced functionality and user experience.",
     technologies: ["React", "Tailwind", "Bootstrap", "JavaScript"],
@@ -152,6 +160,7 @@ github: "https://github.com/Bhuvannnn/PII-Detection-and-Masking",
   {
     title: "Forecast Finesse: Analysing stock performance",
     image: project4,
+    shortDescription: "A platform for sentiment analysis and real-time stock trading.",
     description:
       "Created a robust platform integrating sentiment analysis and real-time stock trading for NASDAQ-listed companies. Utilizing customized NLTK and BeautifulSoup, the system analyzes live Twitter and Google News feeds with 92% accuracy. The platform features a dynamic dashboard built with the MERN stack and hosted on Google Cloud Platform (GCP), offering live streaming data from Yahoo Finance. Users can view real-time graphs of stocks, and execute live buy and sell transactions. This comprehensive tool combines sentiment insights and trading capabilities, boosting general user profitability by 24% compared to other platforms",
     technologies: ["React", "Node.js", "Express.js", "MongoDB", "GCP", "NLTK",],
