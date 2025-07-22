@@ -94,7 +94,7 @@ const Experience = () => {
                       </span>
                       
                       {/* Technologies */}
-                      <div className="flex flex-wrap gap-1.5 mb-3 justify-center sm:justify-start hidden sm:flex">
+                      <div className="flex-wrap gap-1.5 mb-3 justify-center sm:justify-start hidden sm:flex">
                         {experience.technologies.map((tech, techIndex) => (
                           <span
                             key={techIndex}
