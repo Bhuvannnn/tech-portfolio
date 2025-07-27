@@ -133,6 +133,7 @@ const Navbar = () => {
                                         to={section === 'skills' ? 'technologies' : section}
                                         smooth={true}
                                         duration={500}
+                                        offset={-80}
                                         className="cursor-pointer flex items-center"
                                         onSetActive={() => setActiveSection(section)}
                                     >
@@ -214,6 +215,7 @@ const Navbar = () => {
                                         to={section === 'skills' ? 'technologies' : section}
                                         smooth={true}
                                         duration={500}
+                                        offset={-80}
                                         className="cursor-pointer flex items-center"
                                         onSetActive={() => setActiveSection(section)}
                                         onClick={closeMobileMenu}
