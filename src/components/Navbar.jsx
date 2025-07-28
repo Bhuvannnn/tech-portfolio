@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { FaLinkedin, FaGithub, FaInstagram, FaFileAlt, FaArrowUp, FaTerminal, FaBars, FaTimes } from 'react-icons/fa';
+import { FaFileAlt, FaTerminal, FaBars, FaTimes } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-scroll';
 // Removed unused logo import
@@ -7,21 +7,10 @@ import { Link } from 'react-scroll';
 const Navbar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [scrollProgress, setScrollProgress] = useState(0);
-    const [showBackToTop, setShowBackToTop] = useState(false);
     const [activeSection, setActiveSection] = useState('');
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-    const handleLinkedInClick = () => {
-        window.open("https://www.linkedin.com/in/bhuvanshah/", "_blank");
-    }
 
-    const handleGithubClick = () => {
-        window.open("https://github.com/Bhuvannnn", "_blank");
-    }
-
-    const handleInstagramClick = () => {
-        window.open("https://www.instagram.com/bhu._.one/", "_blank");
-    }
 
     const handleResumeClick = () => {
         const baseUrl = process.env.NODE_ENV === 'development' ? '' : '/tech-portfolio';
@@ -31,7 +20,6 @@ const Navbar = () => {
     useEffect(() => {
         const handleScroll = () => {
             setIsScrolled(window.scrollY > 20);
-            setShowBackToTop(window.scrollY > 300);
 
             const totalScroll = document.documentElement.scrollTop;
             const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
@@ -55,9 +43,7 @@ const Navbar = () => {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-    const scrollToTop = () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    };
+
 
     const toggleMobileMenu = () => {
         setMobileMenuOpen(!mobileMenuOpen);
@@ -143,7 +129,7 @@ const Navbar = () => {
                                 </motion.div>
                             ))}
                             
-                            {/* Social Links as Terminal Commands */}
+                            {/* Resume Link */}
                             <motion.div
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
@@ -156,34 +142,6 @@ const Navbar = () => {
                             >
                                 <span className="text-cyan-400 mr-1">$</span>
                                 <span>resume</span>
-                            </motion.div>
-                            
-                            <motion.div
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.95 }}
-                                variants={{ // Add variants for individual items
-                                    hidden: { opacity: 0, y: -10 },
-                                    visible: { opacity: 1, y: 0 }
-                                }}
-                                className="px-3 py-1 rounded border border-gray-700 hover:border-cyan-500 hover:bg-cyan-900/20 cursor-pointer"
-                                onClick={handleLinkedInClick}
-                            >
-                                <span className="text-cyan-400 mr-1">$</span>
-                                <span>linkedin</span>
-                            </motion.div>
-                            
-                            <motion.div
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.95 }}
-                                variants={{ // Add variants for individual items
-                                    hidden: { opacity: 0, y: -10 },
-                                    visible: { opacity: 1, y: 0 }
-                                }}
-                                className="px-3 py-1 rounded border border-gray-700 hover:border-cyan-500 hover:bg-cyan-900/20 cursor-pointer"
-                                onClick={handleGithubClick}
-                            >
-                                <span className="text-cyan-400 mr-1">$</span>
-                                <span>github</span>
                             </motion.div>
                         </motion.div>
                     </div>
@@ -226,7 +184,7 @@ const Navbar = () => {
                                 </motion.div>
                             ))}
                             
-                            {/* Social Links as Terminal Commands */}
+                            {/* Resume Link */}
                             <div className="flex flex-wrap gap-2 mt-2">
                                 <motion.div
                                     whileTap={{ scale: 0.95 }}
@@ -238,30 +196,6 @@ const Navbar = () => {
                                 >
                                     <span className="text-cyan-400 mr-1">$</span>
                                     <span>resume</span>
-                                </motion.div>
-                                
-                                <motion.div
-                                    whileTap={{ scale: 0.95 }}
-                                    className="px-3 py-2 rounded border border-gray-700 hover:border-cyan-500 hover:bg-cyan-900/20 cursor-pointer"
-                                    onClick={() => {
-                                        handleLinkedInClick();
-                                        closeMobileMenu();
-                                    }}
-                                >
-                                    <span className="text-cyan-400 mr-1">$</span>
-                                    <span>linkedin</span>
-                                </motion.div>
-                                
-                                <motion.div
-                                    whileTap={{ scale: 0.95 }}
-                                    className="px-3 py-2 rounded border border-gray-700 hover:border-cyan-500 hover:bg-cyan-900/20 cursor-pointer"
-                                    onClick={() => {
-                                        handleGithubClick();
-                                        closeMobileMenu();
-                                    }}
-                                >
-                                    <span className="text-cyan-400 mr-1">$</span>
-                                    <span>github</span>
                                 </motion.div>
                             </div>
                         </div>
@@ -277,22 +211,7 @@ const Navbar = () => {
                 ></div>
             </div>
             
-            {/* Back to Top Button - Terminal Style */}
-            <AnimatePresence>
-                {showBackToTop && (
-                    <motion.button
-                        className="fixed bottom-8 right-8 bg-black text-cyan-400 p-3 rounded border border-cyan-700 shadow-lg z-50 font-mono"
-                        onClick={scrollToTop}
-                        whileHover={{ scale: 1.1, backgroundColor: 'rgba(8, 145, 178, 0.1)' }}
-                        whileTap={{ scale: 0.9 }}
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                    >
-                        <span className="text-cyan-400 mr-1">$</span>cd ~
-                    </motion.button>
-                )}
-            </AnimatePresence>
+
         </>
     );
 };

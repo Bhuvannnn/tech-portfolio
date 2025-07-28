@@ -6,6 +6,7 @@ import Technologies from "./components/Technologies";
 import Experience from "./components/Experience";
 import Projects from "./components/Projects";
 import Contact from "./components/Contact";
+import { DefaultDock } from "./components/Dock";
 
 const App = () => {
   // Create refs for each section
@@ -27,7 +28,7 @@ const App = () => {
 
       <div className="container mx-auto px-4 sm:px-8"> 
         <Navbar/>
-        <main className="pt-28 sm:pt-24">
+        <main className="pt-28 sm:pt-24 pb-24">
           <Hero/>
           <div ref={aboutRef}>
             <About/>
@@ -45,6 +46,11 @@ const App = () => {
             <Contact/>
           </div>
         </main>
+      </div>
+      
+      {/* Floating Dock */}
+      <div className="fixed bottom-4 left-1/2 transform -translate-x-1/2 z-40">
+        <DefaultDock />
       </div>
     </div>
   );
