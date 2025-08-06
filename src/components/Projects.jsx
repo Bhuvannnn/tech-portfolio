@@ -30,8 +30,15 @@ const Projects = () => {
         {PROJECTS.map((project, index) => (
           <div
             key={index}
-            className="relative flex flex-col bg-neutral-900 rounded-2xl shadow-md border border-neutral-800 overflow-hidden group transition-all duration-300 hover:shadow-xl hover:border-cyan-500"
+            className="relative flex flex-col bg-neutral-900 rounded-2xl shadow-md border border-neutral-800 overflow-hidden group transition-all duration-300 hover:shadow-xl hover:border-cyan-500 cursor-pointer"
             tabIndex={0}
+            onClick={() => handleOpenModal(index)}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                handleOpenModal(index);
+              }
+            }}
           >
             {/* Project Image */}
             <div className="w-full aspect-[4/3] bg-neutral-800 flex items-center justify-center overflow-hidden">
@@ -66,17 +73,13 @@ const Projects = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1 px-3 py-1.5 rounded bg-neutral-800 text-purple-300 hover:bg-purple-700/20 hover:text-purple-200 transition-colors text-xs font-semibold"
+                  onClick={(e) => e.stopPropagation()}
                 >
                   <FaGithub className="mr-1" /> Source Code
                 </a>
-                <button
-                  className="ml-auto px-3 py-1.5 rounded bg-cyan-700/80 text-white text-xs font-semibold shadow hover:bg-cyan-600 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-200 z-0"
-                  onClick={() => handleOpenModal(index)}
-                  tabIndex={0}
-                  style={{ pointerEvents: 'auto' }}
-                >
+                <div className="ml-auto px-3 py-1.5 rounded bg-cyan-700/80 text-white text-xs font-semibold shadow opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-200">
                   Learn More
-                </button>
+                </div>
               </div>
             </div>
           </div>
@@ -86,7 +89,7 @@ const Projects = () => {
       <AnimatePresence>
         {modalIndex !== null && (
           <motion.div
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-2 sm:p-6"
+            className="fixed inset-0 z-50 flex items-center justify-center backdrop-blur-sm bg-black/70 p-2 sm:p-6"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -94,10 +97,13 @@ const Projects = () => {
           >
             <motion.div
               className="bg-neutral-900 rounded-2xl shadow-lg border border-neutral-700 w-full max-w-lg mx-2 sm:mx-4 p-4 sm:p-6 relative max-h-[90vh] overflow-y-auto"
-              initial={{ scale: 0.95, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.95, opacity: 0 }}
-              transition={{ duration: 0.2 }}
+              initial={{ y: "100%", opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: "100%", opacity: 0 }}
+              transition={{ 
+                duration: 0.3,
+                ease: "easeOut"
+              }}
               onClick={e => e.stopPropagation()}
             >
               <button
@@ -122,9 +128,12 @@ const Projects = () => {
                   </span>
                 ))}
               </div>
-              <p className="text-neutral-300 text-base mb-2">
-                {PROJECTS[modalIndex].description}
-              </p>
+              <div className="text-neutral-300 text-base mb-4 leading-relaxed">
+                  <p key={index} className="mb-3 last:mb-0">
+                    {sentence}{index < array.length - 1 ? '.' : ''}
+                  </p>
+                ))}
+              </div>
               <a
                 href={PROJECTS[modalIndex].github}
                 target="_blank"
