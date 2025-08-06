@@ -129,6 +129,7 @@ const Projects = () => {
                 ))}
               </div>
               <div className="text-neutral-300 text-base mb-4 leading-relaxed">
+                {PROJECTS[modalIndex].description.split('. ').map((sentence, index, array) => (
                   <p key={index} className="mb-3 last:mb-0">
                     {sentence}{index < array.length - 1 ? '.' : ''}
                   </p>
