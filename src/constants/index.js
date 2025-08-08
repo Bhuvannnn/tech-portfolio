@@ -12,6 +12,7 @@ import uscLogo from "../assets/companies/usc.png";
 import promptSoftechLogo from "../assets/companies/prompt-softech.png";
 import tornadoComputersLogo from "../assets/companies/tornado-computers.png";
 import vueInternationalLogo from "../assets/companies/vue-international.svg";
+import easleyDunnLogo from "../assets/companies/easley_dunn_productions_logo.jpeg";
 
 const getCompanyLogo = (companyName) => {
   switch (companyName) {
@@ -23,6 +24,10 @@ const getCompanyLogo = (companyName) => {
       return tornadoComputersLogo;
     case "VueInternational":
       return vueInternationalLogo;
+    case "Easley-Dunn Productions, Inc.":
+      return easleyDunnLogo;
+    case "Easley Dunn Productions":
+      return easleyDunnLogo;
     default:
       return null;
   }
@@ -38,6 +43,23 @@ Delivering real-world ML solutions in NLP, privacy, and analytics with solid eng
 
 export const EXPERIENCES = [
   {
+    year: "July 2025 - Present",
+    role: "Software Development Engineer",
+    company: "Easley-Dunn Productions, Inc.",
+    logo: getCompanyLogo("Easley-Dunn Productions, Inc."),
+    description: `Led cross-functional team in Agile setup to align runtime data flow across 5 systems, reducing integration bugs by 40% and
+accelerating QA cycles by 30% through schema validation and telemetry workflows.
+Developed real-time telemetry and crash logging pipeline in Unity (C#) using JSON and runtime hooks, improving observability
+and debugging efficiency by 60% during Agile sprints`,
+    bullets: [
+      "Led cross-functional Agile team in aligning runtime data flow across 5 systems; reduced integration bugs by 40% and accelerated QA by 30% via schema validation and telemetry workflows.",
+      "Developed real-time telemetry and crash logging pipeline in Unity (C#) using JSON and runtime hooks, improving observability and debugging efficiency by 60% during Agile sprints.",
+      "Orchestrated Apache Kafka streaming pipelines across 5 distributed systems with schema validation frameworks, reducing data integration errors by 40% and improving ML deployment cycles by 30%.",
+      "Architected real-time data ingestion pipelines processing 100K+ events/hour using Python and JSON, implementing automated anomaly detection that improved system observability and reduced debugging time by 60%."
+    ],
+    technologies: ["C#", "RESTAPIs", "JSON", "Runtime Hooks", "Agile", "Telemetry", "Crash Logging", "Apache Kafka", "Distributed Systems"],
+  },
+  {
     year: "May 2024 - May 2025",
     role: "Teaching Assistant",
     company: "University of Southern California",
@@ -46,6 +68,12 @@ export const EXPERIENCES = [
     I also create and deliver engaging lectures that cover key aspects of mobile and game console development. 
     Additionally, I grade assignments and projects, offering detailed feedback to help students refine their work across various project phases. 
     I develop innovative in-class coding activities to reinforce their learning and assist in integrating analytics into their games.`,
+    bullets: [
+      "Guided 360+ students in system architecture design and algorithm optimization, implementing design patterns and OOP principles in Python and C#, achieving 90% success rate in scalable, production-ready applications.",
+      "Architected 6+ DevOps simulation environments with Firebase real-time databases and automated CI/CD pipelines, enabling students to process 10K+ events and implement microservices testing frameworks using JUnit.",
+      "Mentored 360+ students in data-driven game analytics, teaching Python statistical analysis and machine learning algorithms for player behavior prediction, resulting in 90% of teams implementing predictive models.",
+      "Engineered data science curricula integrating real-time analytics frameworks, enabling students to process 10K+ gameplay events through ETL pipelines and build recommendation systems using collaborative filtering."
+    ],
     technologies: ["C#", "Python", "SQL", "Firebase"],
   },
   {
@@ -56,6 +84,12 @@ export const EXPERIENCES = [
     description: `Created a custom BiLSTM - CNN neural network with a bifurcated architecture, achieving an impressive 83% accuracy.
     Built and fine-tuned proprietary technical indicators, achieving an average accuracy of 83%.
     Conducted comprehensive back testing, resulted in a substantial accuracy boost to 88%, while refining indicator parameters for optimal performance through MetaTrader using MQL4 and MQL5 scripting languages`,
+    bullets: [
+      "Developed distributed microservices architecture using Spring Boot and Kubernetes orchestration; implemented asynchronous processing with PostgreSQL, improving pipeline scalability by 40% and enabling fault-tolerant model deployment.",
+      "Designed CI/CD pipelines with Jenkins and GitHub Actions to automate build, test, and deployment across microservices, cutting integration overhead by 30% and improving release frequency with GitOps-enabled rollbacks.",
+      "Deployed production LSTM model achieving 93% accuracy in stock price prediction, processing multi-modal datasets (price + sentiment) through feature engineering pipelines and generating $12K+ in trading profits for 12 clients.",
+      "Optimized big data workflows using Apache Hadoop and Spark, reducing 50GB+ dataset retrieval time by 35% and enabling real-time predictive analytics."
+    ],
     technologies: ["PyTorch", "ML", "SQL", "Tensorflow", "MetaTrader", "MQL", "JavaScript", "React.js", "Node.js"],
   },
   {
@@ -66,6 +100,10 @@ export const EXPERIENCES = [
     description: `Collaborated on a project leveraging algorithms and IOT to optimize hardware performance; identifying bottlenecks, fine-tuning
                   system parameters, and predicting system failures, attaining a remarkable 92% accuracy in performance optimization
                   Implemented neural network for predictive maintenance by collecting and analyzing data from hardware sensors and logs, resulting in an 87% accuracy rate, reducing downtime and repair costs.`,
+    bullets: [
+      "Built real-time anomaly detection system achieving 92% accuracy using Apache Kafka streaming and IoT sensor fusion, implementing ensemble machine learning models for predictive maintenance across 50+ hardware systems.",
+      "Implemented TensorFlow-based neural networks and Airflow-orchestrated pipelines processing 120K+ sensor readings daily, reducing operational costs by 87%."
+    ],
     technologies: ["Python", "IOT", "Raspberry Pi", "Postgres", 'Spatial Recognition'],
   },
   {
@@ -75,6 +113,10 @@ export const EXPERIENCES = [
     logo: getCompanyLogo("VueInternational"),
     description: `Took proactive measures in designing and implementing interactive components using HTML, CSS, and JavaScript, seamlessly integrating with a sqlite3 database to facilitate secure credit card transactions through the Stripe API
 Integrated dynamic components into company's website, sparking a substantial 15% surge in user engagement and modeled a commendable 20% enhancement in transaction security.`,
+    bullets: [
+      "Implemented React/Node.js architecture with Redis caching and MongoDB clustering, boosting API throughput by 25% and supporting 2x concurrent users via optimized indexing.",
+      "Dockerized and integrated Stripe APIs to streamline secure payment workflows, reducing transaction errors by 20%."
+    ],
     technologies: ["SqLite", "Stripe", "API Integration"],
   },
 ];

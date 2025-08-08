@@ -40,22 +40,34 @@ const Experience = () => {
                 {/* Company Logo/Avatar */}
                 <div className="flex-shrink-0 mb-0 sm:mb-0">
                   {experience.logo ? (
-                    <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center overflow-hidden shadow-sm border border-gray-200">
+                    <div className={`${
+                        (experience.company === "University of Southern California" || experience.company === "VueInternational")
+                          ? "w-14 h-14"
+                          : "w-12 h-12"
+                      } rounded-full bg-white flex items-center justify-center overflow-hidden shadow-sm border border-gray-200`}>
                       <img 
                         src={experience.logo} 
                         alt={`${experience.company} logo`}
-                        className={`object-contain ${
-                          experience.company === "University of Southern California" ? "w-11 h-11" :
-                          experience.company === "VueInternational" ? "w-11 h-11 scale-125" :
+                        className={`${
+                          experience.company === "VueInternational" ? "object-cover" : "object-contain"
+                        } ${
+                          experience.company === "University of Southern California" ? "w-12 h-12 scale-125" :
+                          experience.company === "VueInternational" ? "w-12 h-12" :
                           "w-10 h-10"
                         }`}
                         style={{ 
                           filter: 'contrast(1.1) brightness(1.05)',
                           imageRendering: 'crisp-edges',
-                          ...(experience.company === "VueInternational" && { 
+                          ...(experience.company === "University of Southern California" && {
                             transform: 'scale(1.25)',
-                            maxWidth: '44px',
-                            maxHeight: '44px'
+                            maxWidth: '56px',
+                            maxHeight: '56px'
+                          }),
+                          ...(experience.company === "VueInternational" && { 
+                            transform: 'scale(2.4)',
+                            objectPosition: 'center',
+                            maxWidth: '56px',
+                            maxHeight: '56px'
                           })
                         }}
                       />
@@ -133,9 +145,17 @@ const Experience = () => {
                         className="overflow-hidden"
                       >
                         <div className="pt-4 mt-4 border-t border-gray-800/50">
-                          <p className="text-gray-300 text-sm leading-relaxed">
-                            {experience.description}
-                          </p>
+                          {Array.isArray(experience.bullets) && experience.bullets.length > 0 ? (
+                            <ul className="list-disc pl-5 space-y-1 text-gray-300 text-sm">
+                              {experience.bullets.map((item, i) => (
+                                <li key={i} className="leading-relaxed">{item}</li>
+                              ))}
+                            </ul>
+                          ) : (
+                            <p className="text-gray-300 text-sm leading-relaxed">
+                              {experience.description}
+                            </p>
+                          )}
                         </div>
                       </motion.div>
                     )}

@@ -13,7 +13,7 @@ const Navbar = () => {
 
 
     const handleResumeClick = () => {
-        const baseUrl = process.env.NODE_ENV === 'development' ? '' : '/tech-portfolio';
+        const baseUrl = process.env.NODE_ENV === 'development' ? '' : '';
         window.open(`${baseUrl}/Bhuvan%20Resume.pdf`, "_blank");
     }
 
