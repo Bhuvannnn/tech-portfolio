@@ -27,7 +27,7 @@ const Navbar = () => {
             setScrollProgress(scroll);
             
             // Determine active section based on scroll position
-            const sections = ['about', 'experience', 'projects', 'contact'];
+            const sections = ['about', 'education', 'experience', 'projects', 'contact'];
             for (const section of sections) {
                 const element = document.getElementById(section);
                 if (element) {
@@ -100,7 +100,7 @@ const Navbar = () => {
                                 }
                             }}
                         >
-                            {['about', 'skills', 'experience', 'projects', 'contact'].map((section, index) => (
+                            {['about', 'education', 'experience', 'skills', 'projects', 'contact'].map((section, index) => (
                                 <motion.div
                                     key={index}
                                     whileHover={{ scale: 1.05 }}
@@ -159,7 +159,7 @@ const Navbar = () => {
                         transition={{ duration: 0.2 }}
                     >
                         <div className="flex flex-col gap-3 font-mono text-sm">
-                            {['about', 'skills', 'experience', 'projects', 'contact'].map((section, index) => (
+                            {['about', 'education', 'experience', 'skills', 'projects', 'contact'].map((section, index) => (
                                 <motion.div
                                     key={index}
                                     whileTap={{ scale: 0.95 }}

@@ -1,10 +1,23 @@
 import React, { useRef } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { FaHome, FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
+import LeetCodeLogo from "../assets/leetcode-logo.svg";
 
 const DEFAULT_SIZE = 35;
 const DEFAULT_MAGNIFICATION = 50;
 const DEFAULT_DISTANCE = 120;
+
+// Custom LeetCode Icon Component - Official SVG Logo
+const LeetCodeIcon = ({ className = "" }) => {
+  return (
+    <img 
+      src={LeetCodeLogo} 
+      alt="LeetCode" 
+      className={`text-white ${className}`}
+      style={{ width: '18px', height: '18px', filter: 'brightness(0) invert(1)' }}
+    />
+  );
+};
 
 // Simple Tooltip Component
 const Tooltip = ({ children, content, show }) => {
@@ -152,6 +165,10 @@ const DefaultDock = () => {
     window.location.href = 'mailto:bhuvanshah@gmail.com';
   };
 
+  const handleLeetcodeClick = () => {
+    window.open('https://leetcode.com/bhuvannnn/', '_blank');
+  };
+
   return (
     <Dock>
       <DockIcon 
@@ -193,6 +210,18 @@ const DefaultDock = () => {
       >
         <Tooltip content="Email" show={hoveredIcon === 'email'}>
           <FaEnvelope className="text-white text-lg" />
+        </Tooltip>
+      </DockIcon>
+      
+      <Separator />
+      
+      <DockIcon 
+        onClick={handleLeetcodeClick}
+        onMouseEnter={() => setHoveredIcon('leetcode')}
+        onMouseLeave={() => setHoveredIcon(null)}
+      >
+        <Tooltip content="LeetCode" show={hoveredIcon === 'leetcode'}>
+          <LeetCodeIcon />
         </Tooltip>
       </DockIcon>
     </Dock>

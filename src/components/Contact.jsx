@@ -1,8 +1,9 @@
 import React from 'react';
-import { SiHungryjacks } from "react-icons/si";
 import { CONTACT } from "../constants";
 import { motion } from "framer-motion";
 import { useForm, ValidationError } from '@formspree/react';
+import { BlurFade } from "./BlurFade";
+import { FaMapMarkerAlt, FaPhone, FaEnvelope } from "react-icons/fa";
 
 const Contact = () => {
   const [state, handleSubmit] = useForm("manwwenq"); // Replace with your Formspree form ID
@@ -10,164 +11,175 @@ const Contact = () => {
   // Form submission success message
   if (state.succeeded) {
     return (
-      <motion.div 
-        initial={{ opacity: 0, scale: 0.8 }} 
-        animate={{ opacity: 1, scale: 1 }} 
-        transition={{ duration: 1.5 }} 
-        className="text-center py-20"
-      >
-        <p>Thanks for reaching out! We will get back to you soon.</p>
-      </motion.div>
+      <div id='contact' className="my-24 scroll-mt-24 border-b border-neutral-900 pb-20">
+        <BlurFade direction="up" duration={0.7}>
+          <h2 className="mb-12 text-3xl font-bold tracking-tight bg-gradient-to-r from-pink-500 via-blue-500 to-violet-500 bg-clip-text text-transparent">
+            Contact
+          </h2>
+        </BlurFade>
+        
+        <BlurFade direction="up" duration={0.7} delay={0.2}>
+          <div className="text-center py-20">
+            <div className="inline-flex items-center justify-center w-16 h-16 bg-green-500/20 rounded-full mb-6">
+              <svg className="w-8 h-8 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
+            <h3 className="text-2xl font-semibold text-white mb-4">Message Sent Successfully!</h3>
+            <p className="text-gray-300 text-lg">Thanks for reaching out! I'll get back to you soon.</p>
+          </div>
+        </BlurFade>
+      </div>
     );
   }
 
   return (
-    <div id='contact' className="border-b border-neutral-900 pb-20">
-      <motion.h1 
-        whileInView={{opacity:1, y:0}}
-        initial={{opacity:0, y:-20}} // Changed initial y from -100 to -20
-        transition={{duration:0.5}} // Shortened duration for consistency
-        className="my-10 text-center text-4xl font-bold">
-        Get in Touch
-      </motion.h1>
+    <div id='contact' className="my-24 scroll-mt-24 border-b border-neutral-900 pb-20">
+      <BlurFade direction="up" duration={0.7}>
+        <h2 className="mb-12 text-3xl font-bold tracking-tight bg-gradient-to-r from-pink-500 via-blue-500 to-violet-500 bg-clip-text text-transparent">
+          Get in Touch
+        </h2>
+      </BlurFade>
       
       {/* Contact details */}
-      <div className="text-center tracking-tighter">
-        <motion.p 
-          whileInView={{opacity:1, x:0}}
-          initial={{opacity:0, x:-50}} // Reduced initial x offset
-          transition={{duration:0.5, delay: 0.1}} // Added stagger delay
-          className="my-4 text-lg"
-        >
-          {CONTACT.address}
-        </motion.p>
-        <motion.p 
-          whileInView={{opacity:1, x:0}}
-          initial={{opacity:0, x:50}} // Reduced initial x offset
-          transition={{duration:0.5, delay: 0.2}} // Added stagger delay
-          className="my-4 text-lg"
-        >
-          {CONTACT.phoneNo}
-        </motion.p>
-        <motion.a 
-          whileInView={{opacity:1, x:0}}
-          initial={{opacity:0, x:-50}} // Reduced initial x offset
-          transition={{duration:0.5, delay: 0.3}} // Added stagger delay
-          href={`mailto:${CONTACT.email}`} 
-          className="border-b text-lg text-blue-500 hover:text-blue-700"
-        >
-          {CONTACT.email}
-        </motion.a>
+      <div className="grid md:grid-cols-3 gap-8 mb-16">
+        <BlurFade direction="up" duration={0.7} delay={0.1}>
+          <div className="text-center group cursor-pointer">
+            <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-cyan-500/20 to-blue-500/20 rounded-full mb-4 group-hover:from-cyan-500/30 group-hover:to-blue-500/30 transition-all duration-300 group-hover:scale-110">
+              <FaMapMarkerAlt className="w-6 h-6 text-cyan-400 group-hover:text-cyan-300 transition-colors duration-300" />
+            </div>
+            <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-cyan-300 transition-colors duration-300">Location</h3>
+            <p className="text-gray-300 group-hover:text-gray-200 transition-colors duration-300">{CONTACT.address}</p>
+          </div>
+        </BlurFade>
+        
+        <BlurFade direction="up" duration={0.7} delay={0.2}>
+          <div className="text-center group cursor-pointer">
+            <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-cyan-500/20 to-blue-500/20 rounded-full mb-4 group-hover:from-cyan-500/30 group-hover:to-blue-500/30 transition-all duration-300 group-hover:scale-110">
+              <FaPhone className="w-6 h-6 text-cyan-400 group-hover:text-cyan-300 transition-colors duration-300" />
+            </div>
+            <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-cyan-300 transition-colors duration-300">Phone</h3>
+            <p className="text-gray-300 group-hover:text-gray-200 transition-colors duration-300">{CONTACT.phoneNo}</p>
+          </div>
+        </BlurFade>
+        
+        <BlurFade direction="up" duration={0.7} delay={0.3}>
+          <div className="text-center group cursor-pointer">
+            <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-cyan-500/20 to-blue-500/20 rounded-full mb-4 group-hover:from-cyan-500/30 group-hover:to-blue-500/30 transition-all duration-300 group-hover:scale-110">
+              <FaEnvelope className="w-6 h-6 text-cyan-400 group-hover:text-cyan-300 transition-colors duration-300" />
+            </div>
+            <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-cyan-300 transition-colors duration-300">Email</h3>
+            <a 
+              href={`mailto:${CONTACT.email}`} 
+              className="text-cyan-400 hover:text-cyan-300 transition-colors duration-300 block group-hover:text-cyan-200"
+            >
+              {CONTACT.email}
+            </a>
+          </div>
+        </BlurFade>
       </div>
 
       {/* Form section */}
-      {/* Changed form container to use whileInView */}
-      <motion.div
-        initial={{ opacity: 0, y: 50 }} // Start slightly below
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.2 }} // Trigger when 20% visible
-        transition={{ duration: 0.6 }}
-        className="mt-10 mx-auto max-w-lg"
-      >
-        <form onSubmit={handleSubmit} className="text-center space-y-6">
-          <div className="mb-4">
-            {/* Stagger label and input */}
-            <motion.label
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              htmlFor="name"
-              className="block text-sm font-bold mb-2"
-            >
-              Name
-            </motion.label>
-            <motion.input
-              initial={{opacity:0, x:-50}} // Reduced offset
-              whileInView={{opacity:1, x:0}}
-              transition={{duration:0.5, delay: 0.2}} // Stagger delay
-              // Removed whileFocus scale effect
-              id="name"
-              type="text"
-              name="name"
-              required
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500 focus:border-blue-500"
-            />
-            <ValidationError 
-              prefix="Name" 
-              field="name"
-              errors={state.errors}
-            />
+      <BlurFade direction="up" duration={0.7} delay={0.4}>
+        <div className="max-w-2xl mx-auto">
+          <div className="bg-gradient-to-br from-gray-900/50 to-gray-800/30 backdrop-blur-sm border border-gray-800/50 rounded-2xl p-8 shadow-2xl hover:shadow-cyan-500/10 transition-all duration-500">
+            <div className="text-center mb-8">
+              <div className="inline-flex items-center justify-center w-12 h-12 bg-gradient-to-br from-cyan-500/20 to-blue-500/20 rounded-full mb-4">
+                <svg className="w-6 h-6 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-semibold text-white mb-2">Send me a message</h3>
+              <p className="text-gray-400 text-sm">I'd love to hear from you. Let's start a conversation!</p>
+            </div>
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="group">
+                <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2 group-focus-within:text-cyan-400 transition-colors duration-300">
+                  Name
+                </label>
+                <input
+                  id="name"
+                  type="text"
+                  name="name"
+                  required
+                  className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent focus:bg-gray-800/70 transition-all duration-300 hover:border-gray-600"
+                  placeholder="Your name"
+                />
+                <ValidationError 
+                  prefix="Name" 
+                  field="name"
+                  errors={state.errors}
+                />
+              </div>
+              
+              <div className="group">
+                <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2 group-focus-within:text-cyan-400 transition-colors duration-300">
+                  Email Address
+                </label>
+                <input
+                  id="email"
+                  type="email"
+                  name="email"
+                  required
+                  className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent focus:bg-gray-800/70 transition-all duration-300 hover:border-gray-600"
+                  placeholder="your.email@example.com"
+                />
+                <ValidationError 
+                  prefix="Email" 
+                  field="email"
+                  errors={state.errors}
+                />
+              </div>
+              
+              <div className="group">
+                <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2 group-focus-within:text-cyan-400 transition-colors duration-300">
+                  Message
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  required
+                  rows={5}
+                  className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent focus:bg-gray-800/70 transition-all duration-300 resize-none hover:border-gray-600"
+                  placeholder="Tell me about your project or just say hello!"
+                />
+                <ValidationError 
+                  prefix="Message" 
+                  field="message"
+                  errors={state.errors}
+                />
+              </div>
+              
+              <motion.button
+                type="submit"
+                disabled={state.submitting}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="w-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-semibold py-3 px-6 rounded-lg hover:from-cyan-600 hover:to-blue-700 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-opacity-50 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-cyan-500/25 relative overflow-hidden"
+              >
+                <span className="relative z-10 flex items-center justify-center">
+                  {state.submitting ? (
+                    <>
+                      <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                      </svg>
+                      Sending...
+                    </>
+                  ) : (
+                    <>
+                      <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                      </svg>
+                      Send Message
+                    </>
+                  )}
+                </span>
+              </motion.button>
+            </form>
           </div>
-          <div className="mb-4">
-            {/* Stagger label and input */}
-            <motion.label
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              htmlFor="email"
-              className="block text-sm font-bold mb-2"
-            >
-              Email Address
-            </motion.label>
-            <motion.input
-              initial={{opacity:0, x:50}} // Changed direction for variety
-              whileInView={{opacity:1, x:0}}
-              transition={{duration:0.5, delay: 0.4}} // Stagger delay
-              // Removed whileFocus scale effect
-              id="email"
-              type="email"
-              name="email"
-              required
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500 focus:border-blue-500"
-            />
-            <ValidationError 
-              prefix="Email" 
-              field="email"
-              errors={state.errors}
-            />
-          </div>
-          <div className="mb-4">
-            {/* Stagger label and textarea */}
-             <motion.label
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.5 }}
-              htmlFor="message"
-              className="block text-sm font-bold mb-2"
-            >
-              Message
-            </motion.label>
-            <motion.textarea
-              initial={{opacity:0, x:-50}} // Reduced offset
-              whileInView={{opacity:1, x:0}}
-              transition={{duration:0.5, delay: 0.6}} // Stagger delay
-              // Removed whileFocus scale effect
-              id="message"
-              name="message"
-              required
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500 focus:border-blue-500"
-            />
-            <ValidationError 
-              prefix="Message" 
-              field="message"
-              errors={state.errors}
-            />
-          </div>
-          <motion.button
-            // Stagger button
-            initial={{opacity:0, y:20}} // Animate from below
-            whileInView={{opacity:1, y:0}}
-            transition={{duration:0.5, delay: 0.7}} // Stagger delay
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            type="submit"
-            disabled={state.submitting}
-            className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
-          >
-            Submit
-          </motion.button>
-        </form>
-      </motion.div>
+        </div>
+      </BlurFade>
     </div>
   );
 };

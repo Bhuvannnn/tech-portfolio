@@ -70,9 +70,9 @@ const Hero = () => {
     // Split hero content into lines
     const heroLines = HERO_CONTENT.split(/\n|\. /).filter(Boolean);
     return (
-        <div className="relative border-b border-neutral-900 pb-4 lg:mb-35 overflow-hidden">
+        <div className="relative min-h-screen flex flex-col justify-center border-b border-neutral-900 overflow-hidden" style={{ minHeight: '100vh', minHeight: 'calc(100vh - env(safe-area-inset-bottom))' }}>
             <ParticlesBackground />
-            <div className="flex flex-wrap">
+            <div className="flex flex-wrap items-center justify-center px-4 py-8 sm:py-12 lg:py-16">
                 <div className="w-full lg:w-1/2">
                     <div className="flex flex-col items-center lg:items-start">
                         <div className="whitespace-nowrap">
@@ -120,16 +120,16 @@ const Hero = () => {
                             transition={{ delay: 1.2, duration: 0.5 }}
                             src={profilePic}
                             alt='Bhuvan Shah'
-                            className="rounded-2xl h-80 w-80 lg:h-96 lg:w-96 object-cover"
+                            className="rounded-2xl h-80 w-80 lg:h-[28rem] lg:w-[28rem] xl:h-[32rem] xl:w-[32rem] object-cover"
                         />
                     </div>
                 </div>
             </div>
-            <div className="flex justify-center mt-8">
+            <div className="flex justify-center pb-32 sm:pb-24 lg:pb-28 mt-auto">
                 <motion.img
                     src={mouse}
                     alt="Scroll indicator"
-                    className="h-10 w-10"
+                    className="h-10 w-10 sm:h-10 sm:w-10 lg:h-12 lg:w-12"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1, y: [0, 10, 0] }}
                     transition={{ duration: 1.5, repeat: Infinity }}

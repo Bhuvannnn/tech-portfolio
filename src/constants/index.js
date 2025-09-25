@@ -13,6 +13,7 @@ import promptSoftechLogo from "../assets/companies/prompt-softech.png";
 import tornadoComputersLogo from "../assets/companies/tornado-computers.png";
 import vueInternationalLogo from "../assets/companies/vue-international.svg";
 import easleyDunnLogo from "../assets/companies/easley_dunn_productions_logo.jpeg";
+import indusUniversityLogo from "../assets/companies/indus.svg";
 
 const getCompanyLogo = (companyName) => {
   switch (companyName) {
@@ -28,6 +29,8 @@ const getCompanyLogo = (companyName) => {
       return easleyDunnLogo;
     case "Easley Dunn Productions":
       return easleyDunnLogo;
+    case "Indus University":
+      return indusUniversityLogo;
     default:
       return null;
   }
@@ -47,10 +50,6 @@ export const EXPERIENCES = [
     role: "Software Development Engineer",
     company: "Easley-Dunn Productions, Inc.",
     logo: getCompanyLogo("Easley-Dunn Productions, Inc."),
-    description: `Led cross-functional team in Agile setup to align runtime data flow across 5 systems, reducing integration bugs by 40% and
-accelerating QA cycles by 30% through schema validation and telemetry workflows.
-Developed real-time telemetry and crash logging pipeline in Unity (C#) using JSON and runtime hooks, improving observability
-and debugging efficiency by 60% during Agile sprints`,
     bullets: [
       "Led cross-functional Agile team in aligning runtime data flow across 5 systems; reduced integration bugs by 40% and accelerated QA by 30% via schema validation and telemetry workflows.",
       "Developed real-time telemetry and crash logging pipeline in Unity (C#) using JSON and runtime hooks, improving observability and debugging efficiency by 60% during Agile sprints.",
@@ -64,12 +63,8 @@ and debugging efficiency by 60% during Agile sprints`,
     role: "Teaching Assistant",
     company: "University of Southern California",
     logo: getCompanyLogo("University of Southern California"),
-    description: `As a Teaching Associate for "CSCI 526 - Advanced Mobile Devices and Game Consoles" a masters level course at the University of Southern California, I support the academic journey of 90 students. My responsibilities include conducting office hours where I provide guidance on C# coding challenges and course concepts. 
-    I also create and deliver engaging lectures that cover key aspects of mobile and game console development. 
-    Additionally, I grade assignments and projects, offering detailed feedback to help students refine their work across various project phases. 
-    I develop innovative in-class coding activities to reinforce their learning and assist in integrating analytics into their games.`,
     bullets: [
-      "Guided 360+ students in system architecture design and algorithm optimization, implementing design patterns and OOP principles in Python and C#, achieving 90% success rate in scalable, production-ready applications.",
+      "Mentored 360+ students in system architecture design and algorithm optimization, implementing design patterns and OOP principles in Python and C#, achieving 90% success rate in scalable, production-ready applications.",
       "Architected 6+ DevOps simulation environments with Firebase real-time databases and automated CI/CD pipelines, enabling students to process 10K+ events and implement microservices testing frameworks using JUnit.",
       "Mentored 360+ students in data-driven game analytics, teaching Python statistical analysis and machine learning algorithms for player behavior prediction, resulting in 90% of teams implementing predictive models.",
       "Engineered data science curricula integrating real-time analytics frameworks, enabling students to process 10K+ gameplay events through ETL pipelines and build recommendation systems using collaborative filtering."
@@ -81,9 +76,6 @@ and debugging efficiency by 60% during Agile sprints`,
     role: "Data Scientist Intern", 
     company: "Prompt Softech",
     logo: getCompanyLogo("Prompt Softech"),
-    description: `Created a custom BiLSTM - CNN neural network with a bifurcated architecture, achieving an impressive 83% accuracy.
-    Built and fine-tuned proprietary technical indicators, achieving an average accuracy of 83%.
-    Conducted comprehensive back testing, resulted in a substantial accuracy boost to 88%, while refining indicator parameters for optimal performance through MetaTrader using MQL4 and MQL5 scripting languages`,
     bullets: [
       "Developed distributed microservices architecture using Spring Boot and Kubernetes orchestration; implemented asynchronous processing with PostgreSQL, improving pipeline scalability by 40% and enabling fault-tolerant model deployment.",
       "Designed CI/CD pipelines with Jenkins and GitHub Actions to automate build, test, and deployment across microservices, cutting integration overhead by 30% and improving release frequency with GitOps-enabled rollbacks.",
@@ -97,9 +89,6 @@ and debugging efficiency by 60% during Agile sprints`,
     role: "Data Analyst Intern",
     company: "Tornado Computers",
     logo: getCompanyLogo("Tornado Computers"),
-    description: `Collaborated on a project leveraging algorithms and IOT to optimize hardware performance; identifying bottlenecks, fine-tuning
-                  system parameters, and predicting system failures, attaining a remarkable 92% accuracy in performance optimization
-                  Implemented neural network for predictive maintenance by collecting and analyzing data from hardware sensors and logs, resulting in an 87% accuracy rate, reducing downtime and repair costs.`,
     bullets: [
       "Built real-time anomaly detection system achieving 92% accuracy using Apache Kafka streaming and IoT sensor fusion, implementing ensemble machine learning models for predictive maintenance across 50+ hardware systems.",
       "Implemented TensorFlow-based neural networks and Airflow-orchestrated pipelines processing 120K+ sensor readings daily, reducing operational costs by 87%."
@@ -111,8 +100,6 @@ and debugging efficiency by 60% during Agile sprints`,
     role: "Software Developer Intern",
     company: "VueInternational",
     logo: getCompanyLogo("VueInternational"),
-    description: `Took proactive measures in designing and implementing interactive components using HTML, CSS, and JavaScript, seamlessly integrating with a sqlite3 database to facilitate secure credit card transactions through the Stripe API
-Integrated dynamic components into company's website, sparking a substantial 15% surge in user engagement and modeled a commendable 20% enhancement in transaction security.`,
     bullets: [
       "Implemented React/Node.js architecture with Redis caching and MongoDB clustering, boosting API throughput by 25% and supporting 2x concurrent users via optimized indexing.",
       "Dockerized and integrated Stripe APIs to streamline secure payment workflows, reducing transaction errors by 20%."
@@ -126,7 +113,16 @@ export const PROJECTS = [
     title: "NoteScape: Semantic Knowledge Graph Visualization System",
     image: project9,
     shortDescription: "A full-stack app that turns your notes into an interactive knowledge graph.",
-    description: `Developed NoteScape, a full-stack application that transforms scattered notes into an interactive knowledge graph by automatically detecting relationships between ideas. The system analyzes note content using natural language processing techniques to identify connections, enabling users to visualize and navigate their knowledge in a network format. Built with React.js and D3.js for the frontend visualization, FastAPI for the backend API, Neo4j as the graph database, and custom NLP algorithms for relationship extraction. The application features a responsive UI with Material UI components, interactive graph visualization, automatic relationship detection, and support for importing notes from various formats.`,
+    description: `Developed NoteScape, a full-stack application that transforms scattered notes into an interactive knowledge graph by automatically detecting relationships between ideas.
+
+Key Technical Features:
+- Built with React.js and D3.js for interactive frontend visualization and user interface
+- Implemented FastAPI backend with custom NLP algorithms for relationship extraction
+- Utilized Neo4j graph database for efficient relationship storage and querying
+- Created responsive UI with Material UI components for seamless user experience
+- Developed automatic relationship detection system using natural language processing
+- Added support for importing notes from various formats (text, markdown, etc.)
+- Implemented real-time graph visualization with zoom, pan, and search capabilities`,
     technologies: ["React.js", "D3.js", "FastAPI", "Neo4j", "Python", "NLP", "Docker"],
     github: "https://github.com/Bhuvannnn/NoteScape",
   },
@@ -134,7 +130,16 @@ export const PROJECTS = [
   {title: "SpotifyDash: Desktop Music Control Widget",
     image: project8,
     shortDescription: "A macOS widget for instant Spotify control.",
-    description: `SpotifyDash is a macOS widget application built with SwiftUI and WidgetKit that provides users with instant access to their Spotify playback controls and real-time track information directly from their desktop. The application features a sophisticated dual-control architecture that combines Spotify's Web API with local AppleScript integration, ensuring 95% functionality even during API outages. With automated authentication, intelligent caching of album artwork, and responsive UI that updates within 1 second of track changes, SpotifyDash delivers a seamless music control experience that reduced the time to control music by 65% compared to opening the full Spotify application`,
+    description: `SpotifyDash is a macOS widget application built with SwiftUI and WidgetKit that provides users with instant access to their Spotify playback controls and real-time track information directly from their desktop.
+
+Key Features:
+- Built with SwiftUI and WidgetKit for native macOS integration and optimal performance
+- Implemented sophisticated dual-control architecture combining Spotify Web API with AppleScript
+- Achieved 95% functionality even during API outages through intelligent fallback systems
+- Automated authentication system for seamless user experience
+- Intelligent caching of album artwork for instant loading and reduced API calls
+- Responsive UI that updates within 1 second of track changes for real-time experience
+- Reduced music control time by 65% compared to opening the full Spotify application`,
     technologies: ["SwiftUI", "WidgetKit", "Spotify API", "AppleScript", "Rest APIs", "Swift"],
     github: "https://github.com/Bhuvannnn/MusicWidgetApp",
   },
@@ -142,7 +147,16 @@ export const PROJECTS = [
   {title: "Healthcare Resource Optimization and Dashboard",
     image: project7,
     shortDescription: "A real-time dashboard for healthcare resource monitoring.",
-    description: `Designed and developed a real-time Healthcare Resource Dashboard using Python, Flask, and PostgreSQL, enabling administrators to monitor bed occupancy, staff workload, and equipment usage with 95% resource utilization across 4 departments and 20+ medical equipment units. Implemented ETL pipelines processing 1000+ daily healthcare records, integrating a real-time analytics dashboard with Chart.js for interactive visualizations. Leveraged microservices architecture and containerization with Docker, reducing deployment time by 30%. Established CI/CD pipelines with Jenkins, automating testing and deployment. Ensured scalability and security through RESTful API design, environment variable protection, and database security configurations.`,
+    description: `Designed and developed a real-time Healthcare Resource Dashboard using Python, Flask, and PostgreSQL, enabling administrators to monitor bed occupancy, staff workload, and equipment usage.
+
+Key Achievements:
+- Achieved 95% resource utilization across 4 departments and 20+ medical equipment units
+- Implemented ETL pipelines processing 1000+ daily healthcare records with real-time processing
+- Built interactive analytics dashboard with Chart.js for comprehensive data visualization
+- Leveraged microservices architecture and Docker containerization, reducing deployment time by 30%
+- Established CI/CD pipelines with Jenkins for automated testing and deployment
+- Ensured scalability and security through RESTful API design and environment variable protection
+- Integrated database security configurations for HIPAA compliance and data protection`,
     technologies: ["Python", "Flask", "PostgreSQL", "ETL", "Chart.js", "Docker", "Jenkins", "CI/CD"],
     github: "https://github.com/Bhuvannnn/Healthcare-Resource-Optimisation-",
   },
@@ -150,9 +164,21 @@ export const PROJECTS = [
   {title: "Statistical Analysis of Cultural Representation in Video Games and it's Impact on Player Anxiety & Engagement",
     image: project6,
     shortDescription: "Research on cultural representation and player anxiety in video games.",
-    description: `In this project, I spearheaded a research initiative to explore how culturally relevant elements in video games affect player anxiety and engagement. I designed a mixed experimental study with 27 participants—predominantly from Indian cultural backgrounds—to assess pre- and post-exposure anxiety levels using the State-Trait Anxiety Inventory and engagement measured via Likert scales.
-I applied rigorous statistical methods including 2×2 and 2×2×2 mixed ANOVAs and multiple regression analyses in Python and SPSS. The analysis revealed significant interaction effects (p = 0.030, partial η² = 0.174, Cohen's d = 0.92), confirming that culturally aligned game content can meaningfully reduce anxiety and enhance player engagement. To support these insights, I engineered robust data pipelines that streamlined data cleaning, missing value imputation, and outlier detection—improving data quality by an estimated 15%.
-This work not only deepened my expertise in statistical modeling and data engineering but also provided actionable recommendations for integrating cultural sensitivity into game design.`,
+    description: `In this project, I spearheaded a research initiative to explore how culturally relevant elements in video games affect player anxiety and engagement.
+
+Research Methodology:
+- Designed mixed experimental study with 27 participants from Indian cultural backgrounds
+- Assessed pre- and post-exposure anxiety levels using State-Trait Anxiety Inventory
+- Measured engagement through comprehensive Likert scales and behavioral analysis
+- Applied rigorous statistical methods including 2×2 and 2×2×2 mixed ANOVAs
+- Conducted multiple regression analyses in Python and SPSS for comprehensive data analysis
+
+Key Findings:
+- Revealed significant interaction effects (p = 0.030, partial η² = 0.174, Cohen's d = 0.92)
+- Confirmed that culturally aligned game content reduces anxiety and enhances engagement
+- Engineered robust data pipelines improving data quality by 15% through advanced processing
+- Provided actionable recommendations for integrating cultural sensitivity into game design
+- Contributed to understanding of cultural representation impact on player psychology`,
 technologies: ["Python", "SPSS", "ANOVA", "Regression Analysis", "Statistical Analysis", "Data Engineering"],
 github: "https://github.com/Bhuvannnn/Statistical-Analysis-of-Cultural-Representation-in-Video-Games",
   },
@@ -176,8 +202,15 @@ github: "https://github.com/Bhuvannnn/real-time-collab",
     image: project1,
     shortDescription: "A PII detection and masking system.",
     description: `The project involves advancing privacy protection by designing a Named Entity Recognition (NER) system using the DeBERTaV3 model as its backbone.
-                  The primary enhancement is the integration of another dense layer with softmax activation function and relative position embedding for decoupling the attention scores, which more accurately identifies and obfuscate various types of personally identifiable information (PII) within textual data. This modified architecture leverages advanced contextual understanding and token-level prediction capabilities, surpassing conventional NER systems limited to a narrow set of predefined PII tags. The F-Beta Score generated with this model is 99.56%.
-                  The project's innovation ensures adaptable and comprehensive data privacy solutions, aligning with stringent regulatory requirements and addressing the dynamic nature of PII.`,
+
+Key Technical Innovations:
+- Designed advanced NER system using DeBERTaV3 model as backbone for superior contextual understanding
+- Integrated additional dense layer with softmax activation function for enhanced prediction accuracy
+- Implemented relative position embedding for decoupling attention scores and improving PII detection
+- Achieved 99.56% F-Beta Score, surpassing conventional NER systems with limited predefined PII tags
+- Leveraged advanced contextual understanding and token-level prediction capabilities
+- Ensured adaptable and comprehensive data privacy solutions for regulatory compliance
+- Addressed dynamic nature of PII with flexible detection and masking mechanisms`,
 technologies: ["PyTorch", "DebertaV3", "Transformers", "MongoDB"],
 github: "https://github.com/Bhuvannnn/PII-Detection-and-Masking",
   },
@@ -185,8 +218,21 @@ github: "https://github.com/Bhuvannnn/PII-Detection-and-Masking",
     title: "Me, Myself and Time: A Game based on Time Travel",
     image: project2,
     shortDescription: "A Unity 2D game about time travel.",
-    description:
-      "The is a 6-month project for my class 'Advanced Mobile Devices and Game Consoles'. Unity 2D game focused on time travel, hosted on WebGL for global access. It features intricate time-travel mechanics and integrates robust analytics to monitor gameplay. Technologies used include C# for scripting, Python for data processing, and Firebase for real-time data storage. Visual analytics are implemented using Tableau, with tools like heatmaps, Sankey diagrams, and bar plots to provide detailed insights into player behavior. Conducted under Professor Scott Easley in the Advanced Games Development course at USC, the project combines advanced game development with comprehensive data analysis to enhance player engagement and experience, To play the game, visit 'https://bhuvannnn.github.io/Me-Myself-and-Time/WebGL%20Builds/Gold%20Build/' .",
+    description: `A comprehensive 6-month project for the 'Advanced Mobile Devices and Game Consoles' course, developing a Unity 2D game focused on time travel mechanics.
+
+Game Development Features:
+- Built intricate time-travel mechanics using Unity 2D with C# scripting for complex gameplay
+- Hosted on WebGL for global accessibility and cross-platform compatibility
+- Implemented robust analytics system to monitor and analyze player behavior patterns
+- Integrated Firebase for real-time data storage and seamless multiplayer capabilities
+- Developed comprehensive data processing pipeline using Python for analytics
+
+Analytics and Visualization:
+- Created visual analytics dashboard using Tableau with interactive heatmaps and Sankey diagrams
+- Implemented bar plots and statistical visualizations for detailed player behavior insights
+- Conducted comprehensive data analysis to enhance player engagement and experience
+- Combined advanced game development with data science for optimal user experience
+- Project supervised by Professor Scott Easley in USC's Advanced Games Development course`,
     technologies: ["C#", "Python", "Tableau", "Firebase", "Unity", "Git"],
     github: "https://github.com/Bhuvannnn/Me-Myself-and-Time",
   },
@@ -194,8 +240,21 @@ github: "https://github.com/Bhuvannnn/PII-Detection-and-Masking",
     title: "Portfolio Website",
     image: project3,
     shortDescription: "My personal portfolio website.",
-    description:
-      "My portfolio website, built with React and styled using Tailwind CSS, showcases my projects with a modern, responsive design. React powers the dynamic, interactive interface, while Tailwind ensures a sleek and professional appearance across all devices. This site reflects my skills in web development and design, integrating various technologies for enhanced functionality and user experience.",
+    description: `A modern, responsive portfolio website showcasing my projects and professional experience with a sleek, interactive design.
+
+Technical Implementation:
+- Built with React.js for dynamic, interactive user interface and component-based architecture
+- Styled using Tailwind CSS for modern, responsive design across all device sizes
+- Integrated Bootstrap components for enhanced UI elements and consistent styling
+- Implemented smooth animations and transitions using Framer Motion for engaging user experience
+- Designed with mobile-first approach ensuring optimal performance on all devices
+
+Key Features:
+- Responsive design that adapts seamlessly to desktop, tablet, and mobile devices
+- Interactive project showcase with detailed modals and live demo links
+- Professional contact form with real-time validation and submission handling
+- Smooth scrolling navigation with active section highlighting
+- Modern glassmorphism design elements with gradient backgrounds and blur effects`,
     technologies: ["React", "Tailwind", "Bootstrap", "JavaScript"],
     github:"https://github.com/Bhuvannnn/tech-portfolio",
   },
@@ -203,15 +262,88 @@ github: "https://github.com/Bhuvannnn/PII-Detection-and-Masking",
     title: "Forecast Finesse: Analysing stock performance",
     image: project4,
     shortDescription: "A platform for sentiment analysis and real-time stock trading.",
-    description:
-      "Created a robust platform integrating sentiment analysis and real-time stock trading for NASDAQ-listed companies. Utilizing customized NLTK and BeautifulSoup, the system analyzes live Twitter and Google News feeds with 92% accuracy. The platform features a dynamic dashboard built with the MERN stack and hosted on Google Cloud Platform (GCP), offering live streaming data from Yahoo Finance. Users can view real-time graphs of stocks, and execute live buy and sell transactions. This comprehensive tool combines sentiment insights and trading capabilities, boosting general user profitability by 24% compared to other platforms",
+    description: `A comprehensive platform integrating advanced sentiment analysis with real-time stock trading capabilities for NASDAQ-listed companies.
+
+Sentiment Analysis Engine:
+- Developed customized NLTK and BeautifulSoup algorithms for real-time data extraction
+- Analyzed live Twitter and Google News feeds with 92% accuracy for market sentiment
+- Implemented advanced natural language processing for sentiment classification
+- Created robust data pipeline for continuous feed monitoring and analysis
+
+Trading Platform Features:
+- Built dynamic dashboard using MERN stack (MongoDB, Express.js, React, Node.js)
+- Hosted on Google Cloud Platform (GCP) for scalable and reliable performance
+- Integrated live streaming data from Yahoo Finance for real-time market updates
+- Implemented interactive real-time stock graphs with technical indicators
+- Developed secure buy/sell transaction system with real-time execution
+
+Performance Results:
+- Achieved 24% improvement in user profitability compared to other trading platforms
+- Provided comprehensive sentiment insights combined with technical trading capabilities
+- Enabled data-driven trading decisions through advanced analytics and visualization`,
     technologies: ["React", "Node.js", "Express.js", "MongoDB", "GCP", "NLTK",],
     github:"https://github.com/Bhuvannnn/Dashboard-Stock-Forecasting-with-Sentiment-Analysis",
   },
 ];
 
+export const EDUCATION = [
+  {
+    year: "2023 - 2025",
+    degree: "Master of Science in Computer Science",
+    institution: "University of Southern California",
+    logo: getCompanyLogo("University of Southern California"),
+    gpa: "3.61/4.0",
+    description: "Specialized in Artificial Intelligence, Machine Learning, and Software Engineering with a focus on advanced algorithms, data structures, and system design. Completed coursework in natural language processing, computer vision, and distributed systems.",
+    relevantCourses: [
+      "Analysis of Algorithms",
+      "Web Technologies",
+      "Machine Learning",
+      "Deep Learning",
+      "Applied Natural Language Processing",
+      "Database Systems",
+      "Information Retrieval and Web Search Engines",
+      "Research Methods and Analysis",
+      "Advanced Mobile Devices and Game Consoles",
+    ],
+    achievements: [
+      "Teaching Assistant for Graduate level course on Advanced Mobile Devices and Game Consoles, mentoring 360+ graduate students",
+      "Published research on cultural representation in video games and its impact on player anxiety",
+      "Developed multiple full-stack applications and machine learning models with real-world applications",
+      "Active participant in USC's Computer Science graduate program with focus on AI/ML research",
+      "Consistently ranked under 500 out of 25,000+ global participants in LeetCode bi-weekly contests",
+      "Open Source Contributor to Docusaurus by Meta",
+    ]
+  },
+  {
+    year: "2019 - 2023",
+    degree: "Bachelor of Technology in Computer Science",
+    institution: "Indus University",
+    logo: getCompanyLogo("Indus University"),
+    gpa: "4.0/4.0",
+    description: "Completed comprehensive coursework in computer science fundamentals including programming, data structures, algorithms, software engineering, and database management. Gained strong foundation in software development and problem-solving skills.",
+    relevantCourses: [
+      "Data Structures & Algorithms",
+      "Object-Oriented Programming",
+      "Database Management Systems",
+      "Software Engineering",
+      "Computer Networks",
+      "Operating Systems",
+      "Web Development",
+      "Mobile Application Development",
+      "Machine Learning Fundamentals",
+    ],
+    achievements: [
+      "Graduated with honors and distinction in Computer Science",
+      "Strong foundation in multiple programming languages and development frameworks",
+      "Completed multiple software development projects and internships",
+      "Active participant in coding competitions and hackathons",
+      "Organised multiple coding workshops and events",
+    ]
+  }
+];
+
 export const CONTACT = {
-  address: "325 W Adams Blvd, Los Angeles, CA 90007",
+  address: "Los Angeles, California, United States",
   phoneNo: "+1 (213) 331 1360 ",
   email: "bhuvanshah288@gmail.com",
 };

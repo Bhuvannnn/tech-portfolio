@@ -96,7 +96,7 @@ const Projects = () => {
             onClick={handleCloseModal}
           >
             <motion.div
-              className="bg-neutral-900 rounded-2xl shadow-lg border border-neutral-700 w-full max-w-lg mx-2 sm:mx-4 p-4 sm:p-6 relative max-h-[90vh] overflow-y-auto"
+              className="bg-neutral-900 rounded-2xl shadow-lg border border-neutral-700 w-full max-w-4xl mx-2 sm:mx-4 p-4 sm:p-6 lg:p-8 relative max-h-[90vh] overflow-y-auto"
               initial={{ y: "100%", opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: "100%", opacity: 0 }}
@@ -113,36 +113,107 @@ const Projects = () => {
               >
                 ×
               </button>
-              <img
-                src={PROJECTS[modalIndex].image}
-                alt={PROJECTS[modalIndex].title}
-                className="object-contain w-full h-48 rounded-lg mb-4 bg-neutral-800"
-              />
-              <h3 className="text-2xl font-bold mb-2 text-white">
-                {PROJECTS[modalIndex].title}
-              </h3>
-              <div className="flex flex-wrap gap-2 mb-4">
-                {PROJECTS[modalIndex].technologies.map((tech, i) => (
-                  <span key={i} className="rounded bg-purple-500/10 px-3 py-1 text-xs font-medium text-purple-300">
-                    {tech}
-                  </span>
-                ))}
+              {/* Project Header */}
+              <div className="text-center mb-6">
+                <h3 className="text-2xl lg:text-4xl font-bold mb-4 text-white">
+                  {PROJECTS[modalIndex].title}
+                </h3>
+                <div className="flex flex-wrap justify-center gap-2 mb-6">
+                  {PROJECTS[modalIndex].technologies.map((tech, i) => (
+                    <span key={i} className="rounded-full bg-gradient-to-r from-purple-500/20 to-blue-500/20 px-4 py-2 text-sm font-medium text-purple-300 border border-purple-500/30">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
               </div>
-              <div className="text-neutral-300 text-base mb-4 leading-relaxed">
-                {PROJECTS[modalIndex].description.split('. ').map((sentence, index, array) => (
-                  <p key={index} className="mb-3 last:mb-0">
-                    {sentence}{index < array.length - 1 ? '.' : ''}
-                  </p>
-                ))}
+
+              {/* Project Image - Centered and larger */}
+              <div className="mb-8">
+                <img
+                  src={PROJECTS[modalIndex].image}
+                  alt={PROJECTS[modalIndex].title}
+                  className="object-contain w-full h-72 lg:h-96 rounded-xl bg-neutral-800 mx-auto shadow-2xl"
+                />
               </div>
-              <a
-                href={PROJECTS[modalIndex].github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1 px-3 py-1.5 rounded bg-neutral-800 text-purple-300 hover:bg-purple-700/20 hover:text-purple-200 transition-colors text-xs font-semibold mt-2"
-              >
-                <FaGithub className="mr-1" /> Source Code
-              </a>
+
+              {/* Project Description */}
+              <div className="text-neutral-300 text-base lg:text-lg mb-8 leading-relaxed max-w-4xl mx-auto">
+                {(() => {
+                  const description = PROJECTS[modalIndex].description;
+                  
+                  // Split by lines first
+                  const lines = description.split('\n');
+                  const elements = [];
+                  
+                  for (let i = 0; i < lines.length; i++) {
+                    const line = lines[i].trim();
+                    if (!line) continue;
+                    
+                    // Handle section headers
+                    if (line.includes('Key Technical Achievements:')) {
+                      elements.push(
+                        <h4 key={`header-${i}`} className="text-xl font-semibold text-white mb-4 mt-6">
+                          {line}
+                        </h4>
+                      );
+                    }
+                    // Handle bullet points
+                    else if (line.startsWith('-')) {
+                      elements.push(
+                        <div key={`bullet-${i}`} className="mb-4 flex items-start">
+                          <div className="flex-shrink-0 w-6 h-6 mr-3 mt-1">
+                            <span className="text-white text-lg">•</span>
+                          </div>
+                          <span className="text-white leading-relaxed">{line.substring(1).trim()}</span>
+                        </div>
+                      );
+                    }
+                    // Handle regular paragraphs - split by sentences
+                    else {
+                      const sentences = line.split('. ');
+                      sentences.forEach((sentence, sentenceIndex) => {
+                        const trimmedSentence = sentence.trim();
+                        if (!trimmedSentence) return;
+                        
+                        elements.push(
+                          <p key={`para-${i}-${sentenceIndex}`} className="mb-4 last:mb-0 text-justify">
+                            {trimmedSentence}{!trimmedSentence.endsWith('.') && !trimmedSentence.endsWith(':') ? '.' : ''}
+                          </p>
+                        );
+                      });
+                    }
+                  }
+                  
+                  return elements;
+                })()}
+              </div>
+
+              {/* Action Buttons - Centered */}
+              <div className="flex justify-center gap-4">
+                <a
+                  href={PROJECTS[modalIndex].github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-purple-600 to-purple-700 text-white hover:from-purple-700 hover:to-purple-800 transition-all duration-300 text-sm font-semibold shadow-lg hover:shadow-purple-500/25 hover:scale-105"
+                >
+                  <FaGithub className="w-5 h-5" /> View Source Code
+                </a>
+                
+                {/* Check if project has a live demo link */}
+                {PROJECTS[modalIndex].github && PROJECTS[modalIndex].github.includes('github.io') && (
+                  <a
+                    href={PROJECTS[modalIndex].github.replace('/github.com/', '/').replace('/tree/main', '').replace('/blob/main', '')}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-cyan-600 to-blue-600 text-white hover:from-cyan-700 hover:to-blue-700 transition-all duration-300 text-sm font-semibold shadow-lg hover:shadow-cyan-500/25 hover:scale-105"
+                  >
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
+                    Live Demo
+                  </a>
+                )}
+              </div>
             </motion.div>
           </motion.div>
         )}
