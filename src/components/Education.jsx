@@ -20,22 +20,23 @@ const Education = () => {
   const handleMouseLeave = () => setHoveredIndex(null);
 
   return (
-    <div id="education" className="my-24 scroll-mt-24 border-b border-neutral-900 pb-20">
-      <BlurFade direction="up" duration={0.7}>
-        <h2 className="mb-12 text-3xl font-bold tracking-tight bg-gradient-to-r from-pink-500 via-blue-500 to-violet-500 bg-clip-text text-transparent">
-          Education
-        </h2>
-      </BlurFade>
+    <section id="education" className="corporate-section">
+      <div className="max-w-6xl mx-auto">
+        <BlurFade direction="up" duration={0.7}>
+          <h2 className="corporate-heading">
+            <span className="unified-accent">Education</span>
+          </h2>
+        </BlurFade>
 
-      <div className="space-y-8">
-        {EDUCATION.map((education, index) => (
-          <BlurFade key={index} delay={0.15 * index} inView>
-            <div
-              className="group cursor-pointer"
-              onClick={() => handleCardClick(index)}
-              onMouseEnter={() => handleMouseEnter(index)}
-              onMouseLeave={handleMouseLeave}
-            >
+        <div className="space-y-6">
+          {EDUCATION.map((education, index) => (
+            <BlurFade key={index} delay={0.15 * index} inView>
+              <div
+                className="corporate-card p-6 group cursor-pointer hover:border-blue-400/50"
+                onClick={() => handleCardClick(index)}
+                onMouseEnter={() => handleMouseEnter(index)}
+                onMouseLeave={handleMouseLeave}
+              >
               <div className="flex items-start space-x-3 sm:space-x-4 w-full">
                 {/* Institution Logo/Avatar */}
                 <div className="flex-shrink-0 mb-0 sm:mb-0">
@@ -93,7 +94,7 @@ const Education = () => {
                           <ChevronRightIcon className="w-4 h-4" />
                         </motion.span>
                       </h3>
-                      <p className="text-cyan-400 font-medium text-sm mb-1">
+                      <p className="unified-accent font-medium text-sm mb-1">
                         {education.institution}
                       </p>
                       <span className="text-sm text-gray-400 sm:hidden mb-2 block">
@@ -101,22 +102,22 @@ const Education = () => {
                       </span>
                       
                       {/* GPA and relevant courses */}
-                      <div className="flex-wrap gap-1.5 mb-3 justify-center sm:justify-start hidden sm:flex">
+                      <div className="flex-wrap gap-2 mb-3 justify-center sm:justify-start hidden sm:flex">
                         {education.gpa && (
-                          <span className="inline-block rounded-md bg-gray-800/50 px-2 py-1 text-xs text-gray-300">
+                          <span className="inline-block rounded-full bg-gray-700/50 px-3 py-1 text-xs text-gray-300 border border-gray-600/50">
                             GPA: {education.gpa}
                           </span>
                         )}
                         {education.relevantCourses?.slice(0, 3).map((course, courseIndex) => (
                           <span
                             key={courseIndex}
-                            className="inline-block rounded-md bg-gray-800/50 px-2 py-1 text-xs text-gray-300"
+                            className="inline-block rounded-full bg-gray-700/50 px-3 py-1 text-xs text-gray-300 border border-gray-600/50"
                           >
                             {course}
                           </span>
                         ))}
                         {education.relevantCourses?.length > 3 && (
-                          <span className="inline-block rounded-md bg-gray-800/50 px-2 py-1 text-xs text-gray-300">
+                          <span className="inline-block rounded-full bg-gray-700/50 px-3 py-1 text-xs text-gray-300 border border-gray-600/50">
                             +{education.relevantCourses.length - 3} more
                           </span>
                         )}
@@ -149,10 +150,10 @@ const Education = () => {
                         }}
                         className="overflow-hidden"
                       >
-                        <div className="pt-4 mt-4 border-t border-gray-800/50">
+                        <div className="pt-4 mt-4 border-t border-gray-600/30">
                           <div className="space-y-3">
                             {education.description && (
-                              <p className="text-gray-300 text-sm leading-relaxed">
+                              <p className="corporate-text text-sm leading-relaxed">
                                 {education.description}
                               </p>
                             )}
@@ -160,11 +161,11 @@ const Education = () => {
                             {education.relevantCourses && education.relevantCourses.length > 0 && (
                               <div>
                                 <h4 className="text-sm font-semibold text-white mb-2">Relevant Coursework:</h4>
-                                <div className="flex flex-wrap gap-1.5">
+                                <div className="flex flex-wrap gap-2">
                                   {education.relevantCourses.map((course, courseIndex) => (
                                     <span
                                       key={courseIndex}
-                                      className="inline-block rounded-md bg-gray-800/50 px-2 py-1 text-xs text-gray-300"
+                                      className="inline-block rounded-full bg-gray-700/50 px-3 py-1 text-xs text-gray-300 border border-gray-600/50"
                                     >
                                       {course}
                                     </span>
@@ -176,9 +177,12 @@ const Education = () => {
                             {education.achievements && education.achievements.length > 0 && (
                               <div>
                                 <h4 className="text-sm font-semibold text-white mb-2">Key Achievements:</h4>
-                                <ul className="list-disc pl-5 space-y-1 text-gray-300 text-sm">
+                                <ul className="list-none space-y-2 corporate-text text-sm">
                                   {education.achievements.map((achievement, achievementIndex) => (
-                                    <li key={achievementIndex} className="leading-relaxed">{achievement}</li>
+                                    <li key={achievementIndex} className="flex items-start gap-3">
+                                      <span className="text-blue-400 mt-1">•</span>
+                                      <span>{achievement}</span>
+                                    </li>
                                   ))}
                                 </ul>
                               </div>
@@ -189,12 +193,13 @@ const Education = () => {
                     )}
                   </AnimatePresence>
                 </div>
+                </div>
               </div>
-            </div>
-          </BlurFade>
-        ))}
+            </BlurFade>
+          ))}
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
 

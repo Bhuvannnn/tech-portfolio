@@ -22,15 +22,16 @@ const Projects = () => {
   }, [modalIndex]);
 
   return (
-    <section id="projects" className="my-24 scroll-mt-24">
-      <h2 className="mb-10 text-left text-3xl font-bold tracking-tight bg-gradient-to-r from-pink-500 via-blue-500 to-violet-500 bg-clip-text text-transparent">
-        Projects
-      </h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 px-2 sm:px-0">
+    <section id="projects" className="corporate-section">
+      <div className="max-w-7xl mx-auto">
+        <h2 className="corporate-heading">
+          Featured <span className="text-blue-400">Projects</span>
+        </h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {PROJECTS.map((project, index) => (
           <div
             key={index}
-            className="relative flex flex-col bg-neutral-900 rounded-2xl shadow-md border border-neutral-800 overflow-hidden group transition-all duration-300 hover:shadow-xl hover:border-cyan-500 cursor-pointer"
+            className="corporate-card overflow-hidden group cursor-pointer hover:scale-[1.02] hover:border-blue-400/50"
             tabIndex={0}
             onClick={() => handleOpenModal(index)}
             onKeyDown={(e) => {
@@ -41,28 +42,29 @@ const Projects = () => {
             }}
           >
             {/* Project Image */}
-            <div className="w-full aspect-[4/3] bg-neutral-800 flex items-center justify-center overflow-hidden">
+            <div className="w-full aspect-[4/3] bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center overflow-hidden relative">
               <img
                 src={project.image}
                 alt={project.title}
-                className="object-contain w-full h-full rounded-t-2xl pointer-events-none"
+                className="object-contain w-full h-full pointer-events-none transition-transform duration-300 group-hover:scale-105"
                 loading="lazy"
               />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
             </div>
             {/* Project Info */}
-            <div className="flex-1 flex flex-col p-5">
+            <div className="flex-1 flex flex-col p-6">
               <h3
-                className="text-xl font-bold mb-2 text-white flex items-center gap-2 transition-all duration-300 group-hover:text-2xl group-hover:tracking-tight"
+                className="text-xl font-semibold mb-3 text-white group-hover:text-blue-400 transition-colors duration-300"
                 tabIndex={-1}
               >
                 {project.title}
               </h3>
-              <p className="text-neutral-400 text-sm mb-3 line-clamp-3">
+              <p className="corporate-text text-sm mb-4 line-clamp-3">
                 {project.shortDescription}
               </p>
               <div className="flex flex-wrap gap-2 mb-4">
                 {project.technologies.map((tech, i) => (
-                  <span key={i} className="rounded bg-purple-500/10 px-3 py-1 text-xs font-medium text-purple-300">
+                  <span key={i} className="px-3 py-1 text-xs font-medium bg-gray-700/50 text-gray-300 rounded-full border border-gray-600/50">
                     {tech}
                   </span>
                 ))}
@@ -72,18 +74,19 @@ const Projects = () => {
                   href={project.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 px-3 py-1.5 rounded bg-neutral-800 text-purple-300 hover:bg-purple-700/20 hover:text-purple-200 transition-colors text-xs font-semibold"
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-blue-600/20 text-blue-300 hover:bg-blue-600/30 hover:text-blue-200 transition-all duration-300 text-sm font-medium border border-blue-500/30"
                   onClick={(e) => e.stopPropagation()}
                 >
-                  <FaGithub className="mr-1" /> Source Code
+                  <FaGithub className="w-4 h-4" /> View Code
                 </a>
-                <div className="ml-auto px-3 py-1.5 rounded bg-cyan-700/80 text-white text-xs font-semibold shadow opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-200">
-                  Learn More
+                <div className="ml-auto px-4 py-2 rounded-lg bg-gray-700/50 text-gray-300 text-sm font-medium opacity-0 group-hover:opacity-100 transition-all duration-300 border border-gray-600/50">
+                  View Details
                 </div>
               </div>
             </div>
           </div>
         ))}
+        </div>
       </div>
       {/* Modal for project details */}
       <AnimatePresence>

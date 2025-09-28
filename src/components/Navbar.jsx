@@ -63,13 +63,20 @@ const Navbar = () => {
                         {/* Logo Area */}
                         <div className="flex items-center">
                             <motion.div 
-                                className="flex items-center"
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                transition={{ duration: 1 }}
+                                className="flex items-center bg-black/20 backdrop-blur-sm border border-cyan-500/30 rounded-lg px-4 py-2 shadow-lg shadow-cyan-500/10 terminal-pulse"
+                                initial={{ opacity: 0, x: -20 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ duration: 0.8, ease: "easeOut" }}
                             >
-                                <FaTerminal className="text-cyan-400 mr-2" />
-                                <span className="font-mono text-cyan-400 text-lg">bhuvan@portfolio:~$</span>
+                                <FaTerminal className="text-cyan-300 mr-3 text-lg drop-shadow-sm" />
+                                <span className="font-mono text-cyan-200 text-lg tracking-wide">
+                                    <span className="text-green-400">bhuvan</span>
+                                    <span className="text-white">@</span>
+                                    <span className="text-blue-400">portfolio</span>
+                                    <span className="text-white">:</span>
+                                    <span className="text-yellow-400">~</span>
+                                    <span className="text-white cursor-flicker">$</span>
+                                </span>
                             </motion.div>
                         </div>
                         
@@ -109,10 +116,10 @@ const Navbar = () => {
                                         hidden: { opacity: 0, y: -10 },
                                         visible: { opacity: 1, y: 0 }
                                     }}
-                                    className={`px-3 py-1 rounded border ${
+                                    className={`px-4 py-2 rounded-lg border transition-all duration-300 backdrop-blur-sm ${
                                         activeSection === section 
-                                            ? 'border-cyan-500 bg-cyan-500/10 text-cyan-400' 
-                                            : 'border-gray-700 hover:border-cyan-500 hover:bg-cyan-900/20'
+                                            ? 'border-cyan-400 bg-cyan-400/15 text-cyan-200 shadow-lg shadow-cyan-400/20' 
+                                            : 'border-gray-600/50 bg-black/20 hover:border-cyan-400 hover:bg-cyan-400/10 hover:shadow-lg hover:shadow-cyan-400/10'
                                     }`}
                                 >
                                     <Link
@@ -123,7 +130,7 @@ const Navbar = () => {
                                         className="cursor-pointer flex items-center"
                                         onSetActive={() => setActiveSection(section)}
                                     >
-                                        <span className="text-cyan-400 mr-1">$</span>
+                                        <span className="text-green-400 mr-2 font-bold">$</span>
                                         <span>{section}</span>
                                     </Link>
                                 </motion.div>
@@ -137,11 +144,11 @@ const Navbar = () => {
                                     hidden: { opacity: 0, y: -10 },
                                     visible: { opacity: 1, y: 0 }
                                 }}
-                                className="px-3 py-1 rounded border border-gray-700 hover:border-cyan-500 hover:bg-cyan-900/20 cursor-pointer"
+                                className="px-4 py-2 rounded-lg border border-gray-600/50 bg-black/20 hover:border-cyan-400 hover:bg-cyan-400/10 hover:shadow-lg hover:shadow-cyan-400/10 cursor-pointer transition-all duration-300 backdrop-blur-sm"
                                 onClick={handleResumeClick}
                             >
-                                <span className="text-cyan-400 mr-1">$</span>
-                                <span>resume</span>
+                                <span className="text-green-400 mr-2 font-bold">$</span>
+                                <span className="text-cyan-100">resume</span>
                             </motion.div>
                         </motion.div>
                     </div>
@@ -152,7 +159,7 @@ const Navbar = () => {
             <AnimatePresence>
                 {mobileMenuOpen && (
                     <motion.div 
-                        className="fixed top-[60px] left-0 right-0 bg-black border-b border-cyan-900 z-40 py-4 px-6 md:hidden"
+                        className="fixed top-[60px] left-0 right-0 bg-black/95 backdrop-blur-md border-b border-cyan-400/30 shadow-2xl shadow-cyan-400/10 z-40 py-6 px-6 md:hidden"
                         initial={{ opacity: 0, y: -20 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -20 }}
@@ -163,10 +170,10 @@ const Navbar = () => {
                                 <motion.div
                                     key={index}
                                     whileTap={{ scale: 0.95 }}
-                                    className={`px-3 py-2 rounded border ${
+                                    className={`px-4 py-3 rounded-lg border transition-all duration-300 backdrop-blur-sm ${
                                         activeSection === section 
-                                            ? 'border-cyan-500 bg-cyan-500/10 text-cyan-400' 
-                                            : 'border-gray-700 hover:border-cyan-500 hover:bg-cyan-900/20'
+                                            ? 'border-cyan-400 bg-cyan-400/15 text-cyan-200 shadow-lg shadow-cyan-400/20' 
+                                            : 'border-gray-600/50 bg-black/20 hover:border-cyan-400 hover:bg-cyan-400/10 hover:shadow-lg hover:shadow-cyan-400/10'
                                     }`}
                                 >
                                     <Link
@@ -178,7 +185,7 @@ const Navbar = () => {
                                         onSetActive={() => setActiveSection(section)}
                                         onClick={closeMobileMenu}
                                     >
-                                        <span className="text-cyan-400 mr-1">$</span>
+                                        <span className="text-green-400 mr-2 font-bold">$</span>
                                         <span>{section}</span>
                                     </Link>
                                 </motion.div>
@@ -188,7 +195,7 @@ const Navbar = () => {
                             <div className="flex flex-wrap gap-2 mt-2">
                                 <motion.div
                                     whileTap={{ scale: 0.95 }}
-                                    className="px-3 py-2 rounded border border-gray-700 hover:border-cyan-500 hover:bg-cyan-900/20 cursor-pointer"
+                                    className="px-4 py-3 rounded-lg border border-gray-600/50 bg-black/20 hover:border-cyan-400 hover:bg-cyan-400/10 hover:shadow-lg hover:shadow-cyan-400/10 cursor-pointer transition-all duration-300 backdrop-blur-sm"
                                     onClick={() => {
                                         handleResumeClick();
                                         closeMobileMenu();
@@ -203,10 +210,10 @@ const Navbar = () => {
                 )}
             </AnimatePresence>
             
-            {/* Progress Bar - Terminal Style */}
-            <div className="fixed top-0 left-0 w-full h-1 bg-gray-800 z-50">
+            {/* Progress Bar - Enhanced Terminal Style */}
+            <div className="fixed top-0 left-0 w-full h-1 bg-black/50 backdrop-blur-sm z-50">
                 <div 
-                    className="h-full bg-cyan-500 transition-all duration-300 ease-out"
+                    className="h-full bg-gradient-to-r from-cyan-400 via-blue-400 to-cyan-400 transition-all duration-300 ease-out shadow-lg shadow-cyan-400/30"
                     style={{ width: scrollProgress }}
                 ></div>
             </div>

@@ -31,28 +31,32 @@ const skillIcons = {
 
 const Technologies = () => {
   return (
-    <section id="technologies" className="my-24 scroll-mt-24">
-      <h2 className="mb-8 text-3xl font-bold tracking-tight bg-gradient-to-r from-pink-500 via-blue-500 to-violet-500 bg-clip-text text-transparent">
-        Skills & Technologies
-      </h2>
-      <div className="space-y-8">
-        {SKILLS.map((cat, i) => (
-          <BlurFade key={cat.category} delay={0.05 * (i + 1)} inView>
-            <div>
-              <h4 className="font-bold text-cyan-400 mb-2">{cat.category}</h4>
-              <div className="flex flex-wrap gap-3">
-                {cat.skills.map(skill => (
-                  <span
-                    key={skill}
-                    className="flex items-center px-3 py-1 bg-gray-800 rounded-full text-sm text-gray-100 transition-transform duration-200 hover:bg-cyan-700/70 hover:scale-105 cursor-pointer"
-                  >
-                    {skillIcons[skill] || null}{skill}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </BlurFade>
-        ))}
+    <section id="technologies" className="corporate-section">
+      <div className="max-w-6xl mx-auto">
+        <h2 className="corporate-heading">
+          Skills & <span className="unified-accent">Technologies</span>
+        </h2>
+        <div className="corporate-card p-8">
+          <div className="space-y-8">
+            {SKILLS.map((cat, i) => (
+              <BlurFade key={cat.category} delay={0.05 * (i + 1)} inView>
+                <div>
+                  <h4 className="corporate-subheading unified-accent">{cat.category}</h4>
+                  <div className="flex flex-wrap gap-3">
+                    {cat.skills.map(skill => (
+                      <span
+                        key={skill}
+                        className="flex items-center px-4 py-2 bg-gray-700/50 rounded-full text-sm text-gray-200 transition-all duration-300 hover:bg-blue-500/20 hover:text-blue-300 hover:border-blue-500/30 border border-gray-600/50 cursor-pointer"
+                      >
+                        {skillIcons[skill] || null}{skill}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </BlurFade>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );

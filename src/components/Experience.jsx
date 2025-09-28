@@ -20,23 +20,24 @@ const Experience = () => {
   const handleMouseLeave = () => setHoveredIndex(null);
 
   return (
-    <div id="experience" className="my-24 scroll-mt-24">
-      <BlurFade direction="up" duration={0.7}>
-        <h2 className="mb-12 text-3xl font-bold tracking-tight bg-gradient-to-r from-pink-500 via-blue-500 to-violet-500 bg-clip-text text-transparent">
-          Work Experience
-        </h2>
-      </BlurFade>
+    <section id="experience" className="corporate-section">
+      <div className="max-w-6xl mx-auto">
+        <BlurFade direction="up" duration={0.7}>
+          <h2 className="corporate-heading">
+            Professional <span className="text-blue-400">Experience</span>
+          </h2>
+        </BlurFade>
 
-      <div className="space-y-8">
-        {EXPERIENCES.map((experience, index) => (
-          <BlurFade key={index} delay={0.15 * index} inView>
-            <div
-              className="group cursor-pointer"
-              onClick={() => handleCardClick(index)}
-              onMouseEnter={() => handleMouseEnter(index)}
-              onMouseLeave={handleMouseLeave}
-            >
-              <div className="flex items-start space-x-3 sm:space-x-4 w-full">
+        <div className="space-y-6">
+          {EXPERIENCES.map((experience, index) => (
+            <BlurFade key={index} delay={0.15 * index} inView>
+              <div
+                className="corporate-card p-6 group cursor-pointer hover:border-blue-400/50"
+                onClick={() => handleCardClick(index)}
+                onMouseEnter={() => handleMouseEnter(index)}
+                onMouseLeave={handleMouseLeave}
+              >
+                <div className="flex items-start space-x-4 w-full">
                 {/* Company Logo/Avatar */}
                 <div className="flex-shrink-0 mb-0 sm:mb-0">
                   {experience.logo ? (
@@ -98,19 +99,19 @@ const Experience = () => {
                           <ChevronRightIcon className="w-4 h-4" />
                         </motion.span>
                       </h3>
-                      <p className="text-cyan-400 font-medium text-sm mb-1">
+                      <p className="text-blue-400 font-medium text-sm mb-3">
                         {experience.company}
                       </p>
-                      <span className="text-sm text-gray-400 sm:hidden mb-2 block">
+                      <span className="text-sm text-gray-400 sm:hidden mb-4 block">
                         {experience.year}
                       </span>
                       
                       {/* Technologies */}
-                      <div className="flex-wrap gap-1.5 mb-3 justify-center sm:justify-start hidden sm:flex">
+                      <div className="flex-wrap gap-2 mb-3 justify-center sm:justify-start hidden sm:flex">
                         {experience.technologies.map((tech, techIndex) => (
                           <span
                             key={techIndex}
-                            className="inline-block rounded-md bg-gray-800/50 px-2 py-1 text-xs text-gray-300"
+                            className="inline-block rounded-full bg-gray-700/50 px-3 py-1 text-xs text-gray-300 border border-gray-600/50"
                           >
                             {tech}
                           </span>
@@ -144,15 +145,18 @@ const Experience = () => {
                         }}
                         className="overflow-hidden"
                       >
-                        <div className="pt-4 mt-4 border-t border-gray-800/50">
+                        <div className="pt-4 mt-4 border-t border-gray-600/30">
                           {Array.isArray(experience.bullets) && experience.bullets.length > 0 ? (
-                            <ul className="list-disc pl-5 space-y-1 text-gray-300 text-sm">
+                            <ul className="list-none space-y-2 corporate-text text-sm">
                               {experience.bullets.map((item, i) => (
-                                <li key={i} className="leading-relaxed">{item}</li>
+                                <li key={i} className="flex items-start gap-3">
+                                  <span className="text-blue-400 mt-1">•</span>
+                                  <span>{item}</span>
+                                </li>
                               ))}
                             </ul>
                           ) : (
-                            <p className="text-gray-300 text-sm leading-relaxed">
+                            <p className="corporate-text text-sm leading-relaxed">
                               {experience.description}
                             </p>
                           )}
@@ -161,12 +165,13 @@ const Experience = () => {
                     )}
                   </AnimatePresence>
                 </div>
+                </div>
               </div>
-            </div>
-          </BlurFade>
-        ))}
+            </BlurFade>
+          ))}
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
 

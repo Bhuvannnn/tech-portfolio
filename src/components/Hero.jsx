@@ -70,7 +70,7 @@ const Hero = () => {
     // Split hero content into lines
     const heroLines = HERO_CONTENT.split(/\n|\. /).filter(Boolean);
     return (
-        <div className="relative min-h-screen flex flex-col justify-center border-b border-neutral-900 overflow-hidden" style={{ minHeight: '100vh', minHeight: 'calc(100vh - env(safe-area-inset-bottom))' }}>
+        <div className="relative min-h-screen flex flex-col justify-center border-b border-neutral-900 overflow-hidden" style={{ minHeight: 'calc(100vh - env(safe-area-inset-bottom))' }}>
             <ParticlesBackground />
             <div className="flex flex-wrap items-center justify-center px-4 py-8 sm:py-12 lg:py-16">
                 <div className="w-full lg:w-1/2">
@@ -82,7 +82,7 @@ const Hero = () => {
                             />
                         </div>
                         <div className="relative flex flex-col items-start">
-                            <div className="relative inline-block overflow-hidden">
+                            <div className="relative inline-block">
                                 <TypeAnimation
                                     sequence={[
                                         'Software Engineer',
@@ -96,7 +96,12 @@ const Hero = () => {
                                     ]}
                                     wrapper="span"
                                     speed={50}
-                                    style={{ fontSize: '2em', display: 'inline-block' }}
+                                    style={{ 
+                                        fontSize: '2em', 
+                                        display: 'inline-block',
+                                        lineHeight: '1.2',
+                                        paddingBottom: '0.2em'
+                                    }}
                                     repeat={Infinity}
                                     className="flowing-gradient-text text-3xl tracking-tight"
                                 />
