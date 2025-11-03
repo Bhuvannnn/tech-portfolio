@@ -27,13 +27,24 @@ const Navbar = () => {
             setScrollProgress(scroll);
             
             // Determine active section based on scroll position
-            const sections = ['about', 'education', 'experience', 'projects', 'contact'];
-            for (const section of sections) {
-                const element = document.getElementById(section);
+            // Map section IDs to navbar section names
+            const sectionMap = {
+                'about': 'about',
+                'education': 'education',
+                'experience': 'experience',
+                'technologies': 'skills',  // technologies section maps to 'skills' in navbar
+                'projects': 'projects',
+                'contact': 'contact'
+            };
+            
+            // Check sections in order of appearance
+            const sectionIds = ['about', 'education', 'experience', 'technologies', 'projects', 'contact'];
+            for (const sectionId of sectionIds) {
+                const element = document.getElementById(sectionId);
                 if (element) {
                     const rect = element.getBoundingClientRect();
                     if (rect.top <= 100 && rect.bottom >= 100) {
-                        setActiveSection(section);
+                        setActiveSection(sectionMap[sectionId]);
                         break;
                     }
                 }
