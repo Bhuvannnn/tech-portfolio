@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { PROJECTS } from "../constants";
 import { motion, AnimatePresence } from "framer-motion";
-import { FaGithub } from "react-icons/fa";
+import { FaGithub, FaNpm } from "react-icons/fa";
 
 const Projects = () => {
   const [modalIndex, setModalIndex] = useState(null);
@@ -27,11 +27,11 @@ const Projects = () => {
         <h2 className="corporate-heading">
           Featured <span className="text-blue-400">Projects</span>
         </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 lg:gap-5">
         {PROJECTS.map((project, index) => (
           <div
             key={index}
-            className="corporate-card overflow-hidden group cursor-pointer hover:scale-[1.02] hover:border-blue-400/50"
+            className="corporate-card overflow-hidden group cursor-pointer hover:scale-[1.02] hover:border-blue-400/50 flex flex-col h-full"
             tabIndex={0}
             onClick={() => handleOpenModal(index)}
             onKeyDown={(e) => {
@@ -42,44 +42,58 @@ const Projects = () => {
             }}
           >
             {/* Project Image */}
-            <div className="w-full aspect-[4/3] bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center overflow-hidden relative">
+            <div className="w-full aspect-[16/9] bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center overflow-hidden relative flex-shrink-0">
               <img
                 src={project.image}
                 alt={project.title}
-                className="object-contain w-full h-full pointer-events-none transition-transform duration-300 group-hover:scale-105"
+                className={`${project.title.includes('CJSON') ? 'object-contain scale-105' : 'object-contain'} w-full h-full pointer-events-none transition-transform duration-300 group-hover:scale-105`}
                 loading="lazy"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
             </div>
             {/* Project Info */}
-            <div className="flex-1 flex flex-col p-6">
+            <div className="flex-1 flex flex-col p-3 min-h-0">
               <h3
-                className="text-xl font-semibold mb-3 text-white group-hover:text-blue-400 transition-colors duration-300"
+                className="text-base font-semibold mb-1.5 text-white group-hover:text-blue-400 transition-colors duration-300 leading-tight"
                 tabIndex={-1}
               >
                 {project.title}
               </h3>
-              <p className="corporate-text text-sm mb-4 line-clamp-3">
+              <p className="corporate-text text-xs mb-2 line-clamp-2 leading-relaxed">
                 {project.shortDescription}
               </p>
-              <div className="flex flex-wrap gap-2 mb-4">
+              <div className="flex flex-wrap gap-1.5 mb-2">
                 {project.technologies.map((tech, i) => (
-                  <span key={i} className="px-3 py-1 text-xs font-medium bg-gray-700/50 text-gray-300 rounded-full border border-gray-600/50">
+                  <span key={i} className="px-2 py-0.5 text-xs font-medium bg-gray-700/50 text-gray-300 rounded-full border border-gray-600/50">
                     {tech}
                   </span>
                 ))}
               </div>
-              <div className="flex items-center gap-3 mt-auto">
-                <a
-                  href={project.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-blue-600/20 text-blue-300 hover:bg-blue-600/30 hover:text-blue-200 transition-all duration-300 text-sm font-medium border border-blue-500/30"
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  <FaGithub className="w-4 h-4" /> View Code
-                </a>
-                <div className="ml-auto px-4 py-2 rounded-lg bg-gray-700/50 text-gray-300 text-sm font-medium opacity-0 group-hover:opacity-100 transition-all duration-300 border border-gray-600/50">
+              <div className="flex items-center justify-between gap-2 mt-auto">
+                <div className="flex items-center gap-1.5 flex-shrink-0">
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-blue-600/20 text-blue-300 hover:bg-blue-600/30 hover:text-blue-200 transition-all duration-300 text-xs font-medium border border-blue-500/30"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    <FaGithub className="w-3.5 h-3.5" /> View Code
+                  </a>
+                  {project.title.includes('CJSON') && (
+                    <a
+                      href="https://www.npmjs.com/package/@bhuvanshah/cjson"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-red-600/20 text-red-300 hover:bg-red-600/30 hover:text-red-200 transition-all duration-300 text-xs font-medium border border-red-500/30"
+                      onClick={(e) => e.stopPropagation()}
+                      title="View on npm"
+                    >
+                      <FaNpm className="w-4 h-4" />
+                    </a>
+                  )}
+                </div>
+                <div className="inline-flex items-center px-2.5 py-1 rounded-lg bg-gray-700/50 text-gray-300 text-xs font-medium opacity-0 group-hover:opacity-100 transition-all duration-300 border border-gray-600/50 flex-shrink-0 whitespace-nowrap">
                   View Details
                 </div>
               </div>

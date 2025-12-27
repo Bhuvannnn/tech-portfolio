@@ -7,6 +7,7 @@ import project6 from "../assets/projects/project-6.png";
 import project7 from "../assets/projects/project-7.png";
 import project8 from "../assets/projects/project-8.png";
 import project9 from "../assets/projects/project-9.png";
+import project10 from "../assets/projects/project-10.png";
 
 import uscLogo from "../assets/companies/usc.png";
 import promptSoftechLogo from "../assets/companies/prompt-softech.png";
@@ -109,6 +110,25 @@ export const EXPERIENCES = [
 ];
 
 export const PROJECTS = [
+  {
+    title: "Compact JSON (CJSON): Token-Efficient Serialization Format",
+    image: project10,
+    shortDescription: "A token-efficient, human-readable serialization format optimized for LLM interactions with 40-70% token reduction.",
+    description: `Compact JSON (CJSON) is a production-ready token-efficient serialization format inspired by TOON and optimized for LLM interactions. The library provides encode/decode/parsing APIs with rich error reporting.
+
+Key Technical Achievements:
+- Achieved 40-70% token reduction compared to standard JSON, significantly improving LLM interaction efficiency
+- Designed familiar key/value syntax with optional compact array headers for human readability
+- Implemented inline, multi-line, and compact array formats for flexible data representation
+- Built-in comment support (# comment) for better documentation and configuration files
+- Zero runtime dependencies, written entirely in TypeScript for maximum compatibility
+- Comprehensive encode/decode/parsing APIs with rich error reporting and validation support
+- Published as npm package @bhuvanshah/cjson with full CI/CD pipeline via GitHub Actions
+- Includes AST-based parsing architecture for flexible document processing and transformation
+- Full test coverage with Vitest and comprehensive benchmarks for performance optimization`,
+    technologies: ["TypeScript", "JSON", "Parsing", "Encoding", "AST", "NPM Package", "CI/CD"],
+    github: "https://github.com/Bhuvannnn/CJSON",
+  },
   {
     title: "NoteScape: Semantic Knowledge Graph Visualization System",
     image: project9,
