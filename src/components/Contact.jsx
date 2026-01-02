@@ -3,7 +3,7 @@ import { CONTACT } from "../constants";
 import { motion } from "framer-motion";
 import { useForm, ValidationError } from '@formspree/react';
 import { BlurFade } from "./BlurFade";
-import { FaMapMarkerAlt, FaPhone, FaEnvelope } from "react-icons/fa";
+import { FaMapMarkerAlt, FaEnvelope } from "react-icons/fa";
 
 const Contact = () => {
   const [state, handleSubmit] = useForm("manwwenq"); // Replace with your Formspree form ID
@@ -21,12 +21,12 @@ const Contact = () => {
         
           <BlurFade direction="up" duration={0.7} delay={0.2}>
             <div className="text-center py-20">
-              <div className="inline-flex items-center justify-center w-16 h-16 bg-green-500/20 rounded-full mb-6">
-                <svg className="w-8 h-8 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="inline-flex items-center justify-center w-16 h-16 bg-[#A8B8D1]/30 rounded-full mb-6">
+                <svg className="w-8 h-8 text-[#A8B8D1]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
               </div>
-              <h3 className="text-2xl font-semibold text-white mb-4">Message Sent Successfully!</h3>
+              <h3 className="text-2xl font-semibold text-slate-800 mb-4">Message Sent Successfully!</h3>
               <p className="corporate-text text-lg">Thanks for reaching out! I'll get back to you soon.</p>
             </div>
           </BlurFade>
@@ -39,65 +39,40 @@ const Contact = () => {
     <section id='contact' className="corporate-section">
       <div className="max-w-6xl mx-auto">
         <BlurFade direction="up" duration={0.7}>
-          <h2 className="corporate-heading">
+          <h2 className="corporate-heading text-center">
             Get in <span className="unified-accent">Touch</span>
           </h2>
         </BlurFade>
-      
-        {/* Contact details */}
-        <div className="grid md:grid-cols-3 gap-8 mb-16">
-          <BlurFade direction="up" duration={0.7} delay={0.1}>
-            <div className="corporate-card p-6 text-center group cursor-pointer hover:border-blue-400/50">
-              <div className="inline-flex items-center justify-center w-16 h-16 unified-accent-bg rounded-full mb-4 group-hover:bg-blue-500/30 transition-all duration-300 group-hover:scale-110">
-                <FaMapMarkerAlt className="w-6 h-6 unified-accent group-hover:text-blue-300 transition-colors duration-300" />
-              </div>
-              <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-blue-300 transition-colors duration-300">Location</h3>
-              <p className="corporate-text group-hover:text-gray-200 transition-colors duration-300">{CONTACT.address}</p>
-            </div>
-          </BlurFade>
-          
-          <BlurFade direction="up" duration={0.7} delay={0.2}>
-            <div className="corporate-card p-6 text-center group cursor-pointer hover:border-blue-400/50">
-              <div className="inline-flex items-center justify-center w-16 h-16 unified-accent-bg rounded-full mb-4 group-hover:bg-blue-500/30 transition-all duration-300 group-hover:scale-110">
-                <FaPhone className="w-6 h-6 unified-accent group-hover:text-blue-300 transition-colors duration-300" />
-              </div>
-              <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-blue-300 transition-colors duration-300">Phone</h3>
-              <p className="corporate-text group-hover:text-gray-200 transition-colors duration-300">{CONTACT.phoneNo}</p>
-            </div>
-          </BlurFade>
-          
-          <BlurFade direction="up" duration={0.7} delay={0.3}>
-            <div className="corporate-card p-6 text-center group cursor-pointer hover:border-blue-400/50">
-              <div className="inline-flex items-center justify-center w-16 h-16 unified-accent-bg rounded-full mb-4 group-hover:bg-blue-500/30 transition-all duration-300 group-hover:scale-110">
-                <FaEnvelope className="w-6 h-6 unified-accent group-hover:text-blue-300 transition-colors duration-300" />
-              </div>
-              <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-blue-300 transition-colors duration-300">Email</h3>
-              <a 
-                href={`mailto:${CONTACT.email}`} 
-                className="unified-accent hover:text-blue-300 transition-colors duration-300 block group-hover:text-blue-200"
-              >
-                {CONTACT.email}
-              </a>
-            </div>
-          </BlurFade>
-        </div>
 
         {/* Form section */}
-        <BlurFade direction="up" duration={0.7} delay={0.4}>
+        <BlurFade direction="up" duration={0.7} delay={0.2}>
           <div className="max-w-2xl mx-auto">
-            <div className="corporate-card p-8 hover:shadow-blue-500/10 transition-all duration-500">
+            <div className="corporate-card p-8 hover:shadow-[#7C9A9A]/20 transition-all duration-500">
               <div className="text-center mb-8">
                 <div className="inline-flex items-center justify-center w-12 h-12 unified-accent-bg rounded-full mb-4">
                   <svg className="w-6 h-6 unified-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
                   </svg>
                 </div>
-                <h3 className="text-xl font-semibold text-white mb-2">Send me a message</h3>
-                <p className="corporate-text text-sm">I'd love to hear from you. Let's start a conversation!</p>
+                <h3 className="text-xl font-semibold text-slate-800 mb-2">Send me a message</h3>
+                <p className="corporate-text text-sm mb-4">I'd love to hear from you. Let's start a conversation!</p>
+                <div className="flex flex-col items-center gap-3">
+                  <a 
+                    href={`mailto:${CONTACT.email}`} 
+                    className="inline-flex items-center gap-2 text-[#7C9A9A] hover:text-[#7A5F98] transition-colors duration-300"
+                  >
+                    <FaEnvelope className="w-5 h-5" />
+                    <span>{CONTACT.email}</span>
+                  </a>
+                  <div className="inline-flex items-center gap-2 text-slate-600 text-sm">
+                    <FaMapMarkerAlt className="w-4 h-4" />
+                    <span>California, USA</span>
+                  </div>
+                </div>
               </div>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="group">
-                <label htmlFor="name" className="block text-sm font-medium corporate-text mb-2 group-focus-within:text-blue-400 transition-colors duration-300">
+                <label htmlFor="name" className="block text-sm font-medium corporate-text mb-2 group-focus-within:text-[#7C9A9A] transition-colors duration-300">
                   Name
                 </label>
                 <input
@@ -105,7 +80,7 @@ const Contact = () => {
                   type="text"
                   name="name"
                   required
-                  className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent focus:bg-gray-800/70 transition-all duration-300 hover:border-gray-600"
+                  className="w-full px-4 py-3 bg-white/60 border border-[#7C9A9A]/40 rounded-lg text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#7C9A9A] focus:border-transparent focus:bg-white/80 transition-all duration-300 hover:border-[#7C9A9A]/60"
                   placeholder="Your name"
                 />
                 <ValidationError 
@@ -116,7 +91,7 @@ const Contact = () => {
               </div>
               
               <div className="group">
-                <label htmlFor="email" className="block text-sm font-medium corporate-text mb-2 group-focus-within:text-blue-400 transition-colors duration-300">
+                <label htmlFor="email" className="block text-sm font-medium corporate-text mb-2 group-focus-within:text-[#7C9A9A] transition-colors duration-300">
                   Email Address
                 </label>
                 <input
@@ -124,7 +99,7 @@ const Contact = () => {
                   type="email"
                   name="email"
                   required
-                  className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent focus:bg-gray-800/70 transition-all duration-300 hover:border-gray-600"
+                  className="w-full px-4 py-3 bg-white/60 border border-[#7C9A9A]/40 rounded-lg text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#7C9A9A] focus:border-transparent focus:bg-white/80 transition-all duration-300 hover:border-[#7C9A9A]/60"
                   placeholder="your.email@example.com"
                 />
                 <ValidationError 
@@ -135,7 +110,7 @@ const Contact = () => {
               </div>
               
               <div className="group">
-                <label htmlFor="message" className="block text-sm font-medium corporate-text mb-2 group-focus-within:text-blue-400 transition-colors duration-300">
+                <label htmlFor="message" className="block text-sm font-medium corporate-text mb-2 group-focus-within:text-[#7C9A9A] transition-colors duration-300">
                   Message
                 </label>
                 <textarea
@@ -143,7 +118,7 @@ const Contact = () => {
                   name="message"
                   required
                   rows={5}
-                  className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent focus:bg-gray-800/70 transition-all duration-300 resize-none hover:border-gray-600"
+                  className="w-full px-4 py-3 bg-white/60 border border-[#7C9A9A]/40 rounded-lg text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#7C9A9A] focus:border-transparent focus:bg-white/80 transition-all duration-300 resize-none hover:border-[#7C9A9A]/60"
                   placeholder="Tell me about your project or just say hello!"
                 />
                 <ValidationError 
@@ -158,7 +133,7 @@ const Contact = () => {
                 disabled={state.submitting}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="w-full unified-gradient text-white font-semibold py-3 px-6 rounded-lg hover:from-blue-600 hover:to-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-blue-500/25 relative overflow-hidden"
+                className="w-full unified-gradient text-slate-800 font-semibold py-3 px-6 rounded-lg hover:from-[#A8B8D1] hover:to-[#FFC9A9] focus:outline-none focus:ring-2 focus:ring-[#7C9A9A] focus:ring-opacity-50 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-[#7C9A9A]/30 relative overflow-hidden"
               >
                 <span className="relative z-10 flex items-center justify-center">
                   {state.submitting ? (

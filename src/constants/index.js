@@ -364,7 +364,6 @@ export const EDUCATION = [
 
 export const CONTACT = {
   address: "Los Angeles, California, United States",
-  phoneNo: "+1 (213) 331 1360 ",
   email: "bhuvanshah288@gmail.com",
 };
 
@@ -376,7 +375,7 @@ export const SKILLS = [
   },
   {
     category: "AI/ML",
-    skills: ["NLP", "Generative AI", "LLMs", "Neural Networks", "Data Science"]
+    skills: ["PyTorch", "TensorFlow", "NLP", "Generative AI", "LLMs", "Neural Networks", "Data Science"]
   },
   {
     category: "Frontend",

@@ -11,6 +11,9 @@ export default {
           500: '#6366F1',
         },
       },
+      fontFamily: {
+        'mono': ['IBM Plex Mono', 'monospace'],
+      },
     },
   },
   plugins: [],

@@ -67,26 +67,20 @@ const Navbar = () => {
     return (
         <>
             <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-                isScrolled ? 'bg-black border-b border-cyan-900' : 'bg-transparent'
+                isScrolled ? 'bg-white/60 backdrop-blur-md border-b border-[#7C9A9A]/30' : 'bg-transparent'
             } py-3 px-4`}>
                 <div className="container mx-auto">
                     <div className="flex items-center justify-between">
                         {/* Logo Area */}
                         <div className="flex items-center">
                             <motion.div 
-                                className="flex items-center bg-black/20 backdrop-blur-sm border border-cyan-500/30 rounded-lg px-4 py-2 shadow-lg shadow-cyan-500/10 terminal-pulse"
+                                className="flex items-center"
                                 initial={{ opacity: 0, x: -20 }}
                                 animate={{ opacity: 1, x: 0 }}
                                 transition={{ duration: 0.8, ease: "easeOut" }}
                             >
-                                <FaTerminal className="text-cyan-300 mr-3 text-lg drop-shadow-sm" />
-                                <span className="font-mono text-cyan-200 text-lg tracking-wide">
-                                    <span className="text-green-400">bhuvan</span>
-                                    <span className="text-white">@</span>
-                                    <span className="text-blue-400">portfolio</span>
-                                    <span className="text-white">:</span>
-                                    <span className="text-yellow-400">~</span>
-                                    <span className="text-white cursor-flicker">$</span>
+                                <span className="font-mono text-slate-800 text-xl font-medium tracking-tight">
+                                    bhuvan
                                 </span>
                             </motion.div>
                         </div>
@@ -94,7 +88,7 @@ const Navbar = () => {
                         {/* Mobile Menu Button */}
                         <div className="md:hidden">
                             <button 
-                                className="text-cyan-400 p-2 focus:outline-none" 
+                                className="text-slate-800 p-2 focus:outline-none hover:text-[#7C9A9A] transition-colors" 
                                 onClick={toggleMobileMenu}
                             >
                                 {mobileMenuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
@@ -129,8 +123,8 @@ const Navbar = () => {
                                     }}
                                     className={`px-4 py-2 rounded-lg border transition-all duration-300 backdrop-blur-sm ${
                                         activeSection === section 
-                                            ? 'border-cyan-400 bg-cyan-400/15 text-cyan-200 shadow-lg shadow-cyan-400/20' 
-                                            : 'border-gray-600/50 bg-black/20 hover:border-cyan-400 hover:bg-cyan-400/10 hover:shadow-lg hover:shadow-cyan-400/10'
+                                            ? 'border-[#7C9A9A] bg-[#7C9A9A]/30 text-slate-800 shadow-lg shadow-[#7C9A9A]/30' 
+                                            : 'border-[#7C9A9A]/40 bg-white/40 hover:border-[#7C9A9A] hover:bg-[#7C9A9A]/20 hover:shadow-lg hover:shadow-[#7C9A9A]/20 text-slate-700'
                                     }`}
                                 >
                                     <Link
@@ -141,7 +135,7 @@ const Navbar = () => {
                                         className="cursor-pointer flex items-center"
                                         onSetActive={() => setActiveSection(section)}
                                     >
-                                        <span className="text-green-400 mr-2 font-bold">$</span>
+                                        <span className="text-[#7C9A9A] mr-2 font-bold">$</span>
                                         <span>{section}</span>
                                     </Link>
                                 </motion.div>
@@ -155,11 +149,11 @@ const Navbar = () => {
                                     hidden: { opacity: 0, y: -10 },
                                     visible: { opacity: 1, y: 0 }
                                 }}
-                                className="px-4 py-2 rounded-lg border border-gray-600/50 bg-black/20 hover:border-cyan-400 hover:bg-cyan-400/10 hover:shadow-lg hover:shadow-cyan-400/10 cursor-pointer transition-all duration-300 backdrop-blur-sm"
+                                className="px-4 py-2 rounded-lg border border-[#7C9A9A]/40 bg-white/40 hover:border-[#7C9A9A] hover:bg-[#7C9A9A]/20 hover:shadow-lg hover:shadow-[#7C9A9A]/20 cursor-pointer transition-all duration-300 backdrop-blur-sm text-slate-700"
                                 onClick={handleResumeClick}
                             >
-                                <span className="text-green-400 mr-2 font-bold">$</span>
-                                <span className="text-cyan-100">resume</span>
+                                <span className="text-[#7C9A9A] mr-2 font-bold">$</span>
+                                <span>resume</span>
                             </motion.div>
                         </motion.div>
                     </div>
@@ -170,7 +164,7 @@ const Navbar = () => {
             <AnimatePresence>
                 {mobileMenuOpen && (
                     <motion.div 
-                        className="fixed top-[60px] left-0 right-0 bg-black/95 backdrop-blur-md border-b border-cyan-400/30 shadow-2xl shadow-cyan-400/10 z-40 py-6 px-6 md:hidden"
+                        className="fixed top-[60px] left-0 right-0 bg-white/60 backdrop-blur-md border-b border-[#7C9A9A]/30 shadow-2xl shadow-[#7C9A9A]/20 z-40 py-6 px-6 md:hidden"
                         initial={{ opacity: 0, y: -20 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -20 }}
@@ -183,8 +177,8 @@ const Navbar = () => {
                                     whileTap={{ scale: 0.95 }}
                                     className={`px-4 py-3 rounded-lg border transition-all duration-300 backdrop-blur-sm ${
                                         activeSection === section 
-                                            ? 'border-cyan-400 bg-cyan-400/15 text-cyan-200 shadow-lg shadow-cyan-400/20' 
-                                            : 'border-gray-600/50 bg-black/20 hover:border-cyan-400 hover:bg-cyan-400/10 hover:shadow-lg hover:shadow-cyan-400/10'
+                                            ? 'border-[#7C9A9A] bg-[#7C9A9A]/30 text-slate-800 shadow-lg shadow-[#7C9A9A]/30' 
+                                            : 'border-[#7C9A9A]/40 bg-white/40 hover:border-[#7C9A9A] hover:bg-[#7C9A9A]/20 hover:shadow-lg hover:shadow-[#7C9A9A]/20 text-slate-700'
                                     }`}
                                 >
                                     <Link
@@ -196,7 +190,7 @@ const Navbar = () => {
                                         onSetActive={() => setActiveSection(section)}
                                         onClick={closeMobileMenu}
                                     >
-                                        <span className="text-green-400 mr-2 font-bold">$</span>
+                                        <span className="text-[#7C9A9A] mr-2 font-bold">$</span>
                                         <span>{section}</span>
                                     </Link>
                                 </motion.div>
@@ -206,13 +200,13 @@ const Navbar = () => {
                             <div className="flex flex-wrap gap-2 mt-2">
                                 <motion.div
                                     whileTap={{ scale: 0.95 }}
-                                    className="px-4 py-3 rounded-lg border border-gray-600/50 bg-black/20 hover:border-cyan-400 hover:bg-cyan-400/10 hover:shadow-lg hover:shadow-cyan-400/10 cursor-pointer transition-all duration-300 backdrop-blur-sm"
+                                    className="px-4 py-3 rounded-lg border border-[#7C9A9A]/40 bg-white/40 hover:border-[#7C9A9A] hover:bg-[#7C9A9A]/20 hover:shadow-lg hover:shadow-[#7C9A9A]/20 cursor-pointer transition-all duration-300 backdrop-blur-sm text-slate-700"
                                     onClick={() => {
                                         handleResumeClick();
                                         closeMobileMenu();
                                     }}
                                 >
-                                    <span className="text-cyan-400 mr-1">$</span>
+                                    <span className="text-[#7C9A9A] mr-1">$</span>
                                     <span>resume</span>
                                 </motion.div>
                             </div>
@@ -221,10 +215,10 @@ const Navbar = () => {
                 )}
             </AnimatePresence>
             
-            {/* Progress Bar - Enhanced Terminal Style */}
-            <div className="fixed top-0 left-0 w-full h-1 bg-black/50 backdrop-blur-sm z-50">
+            {/* Progress Bar - Pastel Style */}
+            <div className="fixed top-0 left-0 w-full h-1 bg-white/50 backdrop-blur-sm z-50">
                 <div 
-                    className="h-full bg-gradient-to-r from-cyan-400 via-blue-400 to-cyan-400 transition-all duration-300 ease-out shadow-lg shadow-cyan-400/30"
+                    className="h-full bg-gradient-to-r from-[#7C9A9A] via-[#D4A5A5] to-[#A8B8D1] transition-all duration-300 ease-out shadow-lg shadow-[#7C9A9A]/30"
                     style={{ width: scrollProgress }}
                 ></div>
             </div>

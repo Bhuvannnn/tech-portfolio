@@ -70,7 +70,7 @@ const Hero = () => {
     // Split hero content into lines
     const heroLines = HERO_CONTENT.split(/\n|\. /).filter(Boolean);
     return (
-        <div className="relative min-h-screen flex flex-col justify-center border-b border-neutral-900 overflow-hidden" style={{ minHeight: 'calc(100vh - env(safe-area-inset-bottom))' }}>
+        <div className="relative min-h-screen flex flex-col justify-center border-b border-[#7C9A9A]/20 overflow-hidden" style={{ minHeight: 'calc(100vh - env(safe-area-inset-bottom))' }}>
             <ParticlesBackground />
             <div className="flex flex-wrap items-center justify-center px-4 py-8 sm:py-12 lg:py-16">
                 <div className="w-full lg:w-1/2">
