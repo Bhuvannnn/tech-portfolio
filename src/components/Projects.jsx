@@ -25,13 +25,13 @@ const Projects = () => {
     <section id="projects" className="corporate-section">
       <div className="max-w-7xl mx-auto">
         <h2 className="corporate-heading">
-          Featured <span className="text-blue-400">Projects</span>
+          Featured <span className="unified-accent">Projects</span>
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 lg:gap-5">
         {PROJECTS.map((project, index) => (
           <div
             key={index}
-            className="corporate-card overflow-hidden group cursor-pointer hover:scale-[1.02] hover:border-blue-400/50 flex flex-col h-full"
+            className="corporate-card overflow-hidden group cursor-pointer hover:scale-[1.02] hover:border-[#7C9A9A]/50 flex flex-col h-full"
             tabIndex={0}
             onClick={() => handleOpenModal(index)}
             onKeyDown={(e) => {
@@ -42,19 +42,19 @@ const Projects = () => {
             }}
           >
             {/* Project Image */}
-            <div className="w-full aspect-[16/9] bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center overflow-hidden relative flex-shrink-0">
+            <div className="w-full aspect-[16/9] bg-gradient-to-br from-[#E8E0F0] to-[#F0E8E0] flex items-center justify-center overflow-hidden relative flex-shrink-0">
               <img
                 src={project.image}
                 alt={project.title}
                 className={`${project.title.includes('CJSON') ? 'object-contain scale-105' : 'object-contain'} w-full h-full pointer-events-none transition-transform duration-300 group-hover:scale-105`}
                 loading="lazy"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-white/20 to-transparent"></div>
             </div>
             {/* Project Info */}
             <div className="flex-1 flex flex-col p-3 min-h-0">
               <h3
-                className="text-base font-semibold mb-1.5 text-white group-hover:text-blue-400 transition-colors duration-300 leading-tight"
+                className="text-base font-semibold mb-1.5 text-slate-800 group-hover:text-[#7C9A9A] transition-colors duration-300 leading-tight"
                 tabIndex={-1}
               >
                 {project.title}
@@ -64,28 +64,28 @@ const Projects = () => {
               </p>
               <div className="flex flex-wrap gap-1.5 mb-2">
                 {project.technologies.map((tech, i) => (
-                  <span key={i} className="px-2 py-0.5 text-xs font-medium bg-gray-700/50 text-gray-300 rounded-full border border-gray-600/50">
+                  <span key={i} className="px-2 py-0.5 text-xs font-medium bg-white/60 text-slate-700 rounded-full border border-[#7C9A9A]/40">
                     {tech}
                   </span>
                 ))}
               </div>
               <div className="flex items-center justify-between gap-2 mt-auto">
                 <div className="flex items-center gap-1.5 flex-shrink-0">
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-blue-600/20 text-blue-300 hover:bg-blue-600/30 hover:text-blue-200 transition-all duration-300 text-xs font-medium border border-blue-500/30"
-                    onClick={(e) => e.stopPropagation()}
-                  >
+                <a
+                  href={project.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#7C9A9A]/30 text-[#5A7A7A] hover:bg-[#7C9A9A]/40 hover:text-[#4A6A6A] transition-all duration-300 text-xs font-medium border border-[#7C9A9A]/50"
+                  onClick={(e) => e.stopPropagation()}
+                >
                     <FaGithub className="w-3.5 h-3.5" /> View Code
-                  </a>
+                </a>
                   {project.title.includes('CJSON') && (
                     <a
                       href="https://www.npmjs.com/package/@bhuvanshah/cjson"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-red-600/20 text-red-300 hover:bg-red-600/30 hover:text-red-200 transition-all duration-300 text-xs font-medium border border-red-500/30"
+                      className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#D4A5A5]/30 text-[#A57575] hover:bg-[#D4A5A5]/40 hover:text-[#855555] transition-all duration-300 text-xs font-medium border border-[#D4A5A5]/50"
                       onClick={(e) => e.stopPropagation()}
                       title="View on npm"
                     >
@@ -93,7 +93,7 @@ const Projects = () => {
                     </a>
                   )}
                 </div>
-                <div className="inline-flex items-center px-2.5 py-1 rounded-lg bg-gray-700/50 text-gray-300 text-xs font-medium opacity-0 group-hover:opacity-100 transition-all duration-300 border border-gray-600/50 flex-shrink-0 whitespace-nowrap">
+                <div className="inline-flex items-center px-2.5 py-1 rounded-lg bg-white/60 text-slate-700 text-xs font-medium opacity-0 group-hover:opacity-100 transition-all duration-300 border border-[#7C9A9A]/40 flex-shrink-0 whitespace-nowrap">
                   View Details
                 </div>
               </div>
@@ -106,14 +106,14 @@ const Projects = () => {
       <AnimatePresence>
         {modalIndex !== null && (
           <motion.div
-            className="fixed inset-0 z-50 flex items-center justify-center backdrop-blur-sm bg-black/70 p-2 sm:p-6"
+            className="fixed inset-0 z-50 flex items-center justify-center backdrop-blur-sm bg-white/80 p-2 sm:p-6"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={handleCloseModal}
           >
             <motion.div
-              className="bg-neutral-900 rounded-2xl shadow-lg border border-neutral-700 w-full max-w-4xl mx-2 sm:mx-4 p-4 sm:p-6 lg:p-8 relative max-h-[90vh] overflow-y-auto"
+              className="bg-white/90 backdrop-blur-md rounded-2xl shadow-lg border border-[#7C9A9A]/40 w-full max-w-4xl mx-2 sm:mx-4 p-4 sm:p-6 lg:p-8 relative max-h-[90vh] overflow-y-auto"
               initial={{ y: "100%", opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: "100%", opacity: 0 }}
@@ -124,7 +124,7 @@ const Projects = () => {
               onClick={e => e.stopPropagation()}
             >
               <button
-                className="absolute top-3 right-3 w-9 h-9 flex items-center justify-center rounded-full bg-white/90 text-gray-900 hover:bg-cyan-500 hover:text-white text-2xl font-extrabold shadow-lg border border-gray-300 transition-all duration-200 z-10"
+                className="absolute top-3 right-3 w-9 h-9 flex items-center justify-center rounded-full bg-white/90 text-slate-700 hover:bg-[#7C9A9A] hover:text-white text-2xl font-extrabold shadow-lg border border-[#7C9A9A]/40 transition-all duration-200 z-10"
                 onClick={handleCloseModal}
                 aria-label="Close"
               >
@@ -132,12 +132,12 @@ const Projects = () => {
               </button>
               {/* Project Header */}
               <div className="text-center mb-6">
-                <h3 className="text-2xl lg:text-4xl font-bold mb-4 text-white">
+                <h3 className="text-2xl lg:text-4xl font-bold mb-4 text-slate-800">
                   {PROJECTS[modalIndex].title}
                 </h3>
                 <div className="flex flex-wrap justify-center gap-2 mb-6">
                   {PROJECTS[modalIndex].technologies.map((tech, i) => (
-                    <span key={i} className="rounded-full bg-gradient-to-r from-purple-500/20 to-blue-500/20 px-4 py-2 text-sm font-medium text-purple-300 border border-purple-500/30">
+                    <span key={i} className="rounded-full bg-gradient-to-r from-[#7C9A9A]/30 to-[#D4A5A5]/30 px-4 py-2 text-sm font-medium text-slate-700 border border-[#7C9A9A]/40">
                       {tech}
                     </span>
                   ))}
@@ -149,12 +149,12 @@ const Projects = () => {
                 <img
                   src={PROJECTS[modalIndex].image}
                   alt={PROJECTS[modalIndex].title}
-                  className="object-contain w-full h-72 lg:h-96 rounded-xl bg-neutral-800 mx-auto shadow-2xl"
+                  className="object-contain w-full h-72 lg:h-96 rounded-xl bg-[#F0E8E0] mx-auto shadow-2xl"
                 />
               </div>
 
               {/* Project Description */}
-              <div className="text-neutral-300 text-base lg:text-lg mb-8 leading-relaxed max-w-4xl mx-auto">
+              <div className="text-slate-700 text-base lg:text-lg mb-8 leading-relaxed max-w-4xl mx-auto">
                 {(() => {
                   const description = PROJECTS[modalIndex].description;
                   
@@ -169,7 +169,7 @@ const Projects = () => {
                     // Handle section headers
                     if (line.includes('Key Technical Achievements:')) {
                       elements.push(
-                        <h4 key={`header-${i}`} className="text-xl font-semibold text-white mb-4 mt-6">
+                        <h4 key={`header-${i}`} className="text-xl font-semibold text-slate-800 mb-4 mt-6">
                           {line}
                         </h4>
                       );
@@ -179,9 +179,9 @@ const Projects = () => {
                       elements.push(
                         <div key={`bullet-${i}`} className="mb-4 flex items-start">
                           <div className="flex-shrink-0 w-6 h-6 mr-3 mt-1">
-                            <span className="text-white text-lg">•</span>
+                            <span className="text-[#7C9A9A] text-lg">•</span>
                           </div>
-                          <span className="text-white leading-relaxed">{line.substring(1).trim()}</span>
+                          <span className="text-slate-700 leading-relaxed">{line.substring(1).trim()}</span>
                         </div>
                       );
                     }
@@ -211,7 +211,7 @@ const Projects = () => {
                   href={PROJECTS[modalIndex].github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-purple-600 to-purple-700 text-white hover:from-purple-700 hover:to-purple-800 transition-all duration-300 text-sm font-semibold shadow-lg hover:shadow-purple-500/25 hover:scale-105"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-[#7C9A9A] to-[#A8B8D1] text-slate-800 hover:from-[#6B8A8A] hover:to-[#98A8C1] transition-all duration-300 text-sm font-semibold shadow-lg hover:shadow-[#7C9A9A]/40 hover:scale-105"
                 >
                   <FaGithub className="w-5 h-5" /> View Source Code
                 </a>
@@ -222,7 +222,7 @@ const Projects = () => {
                     href={PROJECTS[modalIndex].github.replace('/github.com/', '/').replace('/tree/main', '').replace('/blob/main', '')}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-cyan-600 to-blue-600 text-white hover:from-cyan-700 hover:to-blue-700 transition-all duration-300 text-sm font-semibold shadow-lg hover:shadow-cyan-500/25 hover:scale-105"
+                    className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-[#A8B8D1] to-[#98A8C1] text-slate-800 hover:from-[#98A8C1] hover:to-[#8898B1] transition-all duration-300 text-sm font-semibold shadow-lg hover:shadow-[#A8B8D1]/40 hover:scale-105"
                   >
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />

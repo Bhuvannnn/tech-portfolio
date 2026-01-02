@@ -1,67 +1,134 @@
-import aboutImg from '../assets/aboutbhuvan.jpeg';
+import { useEffect, useRef } from 'react';
 import { ABOUT_TEXT } from '../constants';
-import { motion } from 'framer-motion';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const About = () => {
+    const sectionRef = useRef(null);
+    const textRef = useRef(null);
+    const badgesRef = useRef(null);
+    const containerRef = useRef(null);
+
+    useEffect(() => {
+        const section = sectionRef.current;
+        const text = textRef.current;
+        const badges = badgesRef.current;
+        const container = containerRef.current;
+
+        if (!section || !text || !badges || !container) return;
+
+        // Split text into sentences
+        const sentences = ABOUT_TEXT.split('. ').filter(s => s.trim());
+        
+        // Animate text reveal with stagger
+        gsap.fromTo(
+            text.querySelectorAll('.sentence'),
+            {
+                opacity: 0,
+                y: 50,
+                rotationX: -90
+            },
+            {
+                opacity: 1,
+                y: 0,
+                rotationX: 0,
+                duration: 0.8,
+                stagger: 0.15,
+                ease: 'power3.out',
+                scrollTrigger: {
+                    trigger: section,
+                    start: 'top 70%',
+                    toggleActions: 'play none none none'
+                }
+            }
+        );
+
+        // Parallax effect for badges
+        gsap.fromTo(
+            badges.querySelectorAll('.badge'),
+            {
+                opacity: 0,
+                scale: 0.8,
+                y: 30
+            },
+            {
+                opacity: 1,
+                scale: 1,
+                y: 0,
+                duration: 0.6,
+                stagger: 0.1,
+                ease: 'back.out(1.7)',
+                scrollTrigger: {
+                    trigger: section,
+                    start: 'top 60%',
+                    toggleActions: 'play none none none'
+                }
+            }
+        );
+
+        // Subtle parallax on scroll
+        gsap.to(container, {
+            y: -50,
+            ease: 'none',
+            scrollTrigger: {
+                trigger: section,
+                start: 'top bottom',
+                end: 'bottom top',
+                scrub: true
+            }
+        });
+
+        return () => {
+            ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+        };
+    }, []);
+
+    const sentences = ABOUT_TEXT.split('. ').filter(s => s.trim());
+
     return (
-        <section id='about' className="corporate-section">
-            <div className="max-w-6xl mx-auto">
-                <motion.h2
-                    whileInView={{ opacity: 1, y: 0 }}
-                    initial={{ opacity: 0, y: -20 }}
-                    transition={{ duration: 0.6 }}
-                    className="corporate-heading"
-                >
-                    About <span className="text-blue-400">Me</span>
-                </motion.h2>
+        <section id='about' ref={sectionRef} className="corporate-section relative overflow-hidden">
+            <div className="max-w-5xl mx-auto">
+                <h2 className="corporate-heading mb-12">
+                    About <span className="unified-accent">Me</span>
+                </h2>
                 
-                <div className="corporate-card p-8 lg:p-12">
-                    <div className="grid lg:grid-cols-2 gap-12 items-center">
-                        <motion.div 
-                            whileInView={{ opacity: 1, x: 0 }}
-                            initial={{ opacity: 0, x: -50 }}
-                            transition={{ duration: 0.6, delay: 0.2 }}
-                            className="order-2 lg:order-1"
-                        >
-                            <div className="flex justify-center lg:justify-start">
-                                <div className="relative">
-                                    <img 
-                                        className="rounded-2xl h-80 w-80 object-cover shadow-2xl" 
-                                        src={aboutImg} 
-                                        alt="Bhuvan Shah" 
-                                    />
-                                    <div className="absolute inset-0 rounded-2xl bg-gradient-to-tr from-blue-500/20 to-transparent"></div>
-                                </div>
-                            </div>
-                        </motion.div>
-                        
-                        <motion.div 
-                            whileInView={{ opacity: 1, x: 0 }}
-                            initial={{ opacity: 0, x: 50 }}
-                            transition={{ duration: 0.6, delay: 0.3 }}
-                            className="order-1 lg:order-2"
-                        >
-                            <div className="space-y-6">
-                                <h3 className="corporate-subheading text-center lg:text-left">
-                                    Passionate About Technology & Innovation
-                                </h3>
-                                <div className="corporate-text text-lg text-center lg:text-left">
-                                    <p className="mb-6">{ABOUT_TEXT}</p>
-                                </div>
-                                
-                                <div className="flex flex-wrap gap-3 justify-center lg:justify-start">
-                                    <span className="px-4 py-2 bg-blue-500/20 text-blue-300 rounded-full text-sm font-medium border border-blue-500/30">
-                                        Software Engineering
-                                    </span>
-                                    <span className="px-4 py-2 bg-green-500/20 text-green-300 rounded-full text-sm font-medium border border-green-500/30">
-                                        Data Science
-                                    </span>
-                                    <span className="px-4 py-2 bg-purple-500/20 text-purple-300 rounded-full text-sm font-medium border border-purple-500/30">
-                                        Innovation
-                                    </span>
-                                </div>
-                            </div>
-                        </motion.div>
+                <div 
+                    ref={containerRef}
+                    className="corporate-card p-8 lg:p-12 min-h-[50vh] flex flex-col justify-center"
+                    style={{ perspective: '1000px' }}
+                >
+                    {/* Animated text with 3D reveal */}
+                    <div ref={textRef} className="mb-12">
+                        {sentences.map((sentence, index) => (
+                            <p 
+                                key={index}
+                                className="sentence text-lg lg:text-xl font-light text-slate-700 leading-relaxed mb-4 text-justify"
+                                style={{ 
+                                    transformStyle: 'preserve-3d',
+                                    transformOrigin: '50% 50%'
+                                }}
+                            >
+                                {sentence.trim()}{index < sentences.length - 1 ? '.' : ''}
+                            </p>
+                        ))}
+                    </div>
+                    
+                    {/* Animated badges with parallax */}
+                    <div 
+                        ref={badgesRef}
+                        className="flex flex-wrap gap-4 justify-center lg:justify-start mt-8"
+                    >
+                        <span className="badge px-6 py-3 bg-[#7C9A9A]/30 text-slate-700 rounded-full text-base font-medium border border-[#7C9A9A]/40 shadow-lg transform-gpu">
+                            Software Engineering
+                        </span>
+                        <span className="badge px-6 py-3 bg-[#A8B8D1]/30 text-slate-700 rounded-full text-base font-medium border border-[#A8B8D1]/40 shadow-lg transform-gpu">
+                            Data Science
+                        </span>
+                        <span className="badge px-6 py-3 bg-[#D4A5A5]/30 text-slate-700 rounded-full text-base font-medium border border-[#D4A5A5]/40 shadow-lg transform-gpu">
+                            Innovation
+                        </span>
                     </div>
                 </div>
             </div>

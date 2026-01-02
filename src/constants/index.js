@@ -364,7 +364,6 @@ export const EDUCATION = [
 
 export const CONTACT = {
   address: "Los Angeles, California, United States",
-  phoneNo: "+1 (213) 331 1360 ",
   email: "bhuvanshah288@gmail.com",
 };
 
