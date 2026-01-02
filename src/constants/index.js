@@ -371,7 +371,7 @@ export const CONTACT = {
 export const SKILLS = [
   {
     category: "Languages",
-    skills: ["Python", "JavaScript", "C#", "SQL", "Swift"]
+    skills: ["Python", "JavaScript", "TypeScript", "C#", "C++", "SQL", "Swift"]
   },
   {
     category: "AI/ML",
@@ -383,6 +383,10 @@ export const SKILLS = [
   },
   {
     category: "Backend",
-    skills: ["Node.js", "Express", "MongoDB", "PostgreSQL", "Firebase"]
+    skills: ["Node.js", "Express", "Flask", "Django", "FastAPI", "Spring Boot", "REST API", "GraphQL"]
+  },
+  {
+    category: "Databases",
+    skills: ["MongoDB", "PostgreSQL", "MySQL", "Firebase", "Redis", "SQLite"]
   }
 ];
