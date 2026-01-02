@@ -375,7 +375,7 @@ export const SKILLS = [
   },
   {
     category: "AI/ML",
-    skills: ["NLP", "Generative AI", "LLMs", "Neural Networks", "Data Science"]
+    skills: ["PyTorch", "TensorFlow", "NLP", "Generative AI", "LLMs", "Neural Networks", "Data Science"]
   },
   {
     category: "Frontend",

@@ -104,7 +104,7 @@ const About = () => {
                         {sentences.map((sentence, index) => (
                             <p 
                                 key={index}
-                                className="sentence text-lg lg:text-xl font-light text-slate-700 leading-relaxed mb-4 text-justify"
+                                className="sentence text-lg lg:text-xl font-light text-slate-700 leading-relaxed mb-4 text-justify font-mono"
                                 style={{ 
                                     transformStyle: 'preserve-3d',
                                     transformOrigin: '50% 50%'

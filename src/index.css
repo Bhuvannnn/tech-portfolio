@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -103,12 +104,12 @@
 }
 
 :root{
-  font-family: "Plus Jakarta Sans", "Inter", sans-serif;
+  font-family: "IBM Plex Sans", "Inter", sans-serif;
 }
 
 /* Unified Design System - Pastel Theme */
 .corporate-card {
-  @apply bg-white/40 backdrop-blur-md rounded-xl shadow-lg hover:shadow-xl transition-all duration-300;
+  @apply bg-white/40 backdrop-blur-md rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 relative;
   border: 1px solid rgba(124, 154, 154, 0.3);
 }
 
@@ -183,4 +184,60 @@
   height: 100% !important;
   width: 100% !important;
   z-index: -1 !important;
+}
+
+/* Grid pattern divider for sections */
+.section-grid-divider {
+  position: relative;
+  display: flex;
+  height: 2rem;
+  width: 100%;
+}
+
+.section-grid-divider::before {
+  content: '';
+  position: absolute;
+  left: -100vw;
+  z-index: -1;
+  height: 2rem;
+  width: 200vw;
+  background: repeating-linear-gradient(
+    315deg,
+    rgba(124, 154, 154, 0.15) 0,
+    rgba(124, 154, 154, 0.15) 1px,
+    transparent 0,
+    transparent 50%
+  );
+  background-size: 10px 10px;
+}
+
+/* Simple border utilities for sections */
+.screen-line-before {
+  position: relative;
+}
+
+.screen-line-before::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100vw;
+  z-index: -1;
+  height: 1px;
+  width: 200vw;
+  background-color: rgba(124, 154, 154, 0.3);
+}
+
+.screen-line-after {
+  position: relative;
+}
+
+.screen-line-after::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: -100vw;
+  z-index: -1;
+  height: 1px;
+  width: 200vw;
+  background-color: rgba(124, 154, 154, 0.3);
 }

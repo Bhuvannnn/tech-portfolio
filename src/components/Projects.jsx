@@ -31,7 +31,7 @@ const Projects = () => {
         {PROJECTS.map((project, index) => (
           <div
             key={index}
-            className="corporate-card overflow-hidden group cursor-pointer hover:scale-[1.02] hover:border-[#7C9A9A]/50 flex flex-col h-full"
+            className="corporate-card overflow-hidden group cursor-pointer hover:scale-[1.02] hover:border-[#7C9A9A]/50 flex flex-col h-full screen-line-before screen-line-after border-x border-[#7C9A9A]/30"
             tabIndex={0}
             onClick={() => handleOpenModal(index)}
             onKeyDown={(e) => {
@@ -106,14 +106,14 @@ const Projects = () => {
       <AnimatePresence>
         {modalIndex !== null && (
           <motion.div
-            className="fixed inset-0 z-50 flex items-center justify-center backdrop-blur-sm bg-white/80 p-2 sm:p-6"
+            className="fixed inset-0 z-50 flex items-center justify-center backdrop-blur-sm bg-white/60 p-2 sm:p-6"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={handleCloseModal}
           >
             <motion.div
-              className="bg-white/90 backdrop-blur-md rounded-2xl shadow-lg border border-[#7C9A9A]/40 w-full max-w-4xl mx-2 sm:mx-4 p-4 sm:p-6 lg:p-8 relative max-h-[90vh] overflow-y-auto"
+              className="bg-white/40 backdrop-blur-md rounded-2xl shadow-lg border border-[#7C9A9A]/30 w-full max-w-4xl mx-2 sm:mx-4 p-4 sm:p-6 lg:p-8 relative max-h-[90vh] overflow-y-auto"
               initial={{ y: "100%", opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: "100%", opacity: 0 }}
@@ -124,7 +124,7 @@ const Projects = () => {
               onClick={e => e.stopPropagation()}
             >
               <button
-                className="absolute top-3 right-3 w-9 h-9 flex items-center justify-center rounded-full bg-white/90 text-slate-700 hover:bg-[#7C9A9A] hover:text-white text-2xl font-extrabold shadow-lg border border-[#7C9A9A]/40 transition-all duration-200 z-10"
+                className="absolute top-3 right-3 w-9 h-9 flex items-center justify-center rounded-full bg-white/40 backdrop-blur-md text-slate-700 hover:bg-[#7C9A9A] hover:text-white text-2xl font-extrabold shadow-lg border border-[#7C9A9A]/40 transition-all duration-200 z-10"
                 onClick={handleCloseModal}
                 aria-label="Close"
               >
@@ -149,7 +149,7 @@ const Projects = () => {
                 <img
                   src={PROJECTS[modalIndex].image}
                   alt={PROJECTS[modalIndex].title}
-                  className="object-contain w-full h-72 lg:h-96 rounded-xl bg-[#F0E8E0] mx-auto shadow-2xl"
+                  className="object-contain w-full h-72 lg:h-96 rounded-xl bg-gradient-to-br from-[#E8E0F0] to-[#F0E8E0] mx-auto shadow-2xl"
                 />
               </div>
 

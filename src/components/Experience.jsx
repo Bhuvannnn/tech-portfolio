@@ -20,23 +20,26 @@ const Experience = () => {
   const handleMouseLeave = () => setHoveredIndex(null);
 
   return (
-    <section id="experience" className="corporate-section">
+    <section id="experience" className="corporate-section screen-line-before screen-line-after border-x border-[#7C9A9A]/30">
       <div className="max-w-6xl mx-auto">
+        <div className="section-grid-divider mb-4"></div>
         <BlurFade direction="up" duration={0.7}>
           <h2 className="corporate-heading border-b border-[#7C9A9A]/30 pb-4 mb-8">
             Professional <span className="unified-accent">Experience</span>
           </h2>
         </BlurFade>
 
-        <div className="space-y-6">
+        <div className="space-y-0">
           {EXPERIENCES.map((experience, index) => (
-            <BlurFade key={index} delay={0.15 * index} inView>
-              <div
-                className="corporate-card p-6 group cursor-pointer hover:border-[#7C9A9A]/50"
-                onClick={() => handleCardClick(index)}
-                onMouseEnter={() => handleMouseEnter(index)}
-                onMouseLeave={handleMouseLeave}
-              >
+            <React.Fragment key={index}>
+              {index > 0 && <div className="section-grid-divider"></div>}
+              <BlurFade delay={0.15 * index} inView>
+                <div
+                  className="corporate-card p-6 group cursor-pointer hover:border-[#7C9A9A]/50 screen-line-before screen-line-after border-x border-[#7C9A9A]/30"
+                  onClick={() => handleCardClick(index)}
+                  onMouseEnter={() => handleMouseEnter(index)}
+                  onMouseLeave={handleMouseLeave}
+                >
                 <div className="flex items-start space-x-4 w-full">
                 {/* Company Logo/Avatar */}
                 <div className="flex-shrink-0 mb-0 sm:mb-0">
@@ -167,7 +170,8 @@ const Experience = () => {
                 </div>
                 </div>
               </div>
-            </BlurFade>
+              </BlurFade>
+            </React.Fragment>
           ))}
         </div>
       </div>

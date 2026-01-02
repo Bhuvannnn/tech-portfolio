@@ -2,7 +2,7 @@ import React from 'react';
 import { SKILLS } from "../constants";
 import { BlurFade } from "./BlurFade";
 // Optionally import icons from react-icons
-import { SiPython, SiJavascript, SiCsharp, SiMysql, SiSwift, SiNodedotjs, SiExpress, SiMongodb, SiPostgresql, SiFirebase, SiReact, SiNextdotjs, SiTailwindcss, SiHtml5, SiCss3 } from "react-icons/si";
+import { SiPython, SiJavascript, SiCsharp, SiMysql, SiSwift, SiNodedotjs, SiExpress, SiMongodb, SiPostgresql, SiFirebase, SiReact, SiNextdotjs, SiTailwindcss, SiHtml5, SiCss3, SiPytorch, SiTensorflow } from "react-icons/si";
 import { FaBrain, FaNetworkWired, FaRobot, FaDatabase, FaPalette } from "react-icons/fa";
 
 // Map skill names to icons (add more as needed)
@@ -22,6 +22,8 @@ const skillIcons = {
   "HTML/CSS": <><SiHtml5 className="inline mr-1 text-[#D4A5A5]" /><SiCss3 className="inline mr-1 text-[#7C9A9A]" /></>,
   Tailwind: <SiTailwindcss className="inline mr-2 text-[#A8B8D1]" />,
   "UI/UX": <FaPalette className="inline mr-2 text-[#FFB3BA]" />,
+  PyTorch: <SiPytorch className="inline mr-2 text-[#D4A5A5]" />,
+  TensorFlow: <SiTensorflow className="inline mr-2 text-[#7C9A9A]" />,
   NLP: <FaBrain className="inline mr-2 text-[#A8B8D1]" />,
   "Generative AI": <FaRobot className="inline mr-2 text-[#A8B8D1]" />,
   LLMs: <FaBrain className="inline mr-2 text-[#7C9A9A]" />,
@@ -31,12 +33,13 @@ const skillIcons = {
 
 const Technologies = () => {
   return (
-    <section id="technologies" className="corporate-section">
+    <section id="technologies" className="corporate-section screen-line-before screen-line-after border-x border-[#7C9A9A]/30">
       <div className="max-w-6xl mx-auto">
+        <div className="section-grid-divider mb-4"></div>
         <h2 className="corporate-heading border-b border-[#7C9A9A]/30 pb-4 mb-8">
           Skills & <span className="unified-accent">Technologies</span>
         </h2>
-        <div className="corporate-card p-8">
+        <div className="corporate-card p-8 screen-line-before screen-line-after border-x border-[#7C9A9A]/30">
           <div className="space-y-8">
             {SKILLS.map((cat, i) => (
               <BlurFade key={cat.category} delay={0.05 * (i + 1)} inView>
