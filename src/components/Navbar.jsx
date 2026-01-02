@@ -70,16 +70,16 @@ const Navbar = () => {
                 isScrolled ? 'bg-white/60 backdrop-blur-md border-b border-[#7C9A9A]/30' : 'bg-transparent'
             } py-3 px-4`}>
                 <div className="container mx-auto">
-                    <div className="flex items-center justify-between">
+                    <div className="flex items-center justify-between gap-4">
                         {/* Logo Area */}
-                        <div className="flex items-center">
+                        <div className="flex items-center flex-shrink-0">
                             <motion.div 
                                 className="flex items-center"
                                 initial={{ opacity: 0, x: -20 }}
                                 animate={{ opacity: 1, x: 0 }}
                                 transition={{ duration: 0.8, ease: "easeOut" }}
                             >
-                                <span className="font-mono text-slate-800 text-xl font-medium tracking-tight">
+                                <span className="font-mono text-slate-800 text-xl font-medium tracking-tight whitespace-nowrap">
                                     bhuvan
                                 </span>
                             </motion.div>
@@ -98,7 +98,7 @@ const Navbar = () => {
                         {/* Desktop Navigation */}
                         {/* Container for desktop nav items with stagger animation */}
                         <motion.div
-                            className="hidden md:flex flex-wrap items-center justify-center md:justify-end gap-3 md:gap-4 font-mono text-xs md:text-sm"
+                            className="hidden md:flex items-center justify-end gap-2 lg:gap-3 xl:gap-4 font-mono text-xs lg:text-sm flex-nowrap"
                             initial="hidden"
                             animate="visible"
                             variants={{
@@ -121,7 +121,7 @@ const Navbar = () => {
                                         hidden: { opacity: 0, y: -10 },
                                         visible: { opacity: 1, y: 0 }
                                     }}
-                                    className={`px-4 py-2 rounded-lg border transition-all duration-300 backdrop-blur-sm ${
+                                    className={`px-2 md:px-3 lg:px-4 py-2 rounded-lg border transition-all duration-300 backdrop-blur-sm whitespace-nowrap ${
                                         activeSection === section 
                                             ? 'border-[#7C9A9A] bg-[#7C9A9A]/30 text-slate-800 shadow-lg shadow-[#7C9A9A]/30' 
                                             : 'border-[#7C9A9A]/40 bg-white/40 hover:border-[#7C9A9A] hover:bg-[#7C9A9A]/20 hover:shadow-lg hover:shadow-[#7C9A9A]/20 text-slate-700'
@@ -135,8 +135,7 @@ const Navbar = () => {
                                         className="cursor-pointer flex items-center"
                                         onSetActive={() => setActiveSection(section)}
                                     >
-                                        <span className="text-[#7C9A9A] mr-2 font-bold">$</span>
-                                        <span>{section}</span>
+                                        <span>{section.charAt(0).toUpperCase() + section.slice(1)}</span>
                                     </Link>
                                 </motion.div>
                             ))}
@@ -149,11 +148,10 @@ const Navbar = () => {
                                     hidden: { opacity: 0, y: -10 },
                                     visible: { opacity: 1, y: 0 }
                                 }}
-                                className="px-4 py-2 rounded-lg border border-[#7C9A9A]/40 bg-white/40 hover:border-[#7C9A9A] hover:bg-[#7C9A9A]/20 hover:shadow-lg hover:shadow-[#7C9A9A]/20 cursor-pointer transition-all duration-300 backdrop-blur-sm text-slate-700"
+                                className="px-2 md:px-3 lg:px-4 py-2 rounded-lg border border-[#7C9A9A]/40 bg-white/40 hover:border-[#7C9A9A] hover:bg-[#7C9A9A]/20 hover:shadow-lg hover:shadow-[#7C9A9A]/20 cursor-pointer transition-all duration-300 backdrop-blur-sm text-slate-700 whitespace-nowrap"
                                 onClick={handleResumeClick}
                             >
-                                <span className="text-[#7C9A9A] mr-2 font-bold">$</span>
-                                <span>resume</span>
+                                <span>Resume</span>
                             </motion.div>
                         </motion.div>
                     </div>
@@ -190,8 +188,7 @@ const Navbar = () => {
                                         onSetActive={() => setActiveSection(section)}
                                         onClick={closeMobileMenu}
                                     >
-                                        <span className="text-[#7C9A9A] mr-2 font-bold">$</span>
-                                        <span>{section}</span>
+                                        <span>{section.charAt(0).toUpperCase() + section.slice(1)}</span>
                                     </Link>
                                 </motion.div>
                             ))}
@@ -206,8 +203,7 @@ const Navbar = () => {
                                         closeMobileMenu();
                                     }}
                                 >
-                                    <span className="text-[#7C9A9A] mr-1">$</span>
-                                    <span>resume</span>
+                                    <span>Resume</span>
                                 </motion.div>
                             </div>
                         </div>

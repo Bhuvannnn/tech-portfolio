@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { HERO_CONTENT } from "../constants";
-import { TypeAnimation } from 'react-type-animation';
 import profilePic from "../assets/BhuvanProfile.jpg";
 import mouse from "../assets/mouse.png";
 import { motion } from "framer-motion";
-import ParticlesBackground from './ParticlesBackground';
 import { BlurFade } from "./BlurFade";
 
 const container = (delay) => ({
@@ -71,7 +69,6 @@ const Hero = () => {
     const heroLines = HERO_CONTENT.split(/\n|\. /).filter(Boolean);
     return (
         <div className="relative min-h-screen flex flex-col justify-center border-b border-[#7C9A9A]/20 overflow-hidden" style={{ minHeight: 'calc(100vh - env(safe-area-inset-bottom))' }}>
-            <ParticlesBackground />
             <div className="flex flex-wrap items-center justify-center px-4 py-8 sm:py-12 lg:py-16">
                 <div className="w-full lg:w-1/2">
                     <div className="flex flex-col items-center lg:items-start">
@@ -82,30 +79,14 @@ const Hero = () => {
                             />
                         </div>
                         <div className="relative flex flex-col items-start">
-                            <div className="relative inline-block">
-                                <TypeAnimation
-                                    sequence={[
-                                        'Software Engineer',
-                                        2000,
-                                        'Data Scientist',
-                                        2000,
-                                        'Data Engineer',
-                                        2000,
-                                        'Data Analyst',
-                                        2000,
-                                    ]}
-                                    wrapper="span"
-                                    speed={50}
-                                    style={{ 
-                                        fontSize: '2em', 
-                                        display: 'inline-block',
-                                        lineHeight: '1.2',
-                                        paddingBottom: '0.2em'
-                                    }}
-                                    repeat={Infinity}
-                                    className="flowing-gradient-text text-3xl tracking-tight"
-                                />
-                            </div>
+                            <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.8, duration: 0.5 }}
+                                className="flowing-gradient-text text-3xl tracking-tight"
+                            >
+                                Software Engineer
+                            </motion.div>
                         </div>
                         {/* Animated hero content using BlurFade */}
                         <div className="my-2 max-w-xl py-6 font-light tracking-tighter text-justify">

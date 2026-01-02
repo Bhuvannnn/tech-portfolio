@@ -179,13 +179,6 @@
   opacity: 1;
 }
 
-#hero-particles {
-  position: absolute !important;
-  height: 100% !important;
-  width: 100% !important;
-  z-index: -1 !important;
-}
-
 /* Grid pattern divider for sections */
 .section-grid-divider {
   position: relative;
