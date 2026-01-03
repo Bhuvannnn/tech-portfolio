@@ -365,7 +365,33 @@ export const EDUCATION = [
 export const CONTACT = {
   address: "Los Angeles, California, United States",
   email: "bhuvanshah288@gmail.com",
+  phone: "+1 (213) 331-1360",
+  website: "bhuvanshah.com",
+  pronouns: "he/him",
+  timeZone: "America/Los_Angeles",
 };
+
+export const JOBS = [
+  {
+    title: "Founding SWE",
+    company: "Easley-Dunn Productions, Inc.",
+  },
+];
+
+export const SOCIAL_LINKS = [
+  {
+    title: "GitHub",
+    description: "Bhuvannnn",
+    href: "https://github.com/Bhuvannnn",
+    icon: "github",
+  },
+  {
+    title: "LinkedIn",
+    description: "bhuvanshah",
+    href: "https://www.linkedin.com/in/bhuvanshah/",
+    icon: "linkedin",
+  },
+];
 
 // Add skills data for the radar chart
 export const SKILLS = [

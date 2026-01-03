@@ -1,8 +1,20 @@
-import { useEffect, useRef } from 'react';
-import { ABOUT_TEXT, CONTACT } from '../constants';
+import { useEffect, useRef, useState } from 'react';
+import { ABOUT_TEXT, CONTACT, JOBS, SOCIAL_LINKS } from '../constants';
 import { BlurFade } from './BlurFade';
 import profilePic from "../assets/BhuvanProfile.jpg";
-import { FaMapMarkerAlt, FaEnvelope, FaCode, FaBrain, FaCloud } from "react-icons/fa";
+import { 
+    FaMapMarkerAlt, 
+    FaEnvelope, 
+    FaPhone, 
+    FaGlobe,
+    FaGithub,
+    FaLinkedin,
+    FaCode,
+    FaLightbulb,
+    FaClock,
+    FaMars
+} from "react-icons/fa";
+import { HiCheckBadge } from "react-icons/hi2";
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -15,6 +27,30 @@ const About = () => {
     const contentRef = useRef(null);
     const bgOverlayRef = useRef(null);
     const sentences = ABOUT_TEXT.split('. ').filter(s => s.trim());
+    const [currentTime, setCurrentTime] = useState('');
+
+    // Get current local time
+    useEffect(() => {
+        const updateTime = () => {
+            try {
+                const timeZone = CONTACT.timeZone || 'America/Los_Angeles';
+                const now = new Date();
+                const formatter = new Intl.DateTimeFormat('en-US', {
+                    timeZone: timeZone,
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    hour12: false
+                });
+                const timeStr = formatter.format(now);
+                setCurrentTime(timeStr);
+            } catch (e) {
+                setCurrentTime('');
+            }
+        };
+        updateTime();
+        const interval = setInterval(updateTime, 1000);
+        return () => clearInterval(interval);
+    }, []);
 
     useEffect(() => {
         const section = sectionRef.current;
@@ -281,6 +317,27 @@ const About = () => {
         };
     }, []);
 
+    const getJobIcon = (title) => {
+        if (/(founder|co-founder|founding)/i.test(title)) {
+            return <FaLightbulb className="w-4 h-4" />;
+        }
+        if (/(developer|engineer)/i.test(title)) {
+            return <FaCode className="w-4 h-4" />;
+        }
+        return <FaCode className="w-4 h-4" />;
+    };
+
+    const getSocialIcon = (iconName) => {
+        switch (iconName) {
+            case 'github':
+                return <FaGithub className="w-5 h-5" />;
+            case 'linkedin':
+                return <FaLinkedin className="w-5 h-5" />;
+            default:
+                return null;
+        }
+    };
+
     return (
         <section 
             id='about' 
@@ -313,81 +370,264 @@ const About = () => {
             <div 
                 id="about-content"
                 ref={contentRef}
-                className="corporate-section opacity-0 translate-y-10 flex items-center justify-center"
-                style={{ minHeight: '100vh' }}
+                className="opacity-0 translate-y-10 corporate-section screen-line-before screen-line-after border-x border-[#7C9A9A]/30"
+                style={{ minHeight: '100vh', paddingTop: '6rem', paddingBottom: '2rem' }}
             >
                 <div className="max-w-6xl mx-auto w-full">
-                    <BlurFade delay={0.15} inView>
-                        <div className="corporate-card p-6">
-                            <div className="flex flex-col lg:flex-row gap-6 lg:gap-8">
-                                {/* Profile Picture Section */}
-                                <div className="flex-shrink-0 flex flex-col items-center lg:items-start">
-                                    <div className="w-24 h-24 lg:w-28 lg:h-28 rounded-full overflow-hidden border-2 border-[#7C9A9A]/30 shadow-lg mb-4">
-                                        <img 
+                    {/* Profile Header */}
+                    <div className="corporate-card screen-line-before screen-line-after border-x border-[#7C9A9A]/30">
+                        <div className="flex border-b border-[#7C9A9A]/30">
+                            <div className="shrink-0 border-r border-[#7C9A9A]/30 relative">
+                                <div className="mx-0.5 my-0.75">
+                                    <img
+                                        className="size-32 rounded-full ring-1 ring-slate-200 dark:ring-slate-700 ring-offset-2 ring-offset-white dark:ring-offset-slate-900 select-none sm:size-40"
+                                        alt="Bhuvan Shah's avatar"
                                             src={profilePic} 
-                                            alt="Bhuvan Shah" 
-                                            className="w-full h-full object-cover"
-                                        />
-                                    </div>
-                                    <div className="text-center lg:text-left">
-                                        <h3 className="text-xl lg:text-2xl font-bold text-slate-800 mb-1">Bhuvan Shah</h3>
-                                        <p className="text-sm text-slate-600 mb-4">Software Engineer</p>
+                                    />
+                                </div>
+                            </div>
+
+                            <div className="flex flex-1 flex-col">
+                                <div className="flex grow items-end pb-1 pl-4">
+                                    <div className="line-clamp-1 font-mono text-xs text-slate-300 dark:text-slate-700 select-none max-sm:hidden">
+                                        Software Engineer & ML Enthusiast
                                     </div>
                                 </div>
 
-                                {/* Content Section */}
-                                <div className="flex-1 space-y-4">
-                                    {/* About Text */}
-                                    <div className="space-y-3">
-                        {sentences.map((sentence, index) => (
-                            <p 
-                                key={index}
-                                                className="text-sm sm:text-base text-slate-700 leading-relaxed text-left font-mono"
-                            >
-                                {sentence.trim()}{index < sentences.length - 1 ? '.' : ''}
-                            </p>
-                        ))}
-                    </div>
-                    
-                                    {/* Divider */}
-                                    <div className="border-t border-[#7C9A9A]/30 pt-4 mt-4">
-                                        {/* Contact Info */}
-                                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4">
-                                            <div className="flex items-center gap-3 text-sm text-slate-700">
-                                                <FaEnvelope className="w-4 h-4 text-[#7C9A9A] flex-shrink-0" />
-                                                <a 
-                                                    href={`mailto:${CONTACT.email}`}
-                                                    className="hover:text-[#7C9A9A] transition-colors truncate"
-                                                >
-                                                    {CONTACT.email}
-                                                </a>
-                                            </div>
-                                            <div className="flex items-center gap-3 text-sm text-slate-700">
-                                                <FaMapMarkerAlt className="w-4 h-4 text-[#7C9A9A] flex-shrink-0" />
-                                                <span>{CONTACT.address}</span>
-                                            </div>
-                                        </div>
+                                <div className="border-t border-[#7C9A9A]/30">
+                                    <div className="flex items-center gap-2 pl-4">
+                                        <h1 className="-translate-y-px text-3xl font-semibold text-slate-950 dark:text-slate-50">
+                                            Bhuvan Shah
+                                        </h1>
+                                        <HiCheckBadge className="size-4.5 text-blue-500 select-none" aria-label="Verified" />
+                                    </div>
 
-                                        {/* Expertise Tags */}
-                                        <div className="flex flex-wrap gap-2">
-                                            <span className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#7C9A9A]/20 text-slate-700 rounded-full text-xs font-medium border border-[#7C9A9A]/40">
-                                                <FaCode className="w-3 h-3" />
-                            Software Engineering
-                        </span>
-                                            <span className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#A8B8D1]/20 text-slate-700 rounded-full text-xs font-medium border border-[#A8B8D1]/40">
-                                                <FaBrain className="w-3 h-3" />
-                                                Machine Learning
-                        </span>
-                                            <span className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#D4A5A5]/20 text-slate-700 rounded-full text-xs font-medium border border-[#D4A5A5]/40">
-                                                <FaCloud className="w-3 h-3" />
-                                                Cloud Infrastructure
-                        </span>
-                    </div>
+                                    <div className="h-12.5 border-t border-[#7C9A9A]/30 py-1 pl-4 sm:h-9">
+                                        <div className="font-mono text-sm text-slate-600 dark:text-slate-400">
+                                            Software Engineer
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+                                    </div>
+                                </div>
+
+                    {/* Separator */}
+                    <div className="relative flex h-8 w-full border-x border-[#7C9A9A]/30">
+                        <div 
+                            className="absolute -left-[100vw] -z-1 h-8 w-[200vw] opacity-56 dark:opacity-40"
+                            style={{
+                                backgroundImage: 'repeating-linear-gradient(315deg, rgb(226 232 240) 0, rgb(226 232 240) 1px, transparent 0, transparent 50%)',
+                                backgroundSize: '10px 10px'
+                            }}
+                        ></div>
+                        <div 
+                            className="absolute -left-[100vw] -z-1 h-8 w-[200vw] opacity-0 dark:opacity-40 hidden dark:block"
+                            style={{
+                                backgroundImage: 'repeating-linear-gradient(315deg, rgb(51 65 85) 0, rgb(51 65 85) 1px, transparent 0, transparent 50%)',
+                                backgroundSize: '10px 10px'
+                            }}
+                        ></div>
+                    </div>
+                    
+                    {/* Overview Section */}
+                    <div className="corporate-card screen-line-before screen-line-after border-x border-[#7C9A9A]/30">
+                        <div className="p-4 space-y-2.5">
+                            {/* Job Titles */}
+                            {JOBS && JOBS.map((job, index) => (
+                                <div key={index} className="flex items-center gap-4 font-mono text-sm">
+                                    <div className="flex size-6 shrink-0 items-center justify-center rounded-lg border border-slate-300 dark:border-slate-600 bg-slate-100 dark:bg-slate-800 ring-1 ring-slate-200 dark:ring-slate-700 ring-offset-1 ring-offset-white dark:ring-offset-slate-900">
+                                        {getJobIcon(job.title)}
+                                    </div>
+                                    <p className="text-balance text-slate-700 dark:text-slate-300">
+                                        {job.title} @ <span className="font-medium underline-offset-4 hover:underline">{job.company}</span>
+                                    </p>
+                                </div>
+                            ))}
+
+                            {/* Contact Info Grid */}
+                            <div className="grid gap-x-12 gap-y-2.5 sm:grid-cols-2 pt-2">
+                                {/* Location */}
+                                <div className="flex items-center gap-4 font-mono text-sm">
+                                    <div className="flex size-6 shrink-0 items-center justify-center rounded-lg border border-slate-300 dark:border-slate-600 bg-slate-100 dark:bg-slate-800 ring-1 ring-slate-200 dark:ring-slate-700 ring-offset-1 ring-offset-white dark:ring-offset-slate-900">
+                                        <FaMapMarkerAlt className="w-4 h-4 text-slate-600 dark:text-slate-400" />
+                                    </div>
+                                    <p className="text-balance text-slate-700 dark:text-slate-300">
+                                        <a 
+                                            href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(CONTACT.address)}`}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="underline-offset-4 hover:underline"
+                                        >
+                                            {CONTACT.address}
+                                        </a>
+                                    </p>
+                                </div>
+
+                                {/* Time */}
+                                {currentTime && (
+                                    <div className="flex items-center gap-4 font-mono text-sm">
+                                        <div className="flex size-6 shrink-0 items-center justify-center rounded-lg border border-slate-300 dark:border-slate-600 bg-slate-100 dark:bg-slate-800 ring-1 ring-slate-200 dark:ring-slate-700 ring-offset-1 ring-offset-white dark:ring-offset-slate-900">
+                                            <FaClock className="w-4 h-4 text-slate-600 dark:text-slate-400" />
+                                        </div>
+                                        <p className="text-balance text-slate-700 dark:text-slate-300">
+                                            {currentTime}
+                                        </p>
+                                    </div>
+                                )}
+
+                                {/* Phone */}
+                                {CONTACT.phone && (
+                                    <div className="flex items-center gap-4 font-mono text-sm">
+                                        <div className="flex size-6 shrink-0 items-center justify-center rounded-lg border border-slate-300 dark:border-slate-600 bg-slate-100 dark:bg-slate-800 ring-1 ring-slate-200 dark:ring-slate-700 ring-offset-1 ring-offset-white dark:ring-offset-slate-900">
+                                            <FaPhone className="w-4 h-4 text-slate-600 dark:text-slate-400" />
+                                        </div>
+                                        <p className="text-balance text-slate-700 dark:text-slate-300">
+                                            <a 
+                                                href={`tel:${CONTACT.phone.replace(/\s/g, '')}`}
+                                                className="underline-offset-4 hover:underline"
+                                            >
+                                                {CONTACT.phone}
+                                            </a>
+                                        </p>
+                                    </div>
+                                )}
+
+                                {/* Email */}
+                                <div className="flex items-center gap-4 font-mono text-sm">
+                                    <div className="flex size-6 shrink-0 items-center justify-center rounded-lg border border-slate-300 dark:border-slate-600 bg-slate-100 dark:bg-slate-800 ring-1 ring-slate-200 dark:ring-slate-700 ring-offset-1 ring-offset-white dark:ring-offset-slate-900">
+                                        <FaEnvelope className="w-4 h-4 text-slate-600 dark:text-slate-400" />
+                                    </div>
+                                    <p className="text-balance text-slate-700 dark:text-slate-300">
+                                                <a 
+                                                    href={`mailto:${CONTACT.email}`}
+                                            className="underline-offset-4 hover:underline"
+                                                >
+                                                    {CONTACT.email}
+                                                </a>
+                                    </p>
+                                </div>
+
+                                {/* Website */}
+                                {CONTACT.website && (
+                                    <div className="flex items-center gap-4 font-mono text-sm">
+                                        <div className="flex size-6 shrink-0 items-center justify-center rounded-lg border border-slate-300 dark:border-slate-600 bg-slate-100 dark:bg-slate-800 ring-1 ring-slate-200 dark:ring-slate-700 ring-offset-1 ring-offset-white dark:ring-offset-slate-900">
+                                            <FaGlobe className="w-4 h-4 text-slate-600 dark:text-slate-400" />
+                                            </div>
+                                        <p className="text-balance text-slate-700 dark:text-slate-300">
+                                            <a 
+                                                href={`https://${CONTACT.website}`}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="underline-offset-4 hover:underline"
+                                            >
+                                                {CONTACT.website}
+                                            </a>
+                                        </p>
+                                            </div>
+                                )}
+
+                                {/* Pronouns */}
+                                {CONTACT.pronouns && (
+                                    <div className="flex items-center gap-4 font-mono text-sm">
+                                        <div className="flex size-6 shrink-0 items-center justify-center rounded-lg border border-slate-300 dark:border-slate-600 bg-slate-100 dark:bg-slate-800 ring-1 ring-slate-200 dark:ring-slate-700 ring-offset-1 ring-offset-white dark:ring-offset-slate-900">
+                                            <FaMars className="w-4 h-4 text-slate-600 dark:text-slate-400" />
+                                        </div>
+                                        <p className="text-balance text-slate-700 dark:text-slate-300" aria-label={`Pronouns: ${CONTACT.pronouns}`}>
+                                            {CONTACT.pronouns}
+                                        </p>
+                                    </div>
+                                )}
+                            </div>
+                                            </div>
+                                        </div>
+
+                    {/* Separator */}
+                    <div className="relative flex h-8 w-full border-x border-[#7C9A9A]/30">
+                        <div 
+                            className="absolute -left-[100vw] -z-1 h-8 w-[200vw] opacity-56 dark:opacity-40"
+                            style={{
+                                backgroundImage: 'repeating-linear-gradient(315deg, rgb(226 232 240) 0, rgb(226 232 240) 1px, transparent 0, transparent 50%)',
+                                backgroundSize: '10px 10px'
+                            }}
+                        ></div>
+                        <div 
+                            className="absolute -left-[100vw] -z-1 h-8 w-[200vw] opacity-0 dark:opacity-40 hidden dark:block"
+                            style={{
+                                backgroundImage: 'repeating-linear-gradient(315deg, rgb(51 65 85) 0, rgb(51 65 85) 1px, transparent 0, transparent 50%)',
+                                backgroundSize: '10px 10px'
+                            }}
+                        ></div>
+                    </div>
+
+                    {/* Social Links Section */}
+                    {SOCIAL_LINKS && SOCIAL_LINKS.length > 0 && (
+                        <div className="corporate-card screen-line-before screen-line-after border-x border-[#7C9A9A]/30">
+                            <div className="relative">
+                                <div className="pointer-events-none absolute inset-0 -z-1 grid grid-cols-1 gap-4 max-sm:hidden sm:grid-cols-2">
+                                    <div className="border-r border-[#7C9A9A]/30"></div>
+                                    <div className="border-l border-[#7C9A9A]/30"></div>
+                                </div>
+
+                                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                                    {SOCIAL_LINKS.map((link, index) => (
+                                        <a
+                                            key={index}
+                                            href={link.href}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="group/link flex cursor-pointer items-center gap-4 p-4 pr-2 transition-[background-color] ease-out hover:bg-slate-50 dark:hover:bg-slate-800"
+                                        >
+                                            <div className="relative size-12 shrink-0 flex items-center justify-center rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+                                                {getSocialIcon(link.icon)}
+                                            </div>
+
+                                            <div className="flex-1">
+                                                <h3 className="flex items-center font-medium underline-offset-4 group-hover/link:underline text-slate-900 dark:text-slate-100">
+                                                    {link.title}
+                                                </h3>
+                                                {link.description && (
+                                                    <p className="text-sm text-slate-600 dark:text-slate-400">{link.description}</p>
+                                                )}
+                                    </div>
+                                        </a>
+                                    ))}
+                                </div>
+                            </div>
                         </div>
-                    </BlurFade>
+                    )}
+
+                    {/* Separator */}
+                    <div className="relative flex h-8 w-full border-x border-[#7C9A9A]/30">
+                        <div 
+                            className="absolute -left-[100vw] -z-1 h-8 w-[200vw] opacity-56 dark:opacity-40"
+                            style={{
+                                backgroundImage: 'repeating-linear-gradient(315deg, rgb(226 232 240) 0, rgb(226 232 240) 1px, transparent 0, transparent 50%)',
+                                backgroundSize: '10px 10px'
+                            }}
+                        ></div>
+                        <div 
+                            className="absolute -left-[100vw] -z-1 h-8 w-[200vw] opacity-0 dark:opacity-40 hidden dark:block"
+                            style={{
+                                backgroundImage: 'repeating-linear-gradient(315deg, rgb(51 65 85) 0, rgb(51 65 85) 1px, transparent 0, transparent 50%)',
+                                backgroundSize: '10px 10px'
+                            }}
+                        ></div>
+                    </div>
+
+                    {/* About Text Section */}
+                    <div className="corporate-card screen-line-before screen-line-after border-x border-[#7C9A9A]/30">
+                        <div className="p-4">
+                            <h2 className="text-3xl font-semibold mb-4 text-slate-900 dark:text-slate-100">About</h2>
+                            <div className="font-mono text-sm text-slate-700 dark:text-slate-300 space-y-3">
+                                {sentences.map((sentence, index) => (
+                                    <p key={index} className="text-balance leading-relaxed">
+                                        {sentence.trim()}{index < sentences.length - 1 ? '.' : ''}
+                                    </p>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
