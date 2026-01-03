@@ -44,18 +44,21 @@ const skillIcons = {
 
 const Technologies = () => {
   return (
-    <section id="technologies" className="corporate-section screen-line-before screen-line-after border-x border-[#7C9A9A]/30">
+    <section id="technologies" className="corporate-section screen-line-before screen-line-after border-x border-[#7C9A9A]/30 py-8 sm:py-10">
       <div className="max-w-6xl mx-auto">
-        <div className="section-grid-divider mb-4"></div>
-        <h2 className="corporate-heading border-b border-[#7C9A9A]/30 pb-3 mb-4">
-          Skills & <span className="unified-accent">Technologies</span>
-        </h2>
-        <div className="corporate-card p-6 screen-line-before screen-line-after border-x border-[#7C9A9A]/30">
-          <div className="space-y-4">
-            {SKILLS.map((cat, i) => (
-              <BlurFade key={cat.category} delay={0.05 * (i + 1)} inView>
-                <div>
-                  <h4 className="corporate-subheading unified-accent text-base mb-2">{cat.category}</h4>
+        <BlurFade direction="up" duration={0.7}>
+          <h2 className="corporate-heading mb-6">
+            Skills & <span className="unified-accent">Technologies</span>
+          </h2>
+        </BlurFade>
+
+        <div className="space-y-0">
+          {SKILLS.map((cat, i) => (
+            <React.Fragment key={cat.category}>
+              {i > 0 && <div className="section-grid-divider"></div>}
+              <BlurFade delay={0.15 * i} inView>
+                <div className="corporate-card p-4 group hover:border-[#7C9A9A]/50 screen-line-before screen-line-after border-x border-[#7C9A9A]/30">
+                  <h4 className="corporate-subheading unified-accent text-base mb-3">{cat.category}</h4>
                   <div className="flex flex-wrap gap-2">
                     {cat.skills.map(skill => (
                       <span
@@ -68,8 +71,8 @@ const Technologies = () => {
                   </div>
                 </div>
               </BlurFade>
-            ))}
-          </div>
+            </React.Fragment>
+          ))}
         </div>
       </div>
     </section>

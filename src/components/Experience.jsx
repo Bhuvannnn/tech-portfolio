@@ -20,11 +20,10 @@ const Experience = () => {
   const handleMouseLeave = () => setHoveredIndex(null);
 
   return (
-    <section id="experience" className="corporate-section screen-line-before screen-line-after border-x border-[#7C9A9A]/30">
+    <section id="experience" className="corporate-section screen-line-before screen-line-after border-x border-[#7C9A9A]/30 py-8 sm:py-10">
       <div className="max-w-6xl mx-auto">
-        <div className="section-grid-divider mb-4"></div>
         <BlurFade direction="up" duration={0.7}>
-          <h2 className="corporate-heading border-b border-[#7C9A9A]/30 pb-4 mb-8">
+          <h2 className="corporate-heading mb-6">
             Professional <span className="unified-accent">Experience</span>
           </h2>
         </BlurFade>
@@ -35,7 +34,7 @@ const Experience = () => {
               {index > 0 && <div className="section-grid-divider"></div>}
               <BlurFade delay={0.15 * index} inView>
                 <div
-                  className="corporate-card p-6 group cursor-pointer hover:border-[#7C9A9A]/50 screen-line-before screen-line-after border-x border-[#7C9A9A]/30"
+                  className="corporate-card p-4 group cursor-pointer hover:border-[#7C9A9A]/50 screen-line-before screen-line-after border-x border-[#7C9A9A]/30"
                   onClick={() => handleCardClick(index)}
                   onMouseEnter={() => handleMouseEnter(index)}
                   onMouseLeave={handleMouseLeave}
@@ -102,15 +101,15 @@ const Experience = () => {
                           <ChevronRightIcon className="w-4 h-4" />
                         </motion.span>
                       </h3>
-                      <p className="unified-accent font-medium text-sm mb-3">
+                      <p className="unified-accent font-medium text-sm mb-2">
                         {experience.company}
                       </p>
-                      <span className="text-sm text-slate-600 sm:hidden mb-4 block">
+                      <span className="text-sm text-slate-600 sm:hidden mb-2 block">
                         {experience.year}
                       </span>
                       
                       {/* Technologies */}
-                      <div className="flex-wrap gap-2 mb-3 justify-center sm:justify-start hidden sm:flex">
+                      <div className="flex-wrap gap-2 mb-2 justify-center sm:justify-start hidden sm:flex">
                         {experience.technologies.map((tech, techIndex) => (
                           <span
                             key={techIndex}
@@ -148,9 +147,9 @@ const Experience = () => {
                         }}
                         className="overflow-hidden"
                       >
-                        <div className="pt-4 mt-4 border-t border-[#7C9A9A]/30">
+                        <div className="pt-3 mt-3 border-t border-[#7C9A9A]/30">
                           {Array.isArray(experience.bullets) && experience.bullets.length > 0 ? (
-                            <ul className="list-none space-y-2 corporate-text text-sm">
+                            <ul className="list-none space-y-1.5 corporate-text text-sm">
                               {experience.bullets.map((item, i) => (
                                 <li key={i} className="flex items-start gap-3">
                                   <span className="unified-accent mt-1">•</span>
