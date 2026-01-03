@@ -20,11 +20,10 @@ const Education = () => {
   const handleMouseLeave = () => setHoveredIndex(null);
 
   return (
-    <section id="education" className="corporate-section screen-line-before screen-line-after border-x border-[#7C9A9A]/30">
+    <section id="education" className="corporate-section screen-line-before screen-line-after border-x border-[#7C9A9A]/30 py-8 sm:py-10">
       <div className="max-w-6xl mx-auto">
-        <div className="section-grid-divider mb-4"></div>
         <BlurFade direction="up" duration={0.7}>
-          <h2 className="corporate-heading border-b border-[#7C9A9A]/30 pb-4 mb-8">
+          <h2 className="corporate-heading mb-6">
             <span className="unified-accent">Education</span>
           </h2>
         </BlurFade>
@@ -35,7 +34,7 @@ const Education = () => {
               {index > 0 && <div className="section-grid-divider"></div>}
               <BlurFade delay={0.15 * index} inView>
                 <div
-                  className="corporate-card p-6 group cursor-pointer hover:border-[#7C9A9A]/50 screen-line-before screen-line-after border-x border-[#7C9A9A]/30"
+                  className="corporate-card p-4 group cursor-pointer hover:border-[#7C9A9A]/50 screen-line-before screen-line-after border-x border-[#7C9A9A]/30"
                   onClick={() => handleCardClick(index)}
                   onMouseEnter={() => handleMouseEnter(index)}
                   onMouseLeave={handleMouseLeave}
@@ -105,7 +104,7 @@ const Education = () => {
                       </span>
                       
                       {/* GPA and relevant courses */}
-                      <div className="flex-wrap gap-2 mb-3 justify-center sm:justify-start hidden sm:flex">
+                      <div className="flex-wrap gap-2 mb-2 justify-center sm:justify-start hidden sm:flex">
                         {education.gpa && (
                           <span className="inline-block rounded-full bg-white/60 px-3 py-1.5 text-sm text-slate-700 border border-[#7C9A9A]/40">
                             GPA: {education.gpa}
@@ -153,8 +152,8 @@ const Education = () => {
                         }}
                         className="overflow-hidden"
                       >
-                        <div className="pt-4 mt-4 border-t border-[#7C9A9A]/30">
-                          <div className="space-y-3">
+                        <div className="pt-3 mt-3 border-t border-[#7C9A9A]/30">
+                          <div className="space-y-2">
                             {education.description && (
                               <p className="corporate-text text-sm leading-relaxed">
                                 {education.description}

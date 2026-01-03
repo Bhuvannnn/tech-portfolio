@@ -128,7 +128,7 @@ const Navbar = () => {
                                     }`}
                                 >
                                     <Link
-                                        to={section === 'skills' ? 'technologies' : section}
+                                        to={section === 'skills' ? 'technologies' : section === 'about' ? 'about-content' : section}
                                         smooth={true}
                                         duration={500}
                                         offset={-80}
@@ -180,7 +180,7 @@ const Navbar = () => {
                                     }`}
                                 >
                                     <Link
-                                        to={section === 'skills' ? 'technologies' : section}
+                                        to={section === 'skills' ? 'technologies' : section === 'about' ? 'about-content' : section}
                                         smooth={true}
                                         duration={500}
                                         offset={-80}
