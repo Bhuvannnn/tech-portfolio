@@ -41,7 +41,7 @@ Suggestion: ${this.suggestion}`),n}}class O extends G{constructor(n,t,r,o=w.INVA
             playsinline
             autoplay
             preload="auto"
-            data-src="/demo.mp4"
+            data-src="/cjson/demo.mp4"
             poster="/demo-poster.jpg"
             aria-label="CJSON demo walkthrough"
           >
